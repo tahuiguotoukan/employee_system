@@ -1,0 +1,38 @@
+#dialog-search {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    overflow: scroll;
+}
+#dialog-search form>.form-group{
+    margin: 6px 0;
+    position: relative;
+    display: none;
+    width: 100%;
+}
+#dialog-search form>.form-group>div{
+    padding: 0;
+}
+#dialog-search form>.form-group .close-item{
+    display: inline-block; 
+    width: 20px;
+     height: 20px;
+    text-align: center;
+    position: absolute;
+    top: 0; 
+    right: 6px;
+    color: #cccccc;
+    display: none;
+}
+#employee-list table th, #employee-list table td
+{
+    text-align: center;
+}
+.nav-left-active {
+    color: #2abe24 !important;
+}
+#dialog-more-condition{
+    border-radius: 5px;
+}
+.SlectBox {
+    border-radius: 4px;
+}

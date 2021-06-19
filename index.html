@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <!-- 若您需要使用Kendo UI Professional，请联系版权人获得合法的授权或许可。 -->
+    <link href="./bk/bk.css" rel="stylesheet">
+    <!-- Bootstrap css -->
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- kendo ui css -->
+    <link href="./kendoui-2015.2.624/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="./kendoui-2015.2.624/styles/kendo.default.min.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="./fontawesome/css/font-awesome.css" rel="stylesheet">
+    
+    <link href="./metisMenu-2.6.0/metisMenu-master/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/components/vertical_nav11/css/index.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/jquery.sumoselect-2.0.0/sumoselect.css" rel="stylesheet">
+    
+    
+    
+    <!-- 数据埋点统计 -->
+    <!-- <script src="http://magicbox.bk.tencent.com/static_api/analysis.js"></script> -->
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    
+    <nav style="position: fixed;z-index: 10000;width: 100%;">
+        <div class="king-header2 navbar king-horizontal-primary" id="nav9_demo1">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="pull-right visible-xs navbar-toggle collapsed navbar-toggle-sm"
+                    type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <i class="fa fa-fw fa-ellipsis-v">
+                        </i>
+                    </button>
+                    <a class="navbar-brand" href="javascript:;" title="故障预警系统">
+                        <img src="./images/logo.png" alt="" class="logo" style="margin-top:-5px;">
+                    </a>
+                    <span class="navbar-brand">管理系统</span>
+                </div>
+                <div class="navbar-collapse collapse">
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span>
+                                    admin
+                                </span>
+                                <span class="avatar">
+                                    <img src="./images/avatar.jpg" />
+                                </span>
+                            </a>
+                        </li>
+                        <li id="logout">
+                            <a href="javascript:void(0)">
+                                退出
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    
+    <!-- header nav start -->
+    
+    <!-- header nav end -->
+    <!-- content start -->
+    
+    <div id="container" style="height: 100%;z-index: 0;">
+        
+        <div id="right" style="position: absolute;margin-top: 50px; overflow: hidden;right: 0; padding: 20px;">
+            
+            
+            
+            <div id="employee-detail" class="row" style="width: 100%;margin: auto;display: none;">
+                <div class="col-sm-12">
+                    <div class="king-block king-block-bordered">
+                        <div class="king-block-header king-gray-light">
+                            <ul class="king-block-options">
+                                <li>
+                                    <button type="button"><i class="fa fa-cog"></i></button>
+                                </li>
+                            </ul>
+                            <h3 class="king-block-title">填写个人信息</h3>
+                        </div>
+                        <div class="king-block-content">
+                            <form id="detail-form" class="form-horizontal" method="POST">
+                                <div class="form-group">
+                                    <label for="userName" class="col-sm-3 control-label">姓名：</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="userName" id="userName" placeholder="">
+                                    </div>
+                                    <span class="text-danger mt5 fl">*</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userCode" class="col-sm-3 control-label">员工编号：</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="userCode" id="userCode" placeholder="系统自动生成，不可编辑" disabled value="">
+                                    </div>
+                                    <span class="text-danger mt5 fl">*</span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">性别：</label>
+                                    <div class="col-sm-7">
+                                        <div class="radio">
+                                            <label class="mr10"> 
+                                                <input type="radio" name="sex" id="sex1" value="0" checked>男
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="sex" id="sex2" value="1">女
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bornTime" class="col-sm-3 control-label">出生年月：</label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group date" id="plugin9_demo2" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            <input class="form-control" size="16" type="text" value="">            
+                                            <input type="hidden" id="bornTime" name="bornTime" value="" /><br/>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="entryTime" class="col-sm-3 control-label">入职时间：</label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group date" id="plugin9_demo3" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            <input class="form-control" size="16" type="text" value="">            
+                                            <input type="hidden" id="entryTime" name="entryTime" value="" /><br/>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="group" class="col-sm-3 control-label">所属组别：</label>
+                                    <div class="col-sm-7">
+                                        <select name="group" id="group" class="form-control">
+                                            <option value="0">研发1组</option>
+                                            <option value="1">研发2组</option>
+                                            <option value="2">研发3组</option>
+                                            <option value="3">研发4组</option>
+                                            <option value="4">研发5组</option>
+                                            <option value="5">研发6组</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="position" class="col-sm-3 control-label">所属职位：</label>
+                                    <div class="col-sm-7">
+                                        <select name="position" id="position" class="form-control">
+                                            <option value="0">技术</option>
+                                            <option value="1">美术</option>
+                                            <option value="2">策划</option>
+                                            <option value="3">运营</option>
+                                            <option value="4">PHP</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">技术栈：</label>
+                                    <div class="col-sm-7">
+                                        <div class="checkbox" id="skill">
+                                            <label class="mr10"> 
+                                                <input type="checkbox" name="skill"  value="0">UI
+                                            </label>
+                                            <label class="mr10"> 
+                                                <input type="checkbox" name="skill" value="1">原画
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="skill" value="2">3D模型
+                                            </label>
+                                            <label class="mr10"> 
+                                                <input type="checkbox" name="skill" value="3">3D贴图
+                                            </label>
+                                            <label class="mr10"> 
+                                                <input type="checkbox" name="skill" value="4">3D动作
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="skill" value="5">3D特效
+                                            </label>
+                                            <label class="mr10"> 
+                                                <input type="checkbox" name="skill" value="6">地编
+                                            </label>
+                                            <label class="mr10"> 
+                                                <input type="checkbox" name="skill" value="7">U3D前端
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="skill" value="8">2dx前端
+                                            </label>
+                                            <label class="mr10"> 
+                                                <input type="checkbox" name="skill" value="9">H5前端
+                                            </label>
+                                            <label class="mr10"> 
+                                                <input type="checkbox" name="skill" value="10">C++后端
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="skill" value="11">PHP
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="skill" value="12">java
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="level" class="col-sm-3 control-label">员工定档：</label>
+                                    <div class="col-sm-7">
+                                        <select name="level" id="level" class="form-control">
+                                            <option value="0">C1</option>
+                                            <option value="1">C2</option>
+                                            <option value="2">C3</option>
+                                            <option value="3">B1</option>
+                                            <option value="4">B2</option>
+                                            <option value="5">B3</option>
+                                            <option value="6">A1</option>
+                                            <option value="7">A2</option>
+                                            <option value="8">A3</option>
+                                            <option value="9">S1</option>
+                                            <option value="10">S2</option>
+                                            <option value="11">S3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label class="control-label col-sm-3">薪资：</label>
+                                    <div class="col-sm-7">
+                                        <table class="table table-bordered" id="salary-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>序号</th>
+                                                    <th>调整年份</th>
+                                                    <th>调整月份</th>
+                                                    <th>调整薪资</th>
+                                                    <th class="tabledit-toolbar-column">操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
+                                        </table>
+                                        <a href="javascript:void(0);" class="king-btn king-btn-new pull-right" id="add-new-salary">
+                                            新增薪资
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-7 col-sm-offset-3">
+                                        <input type="button" id="submit-employee-detail" class="king-btn king-success mr10" value="提交" />
+                                        <input type="reset" class="king-btn king-default" id="cancel-employee-detail" value="取消" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div id="dialog-search" style="position: absolute; top: 0; height: 100%; width: 100%; display: none;">
+            <div class="modal-dialog" style="width:600px; position: relative; top: 25%; transform: transformY(-25%);">
+                <div class="modal-content">
+                    <div class="modal-header">
+            
+                        <h4 class="modal-title text-center" id="myModalLabel">高级查询</h4>
+                        <a class="" id="close-super-search"  style="width: 20px;height: 20px; position: absolute; top: 16px; right: 10px; text-align: center;">
+                            <i class="fa fa-close btn-icon"></i>
+                        </a>
+                    </div>
+                    <div style="margin: 10px 0;"> 
+                        <form class="form-horizontal">
+                            <div class="form-group pull-left" style="display: block;" type="name">
+                                <label for="name"  class="col-sm-3 control-label">姓名：</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="员工姓名">
+                                </div>
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            <div class="form-group" type="sex">
+                                <label class="control-label col-sm-3">性别：</label>
+                                <div class="col-sm-7">
+                                    <div class="radio">
+                                        <label class="mr10"> 
+                                            <input type="radio" name="sex" id="sex1" value="0" checked>男
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="sex" id="sex2" value="1">女
+                                        </label>
+                                    </div>
+                                </div>
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            <!-- TODO 修改type -->
+                            <div class="form-group" type="">
+                                <label class="control-label col-sm-3">签约状态：</label>
+                                <div class="col-sm-9">
+                                    <div class="sumoselect_demo" id="sumoselect_demo4">
+                                        <select multiple="multiple" class="selectall">
+                                            <option value="0">已签约</option>
+                                            <option value="1">已过期</option>
+                                            <option value="2">要续约</option>
+                                            <option value="3">未签约</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            <div class="form-group" type="">
+                                <label class="control-label col-sm-3">上班地址：</label>
+                                <div class="col-sm-9">
+                                    <div class="sumoselect_demo" id="sumoselect_demo5">
+                                        <select multiple="multiple" class="selectall">
+                                            <option value="0">深圳市</option>
+                                            <option value="1">广州市</option>
+                                            <option value="2">重庆市</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            <div class="form-group" type="employeeProfile">
+                                <label class="control-label col-sm-3">员工定档：</label>
+                                <div class="col-sm-9">
+                                    <div class="sumoselect_demo" id="sumoselect_demo6">
+                                        <select multiple="multiple" class="selectall">
+                                            <option value="0">C1</option>
+                                            <option value="1">C2</option>
+                                            <option value="2">C3</option>
+                                            <option value="3">B1</option>
+                                            <option value="4">B2</option>
+                                            <option value="5">B3</option>
+                                            <option value="6">A1</option>
+                                            <option value="7">A2</option>
+                                            <option value="8">A3</option>
+                                            <option value="9">S1</option>
+                                            <option value="10">S2</option>
+                                            <option value="11">S3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            <div class="form-group" type="">
+                                <label class="control-label col-sm-3">调薪次数：</label>
+                                <div class="col-sm-9">
+                                    <div class="sumoselect_demo" id="sumoselect_demo7">
+                                        <select multiple="multiple" class="selectall">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            <div class="form-group" type="id">
+                                <label class="control-label col-sm-3">员工编号：</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" name="id-start" id="id-start" placeholder="起始工号">
+                                </div>
+                                <div class="col-sm-1" style="text-align: center; line-height: 30px;">--</div>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" name="id-end" id="id-end" placeholder="结束工号">
+                                </div>
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            
+                            <div class="form-group" type="entryTime">
+                                <label for="entryTime" class="control-label col-sm-3">入职时间：</label>
+                                <div class="col-sm-3">
+                                    <div class="input-group date" id="plugin9_demo4" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
+                                        <input type="hidden" id="startEntryTime" name="startEntryTime" value="" /><br/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1" style="text-align: center; line-height: 30px;">--</div>
+                                <div class="col-sm-3">
+                                    <div class="input-group date" id="plugin9_demo5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
+                                        <input type="hidden" id="endEntryTime" name="endEntryTime" value="" /><br/>
+                                    </div>
+                                </div>
+                                <a class="close-item" style="">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                                
+                            </div>
+                            <div class="form-group" type="">
+                                <label for="entryTime" class="control-label col-sm-3">出生日期：</label>
+                                <div class="col-sm-3">
+                                    <div class="input-group date" id="plugin9_demo4" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
+                                        <input type="hidden" id="" name="" value="" /><br/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1" style="text-align: center; line-height: 30px;">--</div>
+                                <div class="col-sm-3">
+                                    <div class="input-group date" id="plugin9_demo5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
+                                        <input type="hidden" id="" name="" value="" /><br/>
+                                    </div>
+                                </div>
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                                
+                            </div>
+                            <div class="form-group" type="salary">
+                                <label class="control-label col-sm-3">薪资范围：</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" name="startSalary" id="startSalary" placeholder="起始薪资">
+                                </div>
+                                <div class="col-sm-1" style="text-align: center; line-height: 30px;">--</div>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" name="endSalary" id="endSalary" placeholder="结束薪资">
+                                </div>
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            <div class="form-group" type="">
+                                <label class="control-label col-sm-3">部门：</label>
+                                <div class="col-sm-9">
+                                    <div class="sumoselect_demo" id="sumoselect_demo8">
+                                        <select multiple="multiple" class="selectall">
+                                            <option value="0">研发部</option>
+                                            <option value="1">美术部</option>
+                                            <option value="2">策划部</option>
+                                            <option value="3">行政部</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            <div class="form-group" type="post">
+                                <label class="control-label col-sm-3">职位：</label>
+                                <div class="col-sm-9">
+                                    <div class="sumoselect_demo" id="sumoselect_demo9">
+                                        <select multiple="multiple" class="selectall">
+                                            <option value="0">unity</option>
+                                            <option value="1">cocos2dx</option>
+                                            <option value="2">cocos小游戏</option>
+                                            <option value="3">web前端</option>
+                                            <option value="4">go后端</option>
+                                            <option value="5">C++服务器</option>
+                                            <option value="6">游戏UI</option>
+                                            <option value="7">特效</option>
+                                            <option value="8">动作</option>
+                                            <option value="9">3D角色</option>
+                                            <option value="10">3D场景</option>
+                                            <option value="11">角色原画</option>
+                                            <option value="12">场景原画</option>
+                                            <option value="13">策划</option>
+                                            <option value="14">运营</option>
+                                            <option value="15">人事</option>
+                                            <option value="16">前台</option>
+                                            <option value="17">HR</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            <div class="form-group" type="group">
+                                <label class="control-label col-sm-3">项目组：</label>
+                                <div class="col-sm-9">
+                                    <div class="sumoselect_demo" id="sumoselect_demo10">
+                                        <select multiple="multiple" class="selectall">
+                                            <option value="0">HMM</option>
+                                            <option value="1">宝宝斗场</option>
+                                            <option value="2">捕鱼</option>
+                                            <option value="3">华夏2</option>
+                                            <option value="4">欢乐大乱斗</option>
+                                            <option value="5">欢乐斗地主小游戏</option>
+                                            <option value="6">欢乐斗地主终端</option>
+                                            <option value="7">欢乐麻将小游戏</option>
+                                            <option value="8">欢乐麻将终端</option>
+                                            <option value="9">军旗</option>
+                                            <option value="10">玫瑰小镇</option>
+                                            <option value="11">魔法花园</option>
+                                            <option value="12">升级小游戏</option>
+                                            <option value="13">升级终端</option>
+                                            <option value="14">腾讯桌球</option>
+                                            <option value="15">最强魔斗士</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            
+                            <!-- <div class="form-group" type="technologyStack">
+                                <label class="control-label">技术栈：</label>
+                                <div class="">
+                                    <div class="checkbox" id="skill">
+                                        <label class="mr8"> 
+                                            <input type="checkbox" name="technologyStack"  value="0">UI
+                                        </label>
+                                        <label class="mr8"> 
+                                            <input type="checkbox" name="technologyStack" value="1">原画
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="technologyStack" value="2">3D模型
+                                        </label>
+                                        <label class="mr8"> 
+                                            <input type="checkbox" name="technologyStack" value="3">3D贴图
+                                        </label>
+                                        <label class="mr8"> 
+                                            <input type="checkbox" name="technologyStack" value="4">3D动作
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="technologyStack" value="5">3D特效
+                                        </label>
+                                        <label class="mr8"> 
+                                            <input type="checkbox" name="technologyStack" value="6">地编
+                                        </label>
+                                        <label class="mr8"> 
+                                            <input type="checkbox" name="technologyStack" value="7">U3D前端
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="technologyStack" value="8">2dx前端
+                                        </label>
+                                        <label class="mr8"> 
+                                            <input type="checkbox" name="technologyStack" value="9">H5前端
+                                        </label>
+                                        <label class="mr8"> 
+                                            <input type="checkbox" name="technologyStack" value="10">C++后端
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="technologyStack" value="11">PHP
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="technologyStack" value="12">java
+                                        </label>
+                                    </div>
+                                </div>
+                                <a class="close-item" style="">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div> -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <a id="req-super-search" class="king-btn-demo king-btn king-radius king-info pull-left" title="过滤">
+                                <i class="fa fa-search btn-icon"></i>过滤
+                            </a>
+                            <a href="javascript:;" id="more-condition" class="pull-right" style="color: #5d9bfc;font-size: 12px;line-height: 30px;">
+                                更多条件
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dialog-more-condition" class="king-block king-block-bordered" style="display: none;width: 400px;width: 400px; position: absolute;top: -40;top: 50%;transform: translateY(-50%);">
+                <div class="king-block-header king-gray-light" style="border-radius: 6px 6px 0 0;">
+                    <h3 class="king-block-title">更多条件</h3>
+                    <a class="" id="close-more-condition"  style="width: 20px;height: 20px; position: absolute; top: 8px; right: 10px; text-align: center;">
+                        <i class="fa fa-close btn-icon"></i>
+                    </a>
+                </div>
+                <div class="king-block-content clearfix" id="dome1" style="border-radius: 0 0 6px 6px;">
+                    <ul class="ul-box rows" id="condition-list" style="overflow: auto;">
+
+                    </ul>
+                    <button id="add-condition" class="king-btn-demo king-btn king-radius king-success pull-right" title="确定">确定</button>
+                    <a href="javascript:;" id="all-select" class="pull-left" style="color: #5d9bfc;font-size: 12px;line-height: 30px;">
+                        全选
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- content end -->
+    
+    
+    
+    
+    <!--JS-->
+    <script src="./jquery-1.10.2/jquery-1.10.2.min.js"></script>
+    <script src="./template/left_nav.js"></script>
+    <script src="./template/right_table.js"></script>
+    <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <!-- 包括所有kendoui的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="./kendoui-2015.2.624/js/kendo.all.min.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/bk/js/bk.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/datetimepicker/js/locales/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
+    <script src="./metisMenu-2.6.0/metisMenu-master/dist/metisMenu.js"></script>
+    <script src="./tabledit/jquerytabledit.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/jquery.sumoselect-2.0.0/jquery.sumoselect.min.js"></script>
+    <script src="./js/requestManager.js"></script>
+    <script src="./js/employeeDetailHandler.js"></script>
+    <script src="./js/employeeListHandler.js"></script>
+    <script type="text/javascript">
+        var base_data = null;
+        var totalEmployCount = 0;
+        var localConfig = null;
+        const detail_type_def = {
+            add: 0,
+            update: 1
+        };
+        //初始化详细面板类型
+        var detail_type = detail_type_def.add;
+        var cur_page = 1;
+        var one_page_count = 10;
+        $(function () {
+            $('#container').append(left_nav);
+            $('#right').append(right_table);
+            $('#logout').click(function(){
+                $(window).attr('location',"./login.html");
+            })
+            $('#plugin9_demo2').datetimepicker({
+                language:  'zh-TW',
+                weekStart: 1,
+                todayBtn:  true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                format:"yyyy-mm-dd",
+            });
+            $('#plugin9_demo3').datetimepicker({
+                language:  'zh-TW',
+                weekStart: 1,
+                todayBtn:  true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                format:"yyyy-mm-dd",
+            });
+            $('#plugin9_demo4').datetimepicker({
+                language:  'zh-TW',
+                weekStart: 1,
+                todayBtn:  true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                format:"yyyy-mm-dd",
+            });
+            $('#plugin9_demo5').datetimepicker({
+                language:  'zh-TW',
+                weekStart: 1,
+                todayBtn:  true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                format:"yyyy-mm-dd",
+            });
+           
+            //vertical_nav11_js_start
+            $('#menu').metisMenu(); 
+            //vertical_nav11_js_end_js_end
+            $('#sumoselect_demo4 select').SumoSelect({
+                okCancelInMulti: true,
+                selectAll: true,
+                placeholder: '选择状态',
+                selectAlltext: '全选'
+            });
+            $('#sumoselect_demo5 select').SumoSelect({
+                okCancelInMulti: true,
+                selectAll: true,
+                placeholder: '选择地址',
+                selectAlltext: '全选'
+            });
+            $('#sumoselect_demo6 select').SumoSelect({
+                okCancelInMulti: true,
+                selectAll: true,
+                placeholder: '选择挡位',
+                selectAlltext: '全选'
+            });
+            $('#sumoselect_demo7 select').SumoSelect({
+                okCancelInMulti: true,
+                selectAll: true,
+                placeholder: '选择次数',
+                selectAlltext: '全选'
+            });
+            $('#sumoselect_demo8 select').SumoSelect({
+                okCancelInMulti: true,
+                selectAll: true,
+                placeholder: '选择部门',
+                selectAlltext: '全选'
+            });
+            $('#sumoselect_demo8 select.selectall').change(function(){
+                let len = $('#sumoselect_demo9 select').children('option').length;
+                for(let i = len - 1; i >= 0; i--)
+                {
+                    $('#sumoselect_demo9 select')[0].sumo.remove(i);
+                }
+                let _value = $(this).val();
+                _value.forEach(function(v, i){
+                    if(v == 0)
+                    {
+                        $('#sumoselect_demo9 select')[0].sumo.add('0','uinty');
+                        $('#sumoselect_demo9 select')[0].sumo.add('1','cocos2dx');
+                        $('#sumoselect_demo9 select')[0].sumo.add('2','cocos小游戏');
+                        $('#sumoselect_demo9 select')[0].sumo.add('3','web前端');
+                        $('#sumoselect_demo9 select')[0].sumo.add('4','go后端');
+                        $('#sumoselect_demo9 select')[0].sumo.add('5','C++服务器');
+                    }
+                    else if(v == 1)
+                    {
+                        $('#sumoselect_demo9 select')[0].sumo.add('6','游戏UI');
+                        $('#sumoselect_demo9 select')[0].sumo.add('7','特效');
+                        $('#sumoselect_demo9 select')[0].sumo.add('8','动作');
+                        $('#sumoselect_demo9 select')[0].sumo.add('9','3D角色');
+                        $('#sumoselect_demo9 select')[0].sumo.add('10','3D场景');
+                        $('#sumoselect_demo9 select')[0].sumo.add('11','角色原画');
+                        $('#sumoselect_demo9 select')[0].sumo.add('12','场景原画');
+                    }
+                    else if(v == 2)
+                    {
+                        $('#sumoselect_demo9 select')[0].sumo.add('12','策划');
+                        $('#sumoselect_demo9 select')[0].sumo.add('14','运营');
+                    }
+                    else if(v == 3)
+                    {
+                        $('#sumoselect_demo9 select')[0].sumo.add('15','人事');
+                        $('#sumoselect_demo9 select')[0].sumo.add('16','前台');
+                        $('#sumoselect_demo9 select')[0].sumo.add('17','HR');
+                    }
+                })
+                
+            })
+            $('#sumoselect_demo9 select').SumoSelect({
+                okCancelInMulti: true,
+                selectAll: true,
+                placeholder: '选择职位',
+                selectAlltext: '全选'
+            });
+            $('#sumoselect_demo10 select').SumoSelect({
+                okCancelInMulti: true,
+                selectAll: true,
+                placeholder: '选择研发组',
+                selectAlltext: '全选'
+            });
+            $('#sumoselect_demo11 select').SumoSelect({
+                okCancelInMulti: true,
+                selectAll: true,
+                placeholder: '选择项目组',
+                selectAlltext: '全选'
+            });
+            let _year = (new Date()).getFullYear();
+            let year_obj = '';
+            for(let i = _year-20; i <= _year; i++)
+            {
+                if(i === _year-20) year_obj+='{';
+                if(i < _year) year_obj+=`"${i}":"${i}年",`;
+                if(i === _year) year_obj+=`"${i}":"${i}年"}`;;
+            }
+            let month = '';
+            for(let i = 1; i <= 12; i++)
+            {
+                if(i === 1) month+='{';
+                if(i < 12) month+=`"${i}":"${i}月",`;
+                
+                if(i === 12) month+=`"${i}":"${i}月"}`;
+            }
+            $('#salary-table').Tabledit({
+                url: "./demo.json",
+                rowKey: 'a_',
+                columns: {
+                    identifier: [0, 'aid'],
+                    editable: [
+                        [1, 'year', year_obj], [2, 'month', month], [3, 'salary']
+                    ]
+                },
+                restoreButton: false,
+                buttons: {
+                    edit: {
+                        class: 'btn btn-sm btn-default',
+                        html: '<span class="glyphicon glyphicon-pencil"></span>',
+                        action: 'edit'
+                    },
+                    delete: {
+                        class: 'btn btn-sm btn-default',
+                        html: '<span class="glyphicon glyphicon-trash"></span>',
+                        action: 'delete'
+                    },
+                    save: {
+                        class: 'btn btn-sm btn-success',
+                        html: '保存'
+                    },
+                    confirm: {
+                        class: 'btn btn-sm btn-danger',
+                        html: '确认'
+                    }
+                },
+                onSuccess: function (data, textStatus, jqXHR){
+                    console.log('success');
+                },
+                onFail: function (jqXHR, textStatus, errorThrown){
+                    console.log('fail');
+                }
+            });
+            $('#add-new-salary').click(function(){
+                addEmployeeSalary();
+            })
+
+            //default show panel start
+            reqLocalCfg(function(){
+                showEmployeeList();
+            });
+            
+            $('#right').css({"width": ($('#container').width()-250)+'px'}); 
+            //default show panel end
+            
+            //list btn click start
+            $('#menu>li').click(function(event){
+                // let node = $('#'+this.id.split('_')[1]);
+                // if(node.length > 0)
+                // {
+                //     node.show();
+                //     node.siblings('div').hide();
+                // }
+                // if(node.attr('id') === 'employee-detail')
+                // {
+                //     setDetailType(detail_type_def.add);
+                //     showEmployeeDetail();
+                // }
+                // else if(node.attr('id') === 'employee-list')
+                // {
+                //     showEmployeeList();
+                // }
+                // if(node.attr('id') !== 'employee-detail')
+                // {
+                //     initEmployeeForm();
+                // }
+                $(this).children('a').addClass('nav-left-active');
+                $(this).siblings('li').children('a').removeClass('nav-left-active');
+            })
+            //list btn click end
+
+            //add employee btn click start
+            $('#add-employee').click(function(){
+                setDetailType(detail_type_def.add);
+                showEmployeeDetail();
+            })
+            //add employee btn click end
+
+            //left add employee btn click start
+            $('#btn_employee-detail').click(function(){
+                initEmployeeForm();
+            })
+            //left add employee btn click end
+
+            $('#submit-employee-detail').click(onClickSubmitEmployeeDetail);
+            $('#cancel-employee-detail').click(() => {
+                showEmployeeList();
+                initEmployeeForm();
+            })
+            $('#keyword-search').bind('keyup', onKeywordSwearch);
+            $('#super-search').click(onSuperSearch);
+            $('#close-super-search').click(function(){
+                $('#dialog-search').hide();
+            })
+            $('#close-more-condition').click(function() {
+                $('#dialog-more-condition').hide();
+            })
+            $('#dialog-search form>.form-group').hover(function(){
+                $(this).find('.close-item').show();
+            }, function(){
+                $(this).find('.close-item').hide();
+            })
+            $('#dialog-search .close-item').click(function(){
+                $(this).parents('.form-group').hide();
+            })
+            $('#more-condition').click(function(){
+                $('#dialog-more-condition').show();
+                $('#condition-list').html('');
+                $('#dialog-more-condition').css('right', ($('#dialog-search .modal-content').width()-$('#dialog-more-condition').width())+'px');
+                $('#dialog-search form>.form-group').map(function(i, v){
+                    let _li = $(`<li class="col-sm-6">
+                          <label><input tabindex="${i}" class="" type="checkbox"> ${$(v).children('label').text().replace(/[:：]/g, '')}</label>
+                        </li>`)
+                    if($(v).css('display') === 'block')
+                    {
+                        _li.find('input').prop('checked', true);
+                    }
+                    else
+                    {
+                        _li.find('input').removeProp('checked');
+                    }
+                    $('#condition-list').append(_li);
+                })
+                $('#all-select').attr('all', 0);
+            })
+            $('#add-condition').click(function(){
+                $('#condition-list li').map(function(i,v){
+                    console.error(typeof $(v).find('input').prop('checked'))
+                    if($(v).find('input').prop('checked') === true)
+                    {
+                        $($('#dialog-search form>.form-group')[i]).css('display', 'block');
+                    }
+                    else
+                    {
+                        $($('#dialog-search form>.form-group')[i]).css('display', 'none');
+                    }
+                })
+                $('#dialog-more-condition').hide();
+            })
+            
+            $('#condition-list li input').click(function(){
+                $(this).prop('checked') === true ? $(this).removeProp('checked') : $(this).prop('checked', true);
+            })
+            $('#all-select').click(function(){
+                if($(this).attr('all') == 1)
+                {
+                    $(this).attr('all', 0);
+                }
+                else
+                {
+                    $(this).attr('all', 1);
+                }
+                let self = this;
+                $('#condition-list li input').map(function(i, v){
+                    $(self).attr('all') == 1 ? $(v).prop('checked', true) : $(v).removeProp('checked');
+                });
+                
+            })
+            $('#req-super-search').click(function(){
+                var data = {
+                    'browseIndex': 0,
+                };
+                $('#dialog-search .form-group').map(function(i, v){
+                    if($(v).css('display') === 'block')
+                    {
+                        switch($(v).attr('type'))
+                        {
+                            case 'name':
+                                data.name = $(v).find('#name').val();
+                                break;
+                            case 'id':
+                                data.id = [$(v).find('#id-start').val()*1, $(v).find('#id-end').val()*1];
+                                break;
+                            case 'sex':
+                                data.sex = getValueByName('sex');
+                                break;
+                            case 'entryTime':
+                                data.entryTime = [$(v).find('#startEntryTime').val(), $(v).find('#endEntryTime').val()];
+                                break;
+                            case 'group':
+                                data.group = getValueByName('group');
+                                break;
+                            case 'post':
+                                data.post = getValueByName('post');
+                                break;
+                            case 'technologyStack':
+                                data.technologyStack = getValueByName('technologyStack');
+                                break;
+                            case 'employeeProfile':
+                                data.employeeProfile = getValueByName('employeeProfile');
+                                break;
+                            case 'salary':
+                                data.salary = [$(v).find('#startSalary').val()*1, $(v).find('#endSalary').val()*1];
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                })
+                console.error('高级查询', data);
+                reqSuperSearch(data,function(){
+                    $('#dialog-search').hide();
+                    renderTable();
+                });
+            })
+
+            $('#prev').click(function(evt){
+                if(this.parentElement.className === "disabled") return;
+                let start_index = $('#cur_page').text()-2;
+                reqPagelistInfo(start_index, function(){
+
+                });
+            })
+            $('#next').click(function(evt){
+                if(this.parentElement.className === "disabled") return;
+                let start_index = $('#cur_page').text()*1;
+                reqPagelistInfo(start_index, function(){
+
+                });
+            })
+            $('#employee-list a').click(function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+        });
+        
+        var initEmployeeForm = function(){
+            $('#detail-form')[0].reset();
+            $('#skill input').map(function(i, v){
+                $(v).removeProp('checked');
+            })
+            $('#salary-table tbody').empty();
+        };
+        
+
+        
+
+        var showEmployeeList = function ()
+        {
+            $('#right').children().map((i, v) => {
+                $(v).attr('id') === 'employee-list' ? $(v).show() : $(v).hide();
+            })
+            reqlistInfo(0, 10);
+        }
+
+        var showEmployeeDetail = function ()
+        {
+            reqLocalCfg(function() {
+                $('#right').children().map((i, v) => {
+                    $(v).attr('id') === 'employee-detail' ? $(v).show() : $(v).hide();
+                })
+            })
+            
+        }
+        function getValueByName(name)
+        {
+            let d = $('#dialog-search form').serializeArray();
+            let r = [];
+            for(let i = 0; i < d.length; i++)
+            {
+                let item = d[i];
+                if(name == item.name)
+                {
+                    if(name === 'sex')
+                    {
+                        r = parseInt(item.value);
+                    }
+                    else
+                    {
+                        r.push(parseInt(item.value));
+                    }
+                }
+            }
+            return r;
+        }
+        function saveGlobalSearchParams(data)
+        {
+            window.search_params = data;
+        }
+    </script>
+
+    <!-- left nav end -->
+</body>
+
+</html>
