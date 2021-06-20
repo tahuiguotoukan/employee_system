@@ -156,7 +156,7 @@ function onClickPage(evt)
     else
     {
         let start_index = $(node).attr('ind');
-        reqPagelistInfo(start_index, function(){
+        reqOnJobPagelistInfo(start_index, function(){
 
         });
     }
@@ -236,7 +236,7 @@ function renderTable()
         $('#employee-table-tbody').append(clone_tr)
     })
 }
-function OnClickReqSuperSearch()
+function OnClickReqOnJobSuperSearch()
 {
     var data = {
         'browseIndex': 0,
@@ -287,13 +287,16 @@ function OnClickReqSuperSearch()
                 case 'department':
                     data.department = getValueByName('department');
                     break;
+                case 'workGroup':
+                    data.workGroup = getValueByName('workGroup');
+                    break;
                 default:
                     break;
             }
         }
     })
     console.error('高级查询', data);
-    reqSuperSearch(data,function(){
+    reqOnJobSuperSearch(data,function(){
         $('#dialog-search').hide();
         renderTable();
     });

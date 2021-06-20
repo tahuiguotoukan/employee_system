@@ -121,6 +121,35 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-sm-3">上班地址：</label>
+                                    <div class="col-sm-1">
+                                        <select name="address-1" id="address-1" class="form-control">
+                                            <option value="0">深圳市</option>
+                                            <option value="1">广州市</option>
+                                            <option value="2">重庆市</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-sm-1">
+                                        <select name="address-2" id="address-2" class="form-control">
+                                            <option value="南山区">南山区</option>
+                                            <option value="福田区">福田区</option>
+                                            <option value="罗湖区">罗湖区</option>
+                                            <option value="宝安区">宝安区</option>
+                                            <option value="龙岗区">龙岗区</option>
+                                            <option value="盐田区">盐田区</option>
+                                            <option value="坪山区">坪山区</option>
+                                            <option value="龙华区">龙华区</option>
+                                            <option value="光明区">光明区</option>
+                                            <option value="大鹏新区">大鹏新区</option>
+                                            <option value="深汕特别合作区">深汕特别合作区</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" name="address-detail" id="address-detail" placeholder="详细地址">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="bornTime" class="col-sm-3 control-label">出生年月：</label>
                                     <div class="col-sm-7">
                                         <div class="input-group date" id="plugin9_demo2" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -145,9 +174,28 @@
                                     
                                 </div>
                                 <div class="form-group">
+                                    <label for="contractTime" class="control-label col-sm-3">合同时间：</label>
+                                    <div class="col-sm-3">
+                                        <div class="input-group date" id="plugin9_demo8" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
+                                            <input type="hidden" id="startContractTime" name="startContractTime" value="" /><br/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center; line-height: 30px;">--</div>
+                                    <div class="col-sm-3">
+                                        <div class="input-group date" id="plugin9_demo9" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
+                                            <input type="hidden" id="endContractTime" name="endContractTime" value="" /><br/>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group">
                                     <label for="group" class="col-sm-3 control-label">所属组别：</label>
                                     <div class="col-sm-7">
-                                        <select name="group" id="group" class="form-control">
+                                        <select name="group" class="form-control">
                                             <option value="0">研发1组</option>
                                             <option value="1">研发2组</option>
                                             <option value="2">研发3组</option>
@@ -158,61 +206,63 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="position" class="col-sm-3 control-label">所属职位：</label>
+                                    <label class="control-label col-sm-3">部门：</label>
                                     <div class="col-sm-7">
-                                        <select name="position" id="position" class="form-control">
-                                            <option value="0">技术</option>
-                                            <option value="1">美术</option>
-                                            <option value="2">策划</option>
-                                            <option value="3">运营</option>
-                                            <option value="4">PHP</option>
+                                        
+                                        <select class="form-control" id="department" name="department">
+                                            <option value="0">研发部</option>
+                                            <option value="1">美术部</option>
+                                            <option value="2">策划部</option>
+                                            <option value="3">行政部</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3">技术栈：</label>
+                                    <label for="position" class="col-sm-3 control-label">所属职位：</label>
                                     <div class="col-sm-7">
-                                        <div class="checkbox" id="skill">
-                                            <label class="mr10"> 
-                                                <input type="checkbox" name="skill"  value="0">UI
-                                            </label>
-                                            <label class="mr10"> 
-                                                <input type="checkbox" name="skill" value="1">原画
-                                            </label>
-                                            <label>
-                                                <input type="checkbox" name="skill" value="2">3D模型
-                                            </label>
-                                            <label class="mr10"> 
-                                                <input type="checkbox" name="skill" value="3">3D贴图
-                                            </label>
-                                            <label class="mr10"> 
-                                                <input type="checkbox" name="skill" value="4">3D动作
-                                            </label>
-                                            <label>
-                                                <input type="checkbox" name="skill" value="5">3D特效
-                                            </label>
-                                            <label class="mr10"> 
-                                                <input type="checkbox" name="skill" value="6">地编
-                                            </label>
-                                            <label class="mr10"> 
-                                                <input type="checkbox" name="skill" value="7">U3D前端
-                                            </label>
-                                            <label>
-                                                <input type="checkbox" name="skill" value="8">2dx前端
-                                            </label>
-                                            <label class="mr10"> 
-                                                <input type="checkbox" name="skill" value="9">H5前端
-                                            </label>
-                                            <label class="mr10"> 
-                                                <input type="checkbox" name="skill" value="10">C++后端
-                                            </label>
-                                            <label>
-                                                <input type="checkbox" name="skill" value="11">PHP
-                                            </label>
-                                            <label>
-                                                <input type="checkbox" name="skill" value="12">java
-                                            </label>
-                                        </div>
+                                        <select name="position" id="position" class="form-control">
+                                            <option value="0">unity</option>
+                                            <option value="1">cocos2dx</option>
+                                            <option value="2">cocos小游戏</option>
+                                            <option value="3">web前端</option>
+                                            <option value="4">go后端</option>
+                                            <option value="5">C++服务器</option>
+                                            <option value="6">游戏UI</option>
+                                            <option value="7">特效</option>
+                                            <option value="8">动作</option>
+                                            <option value="9">3D角色</option>
+                                            <option value="10">3D场景</option>
+                                            <option value="11">角色原画</option>
+                                            <option value="12">场景原画</option>
+                                            <option value="13">策划</option>
+                                            <option value="14">运营</option>
+                                            <option value="15">人事</option>
+                                            <option value="16">前台</option>
+                                            <option value="17">HR</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">所属项目组：</label>
+                                    <div class="col-sm-7">
+                                        <select id="projectGroup" name="projectGroup"  class="form-control">
+                                            <option value="0">HMM</option>
+                                            <option value="1">宝宝斗场</option>
+                                            <option value="2">捕鱼</option>
+                                            <option value="3">华夏2</option>
+                                            <option value="4">欢乐大乱斗</option>
+                                            <option value="5">欢乐斗地主小游戏</option>
+                                            <option value="6">欢乐斗地主终端</option>
+                                            <option value="7">欢乐麻将小游戏</option>
+                                            <option value="8">欢乐麻将终端</option>
+                                            <option value="9">军旗</option>
+                                            <option value="10">玫瑰小镇</option>
+                                            <option value="11">魔法花园</option>
+                                            <option value="12">升级小游戏</option>
+                                            <option value="13">升级终端</option>
+                                            <option value="14">腾讯桌球</option>
+                                            <option value="15">最强魔斗士</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -464,7 +514,7 @@
                                 <label class="control-label col-sm-3">部门：</label>
                                 <div class="col-sm-9">
                                     <div class="sumoselect_demo" id="sumoselect_demo8">
-                                        <select multiple="multiple" class="selectall" id="department" name="department">
+                                        <select multiple="multiple" class="selectall" name="department">
                                             <option value="0">研发部</option>
                                             <option value="1">美术部</option>
                                             <option value="2">策划部</option>
@@ -481,7 +531,7 @@
                                 <label class="control-label col-sm-3">职位：</label>
                                 <div class="col-sm-9">
                                     <div class="sumoselect_demo" id="sumoselect_demo9">
-                                        <select multiple="multiple" class="selectall">
+                                        <select multiple="multiple" class="selectall" id="post" name="post">
                                             <option value="0">unity</option>
                                             <option value="1">cocos2dx</option>
                                             <option value="2">cocos小游戏</option>
@@ -508,10 +558,29 @@
                                     <i class="fa fa-close btn-icon"></i>
                                 </a>
                             </div>
+                            <div class="form-group" type="workGroup">
+                                <label class="control-label col-sm-3">所属组别：</label>
+                                <div class="col-sm-9">
+                                    <div class="sumoselect_demo" id="sumoselect_demo10">
+                                        <select multiple="multiple" class="selectall" id="workGroup" name="workGroup">
+                                            <option value="0">研发1组</option>
+                                            <option value="1">研发2组</option>
+                                            <option value="2">研发3组</option>
+                                            <option value="3">研发4组</option>
+                                            <option value="4">研发5组</option>
+                                            <option value="5">研发6组</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
                             <div class="form-group" type="projectGroup">
                                 <label class="control-label col-sm-3">项目组：</label>
                                 <div class="col-sm-9">
-                                    <div class="sumoselect_demo" id="sumoselect_demo10">
+                                    <div class="sumoselect_demo" id="sumoselect_demo11">
                                         <select multiple="multiple" class="selectall" id="projectGroup" name="projectGroup">
                                             <option value="0">HMM</option>
                                             <option value="1">宝宝斗场</option>
@@ -593,6 +662,10 @@
                         <div class="form-group">
                             <a id="req-super-search" class="king-btn-demo king-btn king-radius king-info pull-left" title="过滤">
                                 <i class="fa fa-search btn-icon"></i>过滤
+                            </a>
+                            <span class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <a id="reset-condition" class="king-btn-demo king-btn king-radius king-default pull-left" title="过滤">
+                                <i class="fa fa-refresh btn-icon"></i>重置
                             </a>
                             <a href="javascript:;" id="more-condition" class="pull-right" style="color: #5d9bfc;font-size: 12px;line-height: 30px;">
                                 更多条件
@@ -727,7 +800,28 @@
                 forceParse: false,
                 format:"yyyy-mm-dd",
             });
-           
+            $('#plugin9_demo8').datetimepicker({
+                language:  'zh-TW',
+                weekStart: 1,
+                todayBtn:  true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                format:"yyyy-mm-dd",
+            });
+            $('#plugin9_demo9').datetimepicker({
+                language:  'zh-TW',
+                weekStart: 1,
+                todayBtn:  true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                format:"yyyy-mm-dd",
+            });
             //vertical_nav11_js_start
             $('#menu').metisMenu(); 
             //vertical_nav11_js_end_js_end
@@ -761,47 +855,7 @@
                 placeholder: '选择部门',
                 selectAlltext: '全选'
             });
-            $('#sumoselect_demo8 select.selectall').change(function(){
-                let len = $('#sumoselect_demo9 select').children('option').length;
-                for(let i = len - 1; i >= 0; i--)
-                {
-                    $('#sumoselect_demo9 select')[0].sumo.remove(i);
-                }
-                let _value = $(this).val();
-                _value.forEach(function(v, i){
-                    if(v == 0)
-                    {
-                        $('#sumoselect_demo9 select')[0].sumo.add('0','uinty');
-                        $('#sumoselect_demo9 select')[0].sumo.add('1','cocos2dx');
-                        $('#sumoselect_demo9 select')[0].sumo.add('2','cocos小游戏');
-                        $('#sumoselect_demo9 select')[0].sumo.add('3','web前端');
-                        $('#sumoselect_demo9 select')[0].sumo.add('4','go后端');
-                        $('#sumoselect_demo9 select')[0].sumo.add('5','C++服务器');
-                    }
-                    else if(v == 1)
-                    {
-                        $('#sumoselect_demo9 select')[0].sumo.add('6','游戏UI');
-                        $('#sumoselect_demo9 select')[0].sumo.add('7','特效');
-                        $('#sumoselect_demo9 select')[0].sumo.add('8','动作');
-                        $('#sumoselect_demo9 select')[0].sumo.add('9','3D角色');
-                        $('#sumoselect_demo9 select')[0].sumo.add('10','3D场景');
-                        $('#sumoselect_demo9 select')[0].sumo.add('11','角色原画');
-                        $('#sumoselect_demo9 select')[0].sumo.add('12','场景原画');
-                    }
-                    else if(v == 2)
-                    {
-                        $('#sumoselect_demo9 select')[0].sumo.add('12','策划');
-                        $('#sumoselect_demo9 select')[0].sumo.add('14','运营');
-                    }
-                    else if(v == 3)
-                    {
-                        $('#sumoselect_demo9 select')[0].sumo.add('15','人事');
-                        $('#sumoselect_demo9 select')[0].sumo.add('16','前台');
-                        $('#sumoselect_demo9 select')[0].sumo.add('17','HR');
-                    }
-                })
-                
-            })
+            $('#sumoselect_demo8 select.selectall').change(OnSumoselectDemo8Change)
             $('#sumoselect_demo9 select').SumoSelect({
                 okCancelInMulti: true,
                 selectAll: true,
@@ -820,6 +874,96 @@
                 placeholder: '选择项目组',
                 selectAlltext: '全选'
             });
+            $('#employee-detail [name="department"]').change(function(){
+                let v = $(this).val();
+                let content = $('#employee-detail #position');
+                content.html('');
+                
+                if(v == 0)
+                {
+                    content.html(`
+                        <option value="0">uinty</option>
+                        <option value="1">cocos2dx</option>
+                        <option value="2">cocos小游戏</option>
+                        <option value="3">web前端</option>
+                        <option value="4">go后端</option>
+                        <option value="5">C++服务器</option>
+                    `)
+                }
+                else if(v == 1)
+                {
+                    content.html(`
+                        <option value="6">游戏UI</option>
+                        <option value="7">特效</option>
+                        <option value="8">动作</option>
+                        <option value="9">3D角色</option>
+                        <option value="10">3D场景</option>
+                        <option value="11">角色原画</option>
+                        <option value="12">场景原画</option>
+                    `)
+                    
+                }
+                else if(v == 2)
+                {
+                    content.html(`
+                        <option value="13">策划</option>
+                        <option value="14">运营</option>
+                    `)
+                }
+                else if(v == 3)
+                {
+                    content.html(`
+                        <option value="15">人事</option>
+                        <option value="16">前台</option>
+                        <option value="17">HR</option>
+                    `)
+                }
+            })
+            $('#address-1').change(function(){
+                let _value = $(this).val();
+                $('#address-2').html('');
+                if(_value == 0)
+                {
+                    $('#address-2').html(`<option value="南山区">南山区</option>
+                                            <option value="福田区">福田区</option>
+                                            <option value="罗湖区">罗湖区</option>
+                                            <option value="宝安区">宝安区</option>
+                                            <option value="龙岗区">龙岗区</option>
+                                            <option value="盐田区">盐田区</option>
+                                            <option value="坪山区">坪山区</option>
+                                            <option value="龙华区">龙华区</option>
+                                            <option value="光明区">光明区</option>
+                                            <option value="大鹏新区">大鹏新区</option>
+                                            <option value="深汕特别合作区">深汕特别合作区</option>`)
+                }
+                else if(_value == 1)
+                {
+                    $('#address-2').html(`<option value="越秀区">越秀区</option>
+                                            <option value="荔湾区">荔湾区</option>
+                                            <option value="海珠区">海珠区</option>
+                                            <option value="天河区">天河区</option>
+                                            <option value="白云区">白云区</option>
+                                            <option value="黄浦区">黄浦区</option>
+                                            <option value="番禺区">番禺区</option>
+                                            <option value="花都区">花都区</option>
+                                            <option value="南沙区">南沙区</option>
+                                            <option value="增城区">增城区</option>
+                                            <option value="从化区">从化区</option>`)
+                }
+                else if(_value == 2)
+                {
+                    $('#address-2').html(`<option value="渝中区">渝中区</option>
+                                            <option value="江北区">江北区</option>
+                                            <option value="南岸区">南岸区</option>
+                                            <option value="九龙坡区">九龙坡区</option>
+                                            <option value="沙坪坝区">沙坪坝区</option>
+                                            <option value="大渡口区">大渡口区</option>
+                                            <option value="北碚区">北碚区</option>
+                                            <option value="渝北区">渝北区</option>
+                                            <option value="巴南区">巴南区</option>
+                                            `)
+                }
+            })
             let _year = (new Date()).getFullYear();
             let year_obj = '';
             for(let i = _year-20; i <= _year; i++)
@@ -944,6 +1088,10 @@
             })
             $('#dialog-search .close-item').click(function(){
                 $(this).parents('.form-group').hide();
+                if($(this).parents('.form-group').attr('type') === 'department')
+                {
+                    OnSumoselectDemo8Change();
+                }
             })
             $('#more-condition').click(function(){
                 $('#dialog-more-condition').show();
@@ -976,6 +1124,10 @@
                     {
                         $($('#dialog-search form>.form-group')[i]).css('display', 'none');
                     }
+                    if($($('#dialog-search form>.form-group')[i]).attr('type') === 'department')
+                    {
+                        OnSumoselectDemo8Change();
+                    }
                 })
                 $('#dialog-more-condition').hide();
             })
@@ -999,26 +1151,40 @@
                 
             })
             $('#req-super-search').click(function(){
-                OnClickReqSuperSearch();
+                OnClickReqOnJobSuperSearch();
             })
 
             $('#prev').click(function(evt){
                 if(this.parentElement.className === "disabled") return;
                 let start_index = $('#cur_page').text()-2;
-                reqPagelistInfo(start_index, function(){
+                reqOnJobPagelistInfo(start_index, function(){
 
                 });
             })
             $('#next').click(function(evt){
                 if(this.parentElement.className === "disabled") return;
                 let start_index = $('#cur_page').text()*1;
-                reqPagelistInfo(start_index, function(){
+                reqOnJobPagelistInfo(start_index, function(){
 
                 });
             })
             $('#employee-list a').click(function (e) {
                 e.preventDefault()
                 $(this).tab('show')
+            })
+            $('#reset-condition').click(function(){
+                $('#dialog-search form')[0].reset();
+                $('#sumoselect_demo4 select')[0].sumo.unSelectAll();
+                $('#sumoselect_demo5 select')[0].sumo.unSelectAll();
+                $('#sumoselect_demo6 select')[0].sumo.unSelectAll();
+                $('#sumoselect_demo7 select')[0].sumo.unSelectAll();
+                $('#sumoselect_demo8 select')[0].sumo.unSelectAll();
+                $('#sumoselect_demo9 select')[0].sumo.unSelectAll();
+                $('#sumoselect_demo10 select')[0].sumo.unSelectAll();
+                $('#sumoselect_demo11 select')[0].sumo.unSelectAll();
+                $('#dialog-search form>.form-group').map(function(i, v){
+                    if(i > 0) $(v).css('display', 'none');
+                });
             })
         });
         
@@ -1038,16 +1204,16 @@
             $('#right').children().map((i, v) => {
                 $(v).attr('id') === 'employee-list' ? $(v).show() : $(v).hide();
             })
-            reqlistInfo(0, 10);
+            reqOnJoblistInfo(0, 10);
         }
 
         var showEmployeeDetail = function ()
         {
-            reqLocalCfg(function() {
+            // reqLocalCfg(function() {
                 $('#right').children().map((i, v) => {
                     $(v).attr('id') === 'employee-detail' ? $(v).show() : $(v).hide();
                 })
-            })
+            // })
             
         }
         

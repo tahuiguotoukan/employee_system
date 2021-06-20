@@ -57,17 +57,13 @@ function onClickSubmitEmployeeDetail()
         id:0,					//员工编号
         name: "",				//员工姓名
         sex:0, 					//员工性别 0:男，1：女
-        bornYear: 0,			//员工出生年份
-        bornMonth:0,			//员工出生月份
-        bornDay: 0,
-        entryYear:0,			//员工入职年份
-        entryMonth:0, 			//员工入职月份
-        entryDay:0, 			//员工入职日份
+        bornTime: '',           //出生年月日
+        entryTime:0,			//员工入职年月日
         salary:[], 	//员工薪资信息
         group:0, 				//员工所属组别
         post:0,					//员工职位	值代表Post的索引
-        technologyStack:[], 	//员工所属技术栈	从TechnologyStack这里取值
         employeeProfile:"",		//员工定档
+        contractTime: ['', ''],  //合同时间
     }
     let post_data = $('#detail-form').serializeArray();
     post_data.forEach(function(v, i){
@@ -79,26 +75,29 @@ function onClickSubmitEmployeeDetail()
             case 'sex':
                 data.sex = parseInt(v.value);
                 break;
+            case 'address-1':
+                data.workPlace = parseInt(v.value);
+                break;
+            case 'address-2':
+                data.detailAddreass = v.value+$('#address-detail').val();
+                break;
+            case 'startContractTime':
+                data.contractTime = v.value;
+                break;
+            case 'endContractTime':
+                data.contractTime2 = v.value;
+                break;
             case 'bornTime':
-                let _date_born = new Date(v.value);
-                data.bornYear = _date_born.getFullYear();
-                data.bornMonth = _date_born.getMonth()+1;
-                data.bornDay = _date_born.getDate();
+                data.bornTime = v.value;
                 break;
             case 'entryTime':
-                let _date_entry = new Date(v.value);
-                data.entryYear = _date_entry.getFullYear();
-                data.entryMonth = _date_entry.getMonth()+1;
-                data.entryDay = _date_entry.getDate();
+                data.entryTime = v.value;
                 break;
-            case 'group':
+            case 'workGroup':
                 data.group = parseInt(v.value);
                 break;
             case 'position':
                 data.post = parseInt(v.value);
-                break;
-            case 'skill':
-                data.technologyStack.push(parseInt(v.value));
                 break;
             case 'level':
                 data.employeeProfile = parseInt(v.value);
@@ -124,4 +123,48 @@ function onClickSubmitEmployeeDetail()
     {
         reqSaveEmployeeInfo(data);
     }
+}
+function OnSumoselectDemo8Change ()
+{
+    let sumoselect_demo8_select = $('#sumoselect_demo8 select.selectall');
+    let len = $('#sumoselect_demo9 select').children('option').length;
+    for(let i = len - 1; i >= 0; i--)
+    {
+        $('#sumoselect_demo9 select')[0].sumo.remove(i);
+    }
+    let _value = sumoselect_demo8_select.val(); 
+    if(_value == null || sumoselect_demo8_select.parents('.form-group').css('display') === 'none') _value = [0,1,2,3];;
+    
+    _value.forEach(function(v, i){
+        if(v == 0)
+        {
+            $('#sumoselect_demo9 select')[0].sumo.add('0','uinty');
+            $('#sumoselect_demo9 select')[0].sumo.add('1','cocos2dx');
+            $('#sumoselect_demo9 select')[0].sumo.add('2','cocos小游戏');
+            $('#sumoselect_demo9 select')[0].sumo.add('3','web前端');
+            $('#sumoselect_demo9 select')[0].sumo.add('4','go后端');
+            $('#sumoselect_demo9 select')[0].sumo.add('5','C++服务器');
+        }
+        else if(v == 1)
+        {
+            $('#sumoselect_demo9 select')[0].sumo.add('6','游戏UI');
+            $('#sumoselect_demo9 select')[0].sumo.add('7','特效');
+            $('#sumoselect_demo9 select')[0].sumo.add('8','动作');
+            $('#sumoselect_demo9 select')[0].sumo.add('9','3D角色');
+            $('#sumoselect_demo9 select')[0].sumo.add('10','3D场景');
+            $('#sumoselect_demo9 select')[0].sumo.add('11','角色原画');
+            $('#sumoselect_demo9 select')[0].sumo.add('12','场景原画');
+        }
+        else if(v == 2)
+        {
+            $('#sumoselect_demo9 select')[0].sumo.add('13','策划');
+            $('#sumoselect_demo9 select')[0].sumo.add('14','运营');
+        }
+        else if(v == 3)
+        {
+            $('#sumoselect_demo9 select')[0].sumo.add('15','人事');
+            $('#sumoselect_demo9 select')[0].sumo.add('16','前台');
+            $('#sumoselect_demo9 select')[0].sumo.add('17','HR');
+        }
+    })
 }

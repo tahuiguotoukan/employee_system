@@ -1,12 +1,12 @@
 var cgi = 'http://192.168.1.81:3000/';
-function reqlistInfo(start)
+function reqOnJoblistInfo(start)
 {
     let data = {
         'browseIndex': start, "browseCount": one_page_count
     }
     saveGlobalSearchParams(data);
     console.error('查询基础列表数据 start index is ' + start + '; count is ' + one_page_count);
-    $.post(cgi+'browse', data, function(obj, textStatus){
+    $.post(cgi+'browseOnTheJob', data, function(obj, textStatus){
         console.error('data', obj);
         if(obj.ret === 0 && obj.result)
         {
@@ -25,13 +25,13 @@ function reqlistInfo(start)
         }
     })
 }
-function reqPagelistInfo (start, success)
+function reqOnJobPagelistInfo (start, success)
 {
     data = window.search_params;
     data.browseIndex = start*one_page_count;
     console.error('请求分页参数', data)
     console.error('开始位置'+start+' 第' + Math.floor(start/one_page_count)+1 + '页');
-    $.post(cgi+'browse', data, function(obj, textStatus){
+    $.post(cgi+'browseOnTheJob', data, function(obj, textStatus){
         console.error('分页数据回包', obj);
         if(obj.ret === 0 && obj.result)
         {
@@ -80,11 +80,11 @@ function reqLocalCfg (callback)
     }
     
 }
-function reqSuperSearch (data, success)
+function reqOnJobSuperSearch (data, success)
 {
     data.browseCount = one_page_count;
     saveGlobalSearchParams(data);
-    $.post(cgi+'browse', data, function(obj){
+    $.post(cgi+'browseOnTheJob', data, function(obj){
         if(obj.ret === 0)
         {
             console.error('高级查询结果', obj.result);
@@ -117,8 +117,10 @@ function reqDeleteEmployee (id, success)
 }
 function reqSaveEmployeeInfo(datas)
 {
+    return;
     let d = {};
-    let l = 25;
+    //测试代码
+    let l = 1;
     for(let i = 0; i < l; i++)
     {
         d[i] = datas;
