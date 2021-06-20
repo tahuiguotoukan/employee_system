@@ -1,7 +1,8 @@
 #dialog-search {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 10;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 #dialog-search form>.form-group{
     margin: 6px 0;

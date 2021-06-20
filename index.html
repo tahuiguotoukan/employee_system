@@ -282,8 +282,8 @@
                     </div>
                     <div style="margin: 10px 0;"> 
                         <form class="form-horizontal">
-                            <div class="form-group pull-left" style="display: block;" type="name">
-                                <label for="name"  class="col-sm-3 control-label">姓名：</label>
+                            <div class="form-group" style="display: block;" type="name">
+                                <label class="col-sm-3 control-label">姓名：</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" name="name" id="name" placeholder="员工姓名">
                                 </div>
@@ -308,11 +308,11 @@
                                 </a>
                             </div>
                             <!-- TODO 修改type -->
-                            <div class="form-group" type="">
+                            <div class="form-group" type="continueContractTime">
                                 <label class="control-label col-sm-3">签约状态：</label>
                                 <div class="col-sm-9">
                                     <div class="sumoselect_demo" id="sumoselect_demo4">
-                                        <select multiple="multiple" class="selectall">
+                                        <select multiple="multiple" class="selectall" id="continueContractTime" name="continueContractTime">
                                             <option value="0">已签约</option>
                                             <option value="1">已过期</option>
                                             <option value="2">要续约</option>
@@ -325,18 +325,17 @@
                                     <i class="fa fa-close btn-icon"></i>
                                 </a>
                             </div>
-                            <div class="form-group" type="">
+                            <div class="form-group" type="workPlace">
                                 <label class="control-label col-sm-3">上班地址：</label>
                                 <div class="col-sm-9">
                                     <div class="sumoselect_demo" id="sumoselect_demo5">
-                                        <select multiple="multiple" class="selectall">
+                                        <select multiple="multiple" class="selectall" id="workPlace" name="workPlace">
                                             <option value="0">深圳市</option>
                                             <option value="1">广州市</option>
                                             <option value="2">重庆市</option>
                                         </select>
                                     </div>
                                 </div>
-                                
                                 <a class="close-item">
                                     <i class="fa fa-close btn-icon"></i>
                                 </a>
@@ -345,7 +344,7 @@
                                 <label class="control-label col-sm-3">员工定档：</label>
                                 <div class="col-sm-9">
                                     <div class="sumoselect_demo" id="sumoselect_demo6">
-                                        <select multiple="multiple" class="selectall">
+                                        <select multiple="multiple" class="selectall" id="employeeProfile" name="employeeProfile">
                                             <option value="0">C1</option>
                                             <option value="1">C2</option>
                                             <option value="2">C3</option>
@@ -366,11 +365,11 @@
                                     <i class="fa fa-close btn-icon"></i>
                                 </a>
                             </div>
-                            <div class="form-group" type="">
+                            <div class="form-group" type="changeSalaryNum">
                                 <label class="control-label col-sm-3">调薪次数：</label>
                                 <div class="col-sm-9">
                                     <div class="sumoselect_demo" id="sumoselect_demo7">
-                                        <select multiple="multiple" class="selectall">
+                                        <select multiple="multiple" class="selectall" id="changeSalaryNum" name="changeSalaryNum">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -426,21 +425,21 @@
                                 </a>
                                 
                             </div>
-                            <div class="form-group" type="">
+                            <div class="form-group" type="bornTime">
                                 <label for="entryTime" class="control-label col-sm-3">出生日期：</label>
                                 <div class="col-sm-3">
-                                    <div class="input-group date" id="plugin9_demo4" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                    <div class="input-group date" id="plugin9_demo6" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
-                                        <input type="hidden" id="" name="" value="" /><br/>
+                                        <input type="hidden" id="startBornTime" name="startBornTime" value="" /><br/>
                                     </div>
                                 </div>
                                 <div class="col-sm-1" style="text-align: center; line-height: 30px;">--</div>
                                 <div class="col-sm-3">
-                                    <div class="input-group date" id="plugin9_demo5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                    <div class="input-group date" id="plugin9_demo7" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
-                                        <input type="hidden" id="" name="" value="" /><br/>
+                                        <input type="hidden" id="endBornTime" name="endBornTime" value="" /><br/>
                                     </div>
                                 </div>
                                 <a class="close-item">
@@ -461,11 +460,11 @@
                                     <i class="fa fa-close btn-icon"></i>
                                 </a>
                             </div>
-                            <div class="form-group" type="">
+                            <div class="form-group" type="department">
                                 <label class="control-label col-sm-3">部门：</label>
                                 <div class="col-sm-9">
                                     <div class="sumoselect_demo" id="sumoselect_demo8">
-                                        <select multiple="multiple" class="selectall">
+                                        <select multiple="multiple" class="selectall" id="department" name="department">
                                             <option value="0">研发部</option>
                                             <option value="1">美术部</option>
                                             <option value="2">策划部</option>
@@ -509,11 +508,11 @@
                                     <i class="fa fa-close btn-icon"></i>
                                 </a>
                             </div>
-                            <div class="form-group" type="group">
+                            <div class="form-group" type="projectGroup">
                                 <label class="control-label col-sm-3">项目组：</label>
                                 <div class="col-sm-9">
                                     <div class="sumoselect_demo" id="sumoselect_demo10">
-                                        <select multiple="multiple" class="selectall">
+                                        <select multiple="multiple" class="selectall" id="projectGroup" name="projectGroup">
                                             <option value="0">HMM</option>
                                             <option value="1">宝宝斗场</option>
                                             <option value="2">捕鱼</option>
@@ -696,6 +695,28 @@
                 format:"yyyy-mm-dd",
             });
             $('#plugin9_demo5').datetimepicker({
+                language:  'zh-TW',
+                weekStart: 1,
+                todayBtn:  true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                format:"yyyy-mm-dd",
+            });
+            $('#plugin9_demo6').datetimepicker({
+                language:  'zh-TW',
+                weekStart: 1,
+                todayBtn:  true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                format:"yyyy-mm-dd",
+            });
+            $('#plugin9_demo7').datetimepicker({
                 language:  'zh-TW',
                 weekStart: 1,
                 todayBtn:  true,
@@ -978,51 +999,7 @@
                 
             })
             $('#req-super-search').click(function(){
-                var data = {
-                    'browseIndex': 0,
-                };
-                $('#dialog-search .form-group').map(function(i, v){
-                    if($(v).css('display') === 'block')
-                    {
-                        switch($(v).attr('type'))
-                        {
-                            case 'name':
-                                data.name = $(v).find('#name').val();
-                                break;
-                            case 'id':
-                                data.id = [$(v).find('#id-start').val()*1, $(v).find('#id-end').val()*1];
-                                break;
-                            case 'sex':
-                                data.sex = getValueByName('sex');
-                                break;
-                            case 'entryTime':
-                                data.entryTime = [$(v).find('#startEntryTime').val(), $(v).find('#endEntryTime').val()];
-                                break;
-                            case 'group':
-                                data.group = getValueByName('group');
-                                break;
-                            case 'post':
-                                data.post = getValueByName('post');
-                                break;
-                            case 'technologyStack':
-                                data.technologyStack = getValueByName('technologyStack');
-                                break;
-                            case 'employeeProfile':
-                                data.employeeProfile = getValueByName('employeeProfile');
-                                break;
-                            case 'salary':
-                                data.salary = [$(v).find('#startSalary').val()*1, $(v).find('#endSalary').val()*1];
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                })
-                console.error('高级查询', data);
-                reqSuperSearch(data,function(){
-                    $('#dialog-search').hide();
-                    renderTable();
-                });
+                OnClickReqSuperSearch();
             })
 
             $('#prev').click(function(evt){
@@ -1073,27 +1050,7 @@
             })
             
         }
-        function getValueByName(name)
-        {
-            let d = $('#dialog-search form').serializeArray();
-            let r = [];
-            for(let i = 0; i < d.length; i++)
-            {
-                let item = d[i];
-                if(name == item.name)
-                {
-                    if(name === 'sex')
-                    {
-                        r = parseInt(item.value);
-                    }
-                    else
-                    {
-                        r.push(parseInt(item.value));
-                    }
-                }
-            }
-            return r;
-        }
+        
         function saveGlobalSearchParams(data)
         {
             window.search_params = data;

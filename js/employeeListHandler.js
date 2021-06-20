@@ -72,6 +72,7 @@ function onKeywordSwearch(event)
 function onSuperSearch ()
 {
     $('#dialog-search').show();
+    $('#dialog-more-condition').hide();
     $('#dialog-search>.modal-dialog').css({
         "top": "50%",
         "transform": "translateY(-50%)"
@@ -103,7 +104,8 @@ function renderPage (page = 1)
     cur_page = page;
     $('#total').text(totalEmployCount);
     $('#cur_page').text(cur_page);
-    let total_page = Math.floor(totalEmployCount/one_page_count)+1;
+    let total_page = Math.floor(totalEmployCount/one_page_count);
+    (totalEmployCount%one_page_count > 0 || total_page == 0) && (total_page+=1);
     $('#total_page').text(total_page);
     for(let i = $('#page-list li').length - 2; i > 0; i--)
     {
@@ -218,7 +220,7 @@ function renderTable()
         let clone_tr = body_tr.clone();
         clone_tr.find('#id') && clone_tr.find('#id').text(v.id);
         clone_tr.find('#name') && clone_tr.find('#name').text(v.name);
-        clone_tr.find('#sex') && clone_tr.find('#sex').text(v.sex === 1 ? '女' : '男');
+        clone_tr.find('#sex') && clone_tr.find('#sex').text(v.sex == 1 ? '女' : '男');
         clone_tr.find('#group') && clone_tr.find('#group').text(localConfig.Group[v.group]);
         clone_tr.find('#post') && clone_tr.find('#post').text(localConfig.Post[v.post]);
         clone_tr.find('#entryTime') && clone_tr.find('#entryTime').text(`${v.entryYear}.${v.entryMonth}.${v.entryDay}`);
@@ -233,4 +235,81 @@ function renderTable()
         clone_tr.find('.operation button:eq(1)').attr('datas', v.id);
         $('#employee-table-tbody').append(clone_tr)
     })
+}
+function OnClickReqSuperSearch()
+{
+    var data = {
+        'browseIndex': 0,
+    };
+    $('#dialog-search .form-group').map(function(i, v){
+        if($(v).css('display') === 'block')
+        {
+            switch($(v).attr('type'))
+            {
+                case 'name':
+                    data.name = $(v).find('#name').val();
+                    break;
+                case 'id':
+                    data.id = [$(v).find('#id-start').val()*1, $(v).find('#id-end').val()*1];
+                    break;
+                case 'sex':
+                    data.sex = getValueByName('sex');
+                    break;
+                case 'entryTime':
+                    data.entryTime = [$(v).find('#startEntryTime').val(), $(v).find('#endEntryTime').val()];
+                    break;
+                case 'bornTime':
+                    data.entryTime = [$(v).find('#startBornTime').val(), $(v).find('#endBornTime').val()];
+                    break;
+                case 'projectGroup':
+                    data.projectGroup = getValueByName('projectGroup');
+                    break;
+                case 'post':
+                    data.post = getValueByName('post');
+                    break;
+                case 'technologyStack':
+                    data.technologyStack = getValueByName('technologyStack');
+                    break;
+                case 'employeeProfile':
+                    data.employeeProfile = getValueByName('employeeProfile');
+                    break;
+                case 'salary':
+                    data.salary = [$(v).find('#startSalary').val()*1, $(v).find('#endSalary').val()*1];
+                    break;
+                case 'continueContractTime':
+                    data.continueContractTime = getValueByName('continueContractTime');
+                case 'workPlace':
+                    data.workPlace = getValueByName('workPlace');
+                    break;
+                case 'changeSalaryNum':
+                    data.changeSalaryNum = getValueByName('changeSalaryNum');
+                    break;
+                case 'department':
+                    data.department = getValueByName('department');
+                    break;
+                default:
+                    break;
+            }
+        }
+    })
+    console.error('高级查询', data);
+    reqSuperSearch(data,function(){
+        $('#dialog-search').hide();
+        renderTable();
+    });
+}
+function getValueByName(name)
+{
+    let d = $('#dialog-search form').serializeArray();
+    let r = [];
+    for(let i = 0; i < d.length; i++)
+    {
+        let item = d[i];
+        if(name == item.name)
+        {
+            r.push(parseInt(item.value));
+            
+        }
+    }
+    return r;
 }
