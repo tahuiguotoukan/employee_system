@@ -129,6 +129,7 @@ function onClickDelete (self)
 function onClickLeave (self)
 {
     let id = parseInt($(self).attr('datas'));
+    $('#dialog-leave').show();
 }
 function setDetailType(type)
 {
@@ -199,21 +200,22 @@ function onClickPage(evt)
 }
 function renderTable()
 {
-    
 
-    let head_th = $(`<tr class="active"><th style="width:200px">员工编号</th>
-    <th style="min-width:150px">姓名</th>
-    <th style="min-width:100px">性别</th>
-    <th style="width:200px">所属组别</th>
-    <th style="width:200px">所属职位</th>
-    <th class="operation" style="width:565px">操作</th></tr>`)
     let body_tr = $(`<tr style="display: table-row; opacity: 1;">
-            <td id="id"></td>
-            <td id="name"></td>
-            <td id="sex"></td>
-            <td id="workGroup"></td>
-            <td id="post"></td>
-            
+            <td class="tr-id"></td>
+            <td class="tr-name"></td>
+            <td class="tr-sex"></td>
+            <td class="tr-workPlace"></td>
+            <td class="tr-department"></td>
+            <td class="tr-post"></td>
+            <td class="tr-workGroup"></td>
+            <td class="tr-projectGroup"></td>
+            <td class="tr-entryTime"></td>
+            <td class="tr-employeeProfile"></td>
+            <td class="tr-salary"></td>
+            <td class="tr-changeSalaryNum"></td>
+            <td class="tr-contractStatus"></td>
+            <td class="tr-bornTime"></td>
             <td class="operation">
                 <button onClick="onClickEdit(this)" class="king-btn king-default">编辑</button>
                 <button onClick="onClickLeave(this)" class="king-btn king-danger">离职</button>
@@ -223,28 +225,11 @@ function renderTable()
     {
         switch(k)
         {
-            
-            case 'entryTime':
-                head_th.find('.operation').before($('<th style="width:200px">入职时间</th>'));
-                body_tr.find('.operation').before($('<td id="entryTime"></td>'));
-                break;
-            case 'technologyStack':
-                head_th.find('.operation').before($('<th style="width:200px">技术栈</th>'));
-                body_tr.find('.operation').before($('<td id="technologyStack"></td>'));
-                break;
-            case 'employeeProfile':
-                head_th.find('.operation').before($('<th style="width:200px">员工定档</th>'));
-                body_tr.find('.operation').before($('<td id="employeeProfile"></td>'));
-                break;
-            case 'salary':
-                head_th.find('.operation').before($('<th style="width:200px">薪资</th>'));
-                body_tr.find('.operation').before($('<td id="salary"></td>'));
-                break;
             default:
                 break;
         }
     }
-    $('#employee-table-thead').html(head_th);
+    
     // <td></td>
     $('#employee-table-tbody').html('');
     let td_count = body_tr.find('td').length;
@@ -254,23 +239,53 @@ function renderTable()
     $('#foot_td_count').attr('colspan', td_count);
     window.base_data.forEach(function(v, i){
         let clone_tr = body_tr.clone();
-        clone_tr.find('#id') && clone_tr.find('#id').text(v.id);
-        clone_tr.find('#name') && clone_tr.find('#name').text(v.name);
-        clone_tr.find('#sex') && clone_tr.find('#sex').text(v.sex == 1 ? '女' : '男');
-        clone_tr.find('#group') && clone_tr.find('#group').text(localConfig.Group[v.workGroup]);
-        clone_tr.find('#post') && clone_tr.find('#post').text(localConfig.Post[v.post]);
-        clone_tr.find('#entryTime') && clone_tr.find('#entryTime').text(`${v.entryYear}.${v.entryMonth}.${v.entryDay}`);
-        let tech = '';
-        v.technologyStack.forEach(function (v, i){
-            tech+=localConfig.TechnologyStack[i]+';';
-        });
-        clone_tr.find('#technologyStack') && clone_tr.find('#technologyStack').text(tech);
-        clone_tr.find('#employeeProfile') && clone_tr.find('#employeeProfile').text(localConfig.YuanGongDingDang[v.employeeProfile]);
-        clone_tr.find('#salary') && clone_tr.find('#salary').text(v.salary[0].money);
+        clone_tr.find('.tr-id').eq(0).text(v.id);
+        clone_tr.find('.tr-name').eq(0).text(v.name);
+        clone_tr.find('.tr-sex').eq(0).text(v.sex == 1 ? '女' : '男');
+        clone_tr.find('.tr-workPlace').eq(0).text(localConfig.workPlace[v.workPlace]);
+        clone_tr.find('.tr-workGroup').eq(0).text(localConfig.workGroup[v.workGroup]);
+        clone_tr.find('.tr-department').eq(0).text(localConfig.department[v.department]);
+        clone_tr.find('.tr-projectGroup').eq(0).text(localConfig.projectGroup[v.projectGroup]);
+        clone_tr.find('.tr-post').eq(0).text(localConfig.post[v.post[0]]);
+        
+        
+        clone_tr.find('.tr-entryTime').eq(0).text(v.entryTime.split('T')[0]);
+        clone_tr.find('.tr-employeeProfile').eq(0).text(localConfig.employeeProfile[v.employeeProfile]);
+        clone_tr.find('.tr-salary').eq(0).text(v.salary[v.salary.length-1].money);
+        clone_tr.find('.tr-changeSalaryNum').eq(0).text(v.changeSalaryNum);
+        clone_tr.find('.tr-contractStatus').eq(0).text(localConfig.contractStatus[v.contractStatus]);
+        clone_tr.find('.tr-bornTime').eq(0).text(v.bornTime.split('T')[0]);
         clone_tr.find('.operation button:eq(0)').attr('datas', v.id);
         clone_tr.find('.operation button:eq(1)').attr('datas', v.id);
+        if(v.contractStatus == 0)
+        {
+            clone_tr.css('color', '#333333');
+        }
+        else if(v.contractStatus == 1) //已过期
+        {
+            clone_tr.css('color', '#d9001b');
+            let end_time = new Date(v.contractTime2);
+            let now_time = Date.now();
+            let diff = Math.floor((now_time-end_time.getTime())/(1000*60*60*24));
+            clone_tr.find('.tr-contractStatus').eq(0).text(`已过期${diff}天`);
+        }
+        else if(v.contractStatus == 2)
+        {
+            clone_tr.css('color', '#95f204');
+        }
+        else if(v.contractStatus == 3)
+        {
+            clone_tr.css('color', '#ff5105');
+        }
         $('#employee-table-tbody').append(clone_tr)
     })
+    let comment = '';
+    for(let i in onJobMember)
+    {
+        comment+=`${localConfig.workPlace[i]}${onJobMember[i]}人、`
+    }
+    comment = comment.substr(0, comment.length-1);
+    $('#foot_td_count .comment').eq(0).text(`在职${window.totalEmployCount} (${comment})`);
 }
 function OnClickReqOnJobSuperSearch()
 {

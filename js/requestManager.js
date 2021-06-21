@@ -12,6 +12,7 @@ function reqOnJoblistInfo(start)
         {
             window.base_data = obj.result.data;
             window.totalEmployCount = obj.result.totalCount;
+            window.onJobMember = obj.result.member;
             if(textStatus === 'success')
             {
                 renderPage(Math.floor(start/one_page_count)+1);
@@ -64,7 +65,7 @@ function reqLocalCfg (callback)
             if(obj.ret === 0)
             {
                 console.log('配置文件', obj.result);
-                localConfig = obj.result[0];
+                // localConfig = obj.result[0];
                 RenderLocalConfig();
                 callback && callback();
             }

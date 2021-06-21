@@ -25,13 +25,29 @@ const right_table = $(`
                 <div>
                     <table class="table table-hover mb0">
                         <thead id="employee-table-thead">
-                            
+                                <th style="min-width:100px">员工工号</th>
+                                <th style="min-width:100px">员工姓名</th>
+                                <th style="min-width:100px">性别</th>
+                                <th style="min-width:100px">上班地点</th>
+                                <th style="min-width:100px">所属部门</th>
+                                <th style="min-width:100px">职位</th>
+                                <th style="min-width:100px">所属组别</th>
+                                <th style="min-width:100px">所属项目组</th>
+                                <th style="min-width:100px">入职时间</th>
+                                <th style="min-width:100px">定档</th>
+                                <th style="min-width:100px">当前薪资</th>
+                                <th style="min-width:100px">调薪次数</th>
+                                <th style="min-width:100px">签约状态</th>
+                                <th style="min-width:100px">出生日期</th>
+                                <th class="operation" style="width:565px">操作</th>
+                            </tr>
                         </thead>
                         <tbody id="employee-table-tbody">
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td id="foot_td_count" colspan="7">
+                                    <div class="comment pull-left" style="line-height:45px"></div>
                                     <div class="pull-right king-page-box">
                                         <p class="pull-left mt15 mr15">
                                             共<span id="total">25</span>条记录，当前第<span id="cur_page">1</span>/<span id="total_page">5</span>页

@@ -45,13 +45,7 @@ function RenderLocalConfig()
             <option value="${i}">${v}</option>
         `)
     });
-    localConfig.TechnologyStack && localConfig.TechnologyStack.length > 0 && localConfig.TechnologyStack.forEach(function(v, i){
-        $('#skill').append(`
-            <label class="mr10"> 
-                <input type="checkbox" name="skill"  value="${i}">${v}
-            </label>
-        `)
-    })
+    
     localConfig.YuanGongDingDang && localConfig.YuanGongDingDang.length > 0 && localConfig.YuanGongDingDang.forEach(function(v, i){
         $('#level').append(`
             <option value="${i}">${v}</option>
@@ -88,7 +82,7 @@ function onClickSubmitEmployeeDetail()
                 data.workPlace = parseInt(v.value);
                 break;
             case 'address-2':
-                data.detailedAddreass = v.value+$('#address-detail').val();
+                data.detailedAddress = v.value+$('#address-detail').val();
                 break;
             case 'startContractTime':
                 data.contractTime = v.value;
