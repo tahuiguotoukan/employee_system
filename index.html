@@ -195,7 +195,7 @@
                                 <div class="form-group">
                                     <label for="group" class="col-sm-3 control-label">所属组别：</label>
                                     <div class="col-sm-7">
-                                        <select name="group" class="form-control">
+                                        <select name="group" id="group" class="form-control">
                                             <option value="0">研发1组</option>
                                             <option value="1">研发2组</option>
                                             <option value="2">研发3组</option>
@@ -220,7 +220,7 @@
                                 <div class="form-group">
                                     <label for="post" class="col-sm-3 control-label">所属职位：</label>
                                     <div class="col-sm-7">
-                                        <select name="post" class="form-control">
+                                        <select name="post" id="post" class="form-control">
                                             <option value="0">unity</option>
                                             <option value="1">cocos2dx</option>
                                             <option value="2">cocos小游戏</option>
@@ -233,7 +233,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-3">所属项目组：</label>
                                     <div class="col-sm-7">
-                                        <select name="projectGroup"  class="form-control">
+                                        <select name="projectGroup" id="projectGroup"  class="form-control">
                                             <option value="0">HMM</option>
                                             <option value="1">宝宝斗场</option>
                                             <option value="2">捕鱼</option>
@@ -862,94 +862,10 @@
                 selectAlltext: '全选'
             });
             $('#employee-detail [name="department"]').change(function(){
-                let v = $(this).val();
-                let content = $('#employee-detail #position');
-                content.html('');
-                
-                if(v == 0)
-                {
-                    content.html(`
-                        <option value="0">uinty</option>
-                        <option value="1">cocos2dx</option>
-                        <option value="2">cocos小游戏</option>
-                        <option value="3">web前端</option>
-                        <option value="4">go后端</option>
-                        <option value="5">C++服务器</option>
-                    `)
-                }
-                else if(v == 1)
-                {
-                    content.html(`
-                        <option value="6">游戏UI</option>
-                        <option value="7">特效</option>
-                        <option value="8">动作</option>
-                        <option value="9">3D角色</option>
-                        <option value="10">3D场景</option>
-                        <option value="11">角色原画</option>
-                        <option value="12">场景原画</option>
-                    `)
-                    
-                }
-                else if(v == 2)
-                {
-                    content.html(`
-                        <option value="13">策划</option>
-                        <option value="14">运营</option>
-                    `)
-                }
-                else if(v == 3)
-                {
-                    content.html(`
-                        <option value="15">人事</option>
-                        <option value="16">前台</option>
-                        <option value="17">HR</option>
-                    `)
-                }
+                OnDetailDepartmentChange();
             })
             $('#address-1').change(function(){
-                let _value = $(this).val();
-                $('#address-2').html('');
-                if(_value == 0)
-                {
-                    $('#address-2').html(`<option value="南山区">南山区</option>
-                                            <option value="福田区">福田区</option>
-                                            <option value="罗湖区">罗湖区</option>
-                                            <option value="宝安区">宝安区</option>
-                                            <option value="龙岗区">龙岗区</option>
-                                            <option value="盐田区">盐田区</option>
-                                            <option value="坪山区">坪山区</option>
-                                            <option value="龙华区">龙华区</option>
-                                            <option value="光明区">光明区</option>
-                                            <option value="大鹏新区">大鹏新区</option>
-                                            <option value="深汕特别合作区">深汕特别合作区</option>`)
-                }
-                else if(_value == 1)
-                {
-                    $('#address-2').html(`<option value="越秀区">越秀区</option>
-                                            <option value="荔湾区">荔湾区</option>
-                                            <option value="海珠区">海珠区</option>
-                                            <option value="天河区">天河区</option>
-                                            <option value="白云区">白云区</option>
-                                            <option value="黄浦区">黄浦区</option>
-                                            <option value="番禺区">番禺区</option>
-                                            <option value="花都区">花都区</option>
-                                            <option value="南沙区">南沙区</option>
-                                            <option value="增城区">增城区</option>
-                                            <option value="从化区">从化区</option>`)
-                }
-                else if(_value == 2)
-                {
-                    $('#address-2').html(`<option value="渝中区">渝中区</option>
-                                            <option value="江北区">江北区</option>
-                                            <option value="南岸区">南岸区</option>
-                                            <option value="九龙坡区">九龙坡区</option>
-                                            <option value="沙坪坝区">沙坪坝区</option>
-                                            <option value="大渡口区">大渡口区</option>
-                                            <option value="北碚区">北碚区</option>
-                                            <option value="渝北区">渝北区</option>
-                                            <option value="巴南区">巴南区</option>
-                                            `)
-                }
+                OnDetailAddress1Change();
             })
             let _year = (new Date()).getFullYear();
             let year_obj = '';

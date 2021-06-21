@@ -18,7 +18,7 @@ function addEmployeeSalary(){
 <button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">确认</button>
 
 </div></td></tr>`);
-    for(let i = year - 10; i <= year; i++)
+    for(let i = year - 20; i <= year; i++)
     {
         tr.find('[name="year"]').append(`<option value="${i}">${i}</option>`);
     }
@@ -88,7 +88,7 @@ function onClickSubmitEmployeeDetail()
                 data.workPlace = parseInt(v.value);
                 break;
             case 'address-2':
-                data.detailAddreass = v.value+$('#address-detail').val();
+                data.detailedAddreass = v.value+$('#address-detail').val();
                 break;
             case 'startContractTime':
                 data.contractTime = v.value;
@@ -105,7 +105,7 @@ function onClickSubmitEmployeeDetail()
             case 'department':
                 data.department = v.value;
             case 'workGroup':
-                data.group = parseInt(v.value);
+                data.workGroup = parseInt(v.value);
                 break;
             case 'post':
                 data.post = parseInt(v.value);

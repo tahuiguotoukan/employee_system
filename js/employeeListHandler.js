@@ -1,3 +1,4 @@
+//点击编辑回填数据到详情页
 function onClickEdit(self)
 {
     let id = parseInt($(self).attr('datas'));
@@ -14,20 +15,35 @@ function onClickEdit(self)
     $('#userCode').val(person_info.id);
     if(person_info.sex == 0)
     {
-        $('#sex1').attr('checked', 'true');
-        $('#sex2').removeAttr('checked');
+        $('#sex1').prop('checked', 'true');
+        $('#sex2').removeProp('checked');
     }
     else
     {
-        $('#sex2').attr('checked', 'true');
-        $('#sex1').removeAttr('checked');
+        $('#sex2').prop('checked', 'true');
+        $('#sex1').removeProp('checked');
     }
-    let bornTime = `${person_info.bornYear}-${person_info.bornMonth}-${person_info.bornDay}`;
+    $('#address-1').val(person_info.department);
+    OnDetailAddress1Change();
+    if(person_info.detailedAddress.indexOf('区') > -1){
+        $('#address-2').val(person_info.detailedAddress.substr(0, person_info.detailedAddress.indexOf('区')+1));
+        $('#address-detail').val(person_info.detailedAddress.substr(person_info.detailedAddress.indexOf('区')+1));
+    }
+    else
+    {
+        $('#address-detail').val(person_info.detailedAddress);
+    }
+    let bornTime = person_info.bornTime.split('T')[0];
     $('#bornTime').val(bornTime).siblings('input').val(bornTime);
-    let joinTime = `${person_info.entryYear}-${person_info.entryMonth}-${person_info.entryDay}`;
-    $('#entryTime').val(bornTime).siblings('input').val(bornTime);
-    $('#group').val(person_info.group);
-    $('#position').val(person_info.post);
+    let joinTime = person_info.entryTime.split('T')[0];
+    $('#entryTime').val(joinTime).siblings('input').val(joinTime);
+    $('#startContractTime').val(person_info.contractTime.split('T')[0]).siblings('input').val(person_info.contractTime.split('T')[0]);
+    $('#endContractTime').val(person_info.contractTime2.split('T')[0]).siblings('input').val(person_info.contractTime2.split('T')[0]);
+    $('#group').val(person_info.workGroup[0]);
+    $('#department').val(person_info.department);
+    OnDetailDepartmentChange();
+    $('#post').val(person_info.post);
+    $('#projectGroup').val(person_info.projectGroup[0]);
     person_info.technologyStack.forEach(function(v, i){
         $($('#skill input')[parseInt(v)]).attr('checked', 'true');
         
@@ -36,7 +52,10 @@ function onClickEdit(self)
     setDetailType(detail_type_def.update);
     showEmployeeDetail();
     let year = (new Date()).getFullYear();
+    
     person_info.salary.forEach(function(v){
+        let change_year = (new Date(v.time)).getFullYear();
+        let change_month = (new Date(v.time)).getMonth()+1;
         let tr = $(`<tr id="
             
         " class="">
@@ -45,8 +64,8 @@ function onClickEdit(self)
         </span><input class="tabledit-input tabledit-identifier" type="hidden" name="aid" value="${$('#salary-table>tbody>tr').length+1}
             
         "></td>
-        <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">${v.year}</span><select class="tabledit-input  form-control input-sm" name="year" style="display: inline-block;"></select></td>
-        <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">${v.month}</span><select class="tabledit-input   form-control input-sm" name="month" style="display: inline-block;"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></td>
+        <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">${change_year}</span><select class="tabledit-input  form-control input-sm" name="year" style="display: inline-block;"></select></td>
+        <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">${change_month}</span><select class="tabledit-input   form-control input-sm" name="month" style="display: inline-block;"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></td>
         <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">                                                                                                            </span><input class="tabledit-input    form-control input-sm" type="text" name="money" value="" style="display: inline-block;"></td>
         
     <td style="white-space: nowrap; width: 1%;"><div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
@@ -55,12 +74,23 @@ function onClickEdit(self)
     <button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">确认</button>
 
     </div></td></tr>`)
-        for(let i = year - 10; i <= year; i++)
+        for(let i = year - 20; i <= year; i++)
         {
             tr.find('[name="year"]').append(`<option value="${i}">${i}</option>`);
         }
-        tr.find('[name="month"]').val(v.month);
-        tr.find('[name="year"]').val(v.year);
+        let have_year = false;
+        for(let i = 0; i < tr.find('[name="year"] option').length; i++)
+        {
+            let item = tr.find('[name="year"] option')[i];
+            if($(item).attr('value') === have_year)
+            {
+                have_year = true;
+                break;
+            }
+        }
+        !have_year && tr.find('[name="year"]').prepend(`<option value="${change_year}">${change_year}</option>`);
+        tr.find('[name="month"]').val(change_month);
+        tr.find('[name="year"]').val(change_year);
         tr.find('[name="money"]').val(v.money);
         
         $('#salary-table tbody').append(tr);
@@ -181,7 +211,7 @@ function renderTable()
             <td id="id"></td>
             <td id="name"></td>
             <td id="sex"></td>
-            <td id="group"></td>
+            <td id="workGroup"></td>
             <td id="post"></td>
             
             <td class="operation">
@@ -227,7 +257,7 @@ function renderTable()
         clone_tr.find('#id') && clone_tr.find('#id').text(v.id);
         clone_tr.find('#name') && clone_tr.find('#name').text(v.name);
         clone_tr.find('#sex') && clone_tr.find('#sex').text(v.sex == 1 ? '女' : '男');
-        clone_tr.find('#group') && clone_tr.find('#group').text(localConfig.Group[v.group]);
+        clone_tr.find('#group') && clone_tr.find('#group').text(localConfig.Group[v.workGroup]);
         clone_tr.find('#post') && clone_tr.find('#post').text(localConfig.Post[v.post]);
         clone_tr.find('#entryTime') && clone_tr.find('#entryTime').text(`${v.entryYear}.${v.entryMonth}.${v.entryDay}`);
         let tech = '';
@@ -322,4 +352,96 @@ function getValueByName(name)
         }
     }
     return r;
+}
+function OnDetailAddress1Change()
+{
+    let _value =$('#employee-detail #address-1').val();
+                $('#employee-detail #address-2').html('');
+                if(_value == 0)
+                {
+                    $('#employee-detail #address-2').html(`<option value="南山区">南山区</option>
+                                            <option value="福田区">福田区</option>
+                                            <option value="罗湖区">罗湖区</option>
+                                            <option value="宝安区">宝安区</option>
+                                            <option value="龙岗区">龙岗区</option>
+                                            <option value="盐田区">盐田区</option>
+                                            <option value="坪山区">坪山区</option>
+                                            <option value="龙华区">龙华区</option>
+                                            <option value="光明区">光明区</option>
+                                            <option value="大鹏新区">大鹏新区</option>
+                                            <option value="深汕特别合作区">深汕特别合作区</option>`)
+                }
+                else if(_value == 1)
+                {
+                    $('#employee-detail #address-2').html(`<option value="越秀区">越秀区</option>
+                                            <option value="荔湾区">荔湾区</option>
+                                            <option value="海珠区">海珠区</option>
+                                            <option value="天河区">天河区</option>
+                                            <option value="白云区">白云区</option>
+                                            <option value="黄浦区">黄浦区</option>
+                                            <option value="番禺区">番禺区</option>
+                                            <option value="花都区">花都区</option>
+                                            <option value="南沙区">南沙区</option>
+                                            <option value="增城区">增城区</option>
+                                            <option value="从化区">从化区</option>`)
+                }
+                else if(_value == 2)
+                {
+                    $('#employee-detail #address-2').html(`<option value="渝中区">渝中区</option>
+                                            <option value="江北区">江北区</option>
+                                            <option value="南岸区">南岸区</option>
+                                            <option value="九龙坡区">九龙坡区</option>
+                                            <option value="沙坪坝区">沙坪坝区</option>
+                                            <option value="大渡口区">大渡口区</option>
+                                            <option value="北碚区">北碚区</option>
+                                            <option value="渝北区">渝北区</option>
+                                            <option value="巴南区">巴南区</option>
+                                            `)
+                }
+}
+function OnDetailDepartmentChange()
+{
+    let v = $('#employee-detail [name="department"]').val();
+                let content = $('#employee-detail #post');
+                content.html('');
+                
+                if(v == 0)
+                {
+                    content.html(`
+                        <option value="0">uinty</option>
+                        <option value="1">cocos2dx</option>
+                        <option value="2">cocos小游戏</option>
+                        <option value="3">web前端</option>
+                        <option value="4">go后端</option>
+                        <option value="5">C++服务器</option>
+                    `)
+                }
+                else if(v == 1)
+                {
+                    content.html(`
+                        <option value="6">游戏UI</option>
+                        <option value="7">特效</option>
+                        <option value="8">动作</option>
+                        <option value="9">3D角色</option>
+                        <option value="10">3D场景</option>
+                        <option value="11">角色原画</option>
+                        <option value="12">场景原画</option>
+                    `)
+                    
+                }
+                else if(v == 2)
+                {
+                    content.html(`
+                        <option value="13">策划</option>
+                        <option value="14">运营</option>
+                    `)
+                }
+                else if(v == 3)
+                {
+                    content.html(`
+                        <option value="15">人事</option>
+                        <option value="16">前台</option>
+                        <option value="17">HR</option>
+                    `)
+                }
 }
