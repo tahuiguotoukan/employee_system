@@ -276,8 +276,9 @@ function OnClickReqOnJobSuperSearch()
                 case 'salary':
                     data.salary = [$(v).find('#startSalary').val()*1, $(v).find('#endSalary').val()*1];
                     break;
-                case 'continueContractTime':
-                    data.continueContractTime = getValueByName('continueContractTime');
+                case 'contractStatus':
+                    data.contractStatus = getValueByName('contractStatus');
+                    break;
                 case 'workPlace':
                     data.workPlace = getValueByName('workPlace');
                     break;
