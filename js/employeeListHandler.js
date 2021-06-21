@@ -130,6 +130,18 @@ function onClickLeave (self)
 {
     let id = parseInt($(self).attr('datas'));
     $('#dialog-leave').show();
+    $('#dialog-leave').attr('usercode', id);
+}
+function onCloseLeave ()
+{
+    $('#dialog-leave').hide();
+    $('#dialog-leave').attr('usercode', '');
+}
+function onSureLeave()
+{
+    $('#dialog-leave').hide();
+    $('#dialog-leave').attr('usercode', '');
+    reqLeave($('#dialog-leave').attr('usercode'), $('#dialog-leave input[name="leaveTime"]').eq(0).val());
 }
 function setDetailType(type)
 {

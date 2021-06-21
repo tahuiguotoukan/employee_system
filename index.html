@@ -680,25 +680,38 @@
                 
             </div>
         </div>
-        <div id="dialog-leave" style="position: absolute; top: 0; height: 100%; width: 100%; display: block;background-color: rgba(0, 0, 0, 0.5);z-index: 10;">
+        <div id="dialog-leave" style="position: absolute; top: 0; height: 100%; width: 100%; display: none;background-color: rgba(0, 0, 0, 0.5);z-index: 10;">
             <div class="modal-dialog" style="width:400px; position: relative; top: 25%; transform: transformY(-25%);">
                 <div class="modal-content">
                     <div class="modal-header">
             
                         <h4 class="modal-title text-center" id="myModalLabel">离职操作</h4>
-                        <a class=""  style="width: 20px;height: 20px; position: absolute; top: 16px; right: 10px; text-align: center;">
+                        <a class="" onclick="onCloseLeave()"  style="width: 20px;height: 20px; position: absolute; top: 16px; right: 10px; text-align: center;">
                             <i class="fa fa-close btn-icon"></i>
                         </a>
                     </div>
-                    <div>
-
+                    <div style="margin: 10px 0 0 0;">
+                        <form class="form-horizontal" method="POST">
+                            <div class="form-group">
+                                <div class="col-sm-1"></div>
+                                <label for="leaveTime" class="col-sm-3 control-label">离职时间：</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group date" id="plugin9_demo10" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        <input class="form-control" size="16" type="text" value="">            
+                                        <input type="hidden" name="leaveTime" value="" /><br/>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
                     </div>
                     <div class="modal-footer">
                         <div class="form-group">
-                            <a class="king-btn-demo king-btn king-radius king-info pull-left" title="确认">
+                            <a onclick="onSureLeave()" class="king-btn-demo king-btn king-radius king-info pull-left" title="确认">
                                 确认
                             </a>
-                            <a class="king-btn-demo king-btn king-radius king-default pull-right" title="取消">
+                            <a class="king-btn-demo king-btn king-radius king-default pull-right"  onclick="onCloseLeave()" title="取消">
                                 取消
                             </a>
                             
@@ -826,6 +839,17 @@
                 format:"yyyy-mm-dd",
             });
             $('#plugin9_demo9').datetimepicker({
+                language:  'zh-TW',
+                weekStart: 1,
+                todayBtn:  true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                format:"yyyy-mm-dd",
+            });
+            $('#plugin9_demo10').datetimepicker({
                 language:  'zh-TW',
                 weekStart: 1,
                 todayBtn:  true,
@@ -1136,7 +1160,7 @@
             $('#right').children().map((i, v) => {
                 $(v).attr('id') === 'employee-list' ? $(v).show() : $(v).hide();
             })
-            reqOnJoblistInfo(0, 10);
+            reqOnJoblistInfo(0);
         }
 
         var showEmployeeDetail = function ()

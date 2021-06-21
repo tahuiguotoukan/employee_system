@@ -1,9 +1,19 @@
 var cgi = 'http://192.168.1.81:3000/';
-function reqOnJoblistInfo(start)
+function reqOnJoblistInfo(start, data={})
 {
-    let data = {
-        'browseIndex': start, "browseCount": one_page_count
+    if(start != null)
+    {
+        data.browseIndex = start;
     }
+    else if(search_params && search_params.browseIndex != null)
+    {
+        data.browseIndex = search_params.browseIndex;
+    }
+    else
+    {
+        data.browseIndex = 0;
+    }
+    data.browseCount = one_page_count;
     saveGlobalSearchParams(data);
     console.error('查询基础列表数据 start index is ' + start + '; count is ' + one_page_count);
     $.post(cgi+'browseOnTheJob', data, function(obj, textStatus){
@@ -32,6 +42,7 @@ function reqOnJobPagelistInfo (start, success)
     data.browseIndex = start*one_page_count;
     console.error('请求分页参数', data)
     console.error('开始位置'+start+' 第' + Math.floor(start/one_page_count)+1 + '页');
+    saveGlobalSearchParams(data);
     $.post(cgi+'browseOnTheJob', data, function(obj, textStatus){
         console.error('分页数据回包', obj);
         if(obj.ret === 0 && obj.result)
@@ -140,12 +151,34 @@ function reqSaveEmployeeInfo(datas)
 }
 function reqUpdateEmployeeInfo(datas)
 {
-    $.post(cgi+'update', datas, function(obj){
-        console.error('save data', obj);
+    $.post(cgi+'update', [datas], function(obj){
+        console.error('update data', obj);
         if(obj.ret === 0)
         {
             alert('更新成功！');
             initEmployeeForm();
+        }
+        else
+        {
+            alert(obj.result);
+        }
+    })
+}
+function reqLeave(id, offJobTime, offJobInfoNotes = '')
+{
+    let data = {
+        id: id,
+        offJobTime: offJobTime,
+        offJobInfoNotes: offJobInfoNotes,
+        jobStatus: 0
+    }
+    console.error('离职信息', data);
+    $.post(cgi+'update', [data], function(obj){
+        console.error('leave data', obj);
+        if(obj.ret === 0)
+        {
+            alert('更新成功！');
+            reqOnJoblistInfo(search_params.browseIndex, search_params);
         }
         else
         {
