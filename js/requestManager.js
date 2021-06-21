@@ -117,7 +117,6 @@ function reqDeleteEmployee (id, success)
 }
 function reqSaveEmployeeInfo(datas)
 {
-    return;
     let d = {};
     //测试代码
     let l = 1;

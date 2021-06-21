@@ -35,6 +35,7 @@ function onClickEdit(self)
     $('#level').val(person_info.employeeProfile);
     setDetailType(detail_type_def.update);
     showEmployeeDetail();
+    let year = (new Date()).getFullYear();
     person_info.salary.forEach(function(v){
         let tr = $(`<tr id="
             
@@ -44,7 +45,7 @@ function onClickEdit(self)
         </span><input class="tabledit-input tabledit-identifier" type="hidden" name="aid" value="${$('#salary-table>tbody>tr').length+1}
             
         "></td>
-        <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">${v.year}</span><select class="tabledit-input  form-control input-sm" name="year" style="display: inline-block;"><option value="2001">2001年</option><option value="2002">2002年</option><option value="2003">2003年</option><option value="2004">2004年</option><option value="2005">2005年</option><option value="2006">2006年</option><option value="2007">2007年</option><option value="2008">2008年</option><option value="2009">2009年</option><option value="2010">2010年</option><option value="2011">2011年</option><option value="2012">2012年</option><option value="2013">2013年</option><option value="2014">2014年</option><option value="2015">2015年</option><option value="2016">2016年</option><option value="2017">2017年</option><option value="2018">2018年</option><option value="2019">2019年</option><option value="2020">2020年</option><option value="2021">2021年</option></select></td>
+        <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">${v.year}</span><select class="tabledit-input  form-control input-sm" name="year" style="display: inline-block;"></select></td>
         <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">${v.month}</span><select class="tabledit-input   form-control input-sm" name="month" style="display: inline-block;"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></td>
         <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">                                                                                                            </span><input class="tabledit-input    form-control input-sm" type="text" name="money" value="" style="display: inline-block;"></td>
         
@@ -54,9 +55,14 @@ function onClickEdit(self)
     <button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">确认</button>
 
     </div></td></tr>`)
+        for(let i = year - 10; i <= year; i++)
+        {
+            tr.find('[name="year"]').append(`<option value="${i}">${i}</option>`);
+        }
         tr.find('[name="month"]').val(v.month);
         tr.find('[name="year"]').val(v.year);
         tr.find('[name="money"]').val(v.money);
+        
         $('#salary-table tbody').append(tr);
     })
     

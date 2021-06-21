@@ -279,7 +279,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>序号</th>
-                                                    <th>调整时间</th>
+                                                    <th>调整年份</th>
+                                                    <th>调整月份</th>
                                                     <th>调整薪资</th>
                                                     <th class="tabledit-toolbar-column">操作</th>
                                                 </tr>
@@ -972,7 +973,7 @@
                 columns: {
                     identifier: [0, 'aid'],
                     editable: [
-                        [1, 'time', year_obj], [2, 'salary']
+                    [1, 'year', year_obj], [2, 'month', month], [3, 'salary']
                     ]
                 },
                 restoreButton: false,

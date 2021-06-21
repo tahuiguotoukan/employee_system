@@ -1,23 +1,30 @@
 function addEmployeeSalary(){
     let year = (new Date()).getFullYear();
-    $('#salary-table>tbody').append(`<tr id="
+    let tr = $(`<tr id="
             
-            " class="">
-            <td><span class="tabledit-span tabledit-identifier">${$('#salary-table>tbody>tr').length+1}
-                
-            </span><input class="tabledit-input tabledit-identifier" type="hidden" name="aid" value="${$('#salary-table>tbody>tr').length+1}
-                
-            "></td>
-            <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">${year}</span><select class="tabledit-input  form-control input-sm" name="year" style="display: inline-block;"><option value="2001">2001年</option><option value="2002">2002年</option><option value="2003">2003年</option><option value="2004">2004年</option><option value="2005">2005年</option><option value="2006">2006年</option><option value="2007">2007年</option><option value="2008">2008年</option><option value="2009">2009年</option><option value="2010">2010年</option><option value="2011">2011年</option><option value="2012">2012年</option><option value="2013">2013年</option><option value="2014">2014年</option><option value="2015">2015年</option><option value="2016">2016年</option><option value="2017">2017年</option><option value="2018">2018年</option><option value="2019">2019年</option><option value="2020">2020年</option><option value="2021">2021年</option></select></td>
-            <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">1月</span><select class="tabledit-input   form-control input-sm" name="month" style="display: inline-block;"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></td>
-            <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">                                                                                                            </span><input class="tabledit-input    form-control input-sm" type="text" name="money" value="" style="display: inline-block;"></td>
-            
-        <td style="white-space: nowrap; width: 1%;"><div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
-        <div class="btn-group btn-group-sm" style="float: none;"><button type="button" class="tabledit-edit-button btn btn-sm btn-default active" style="float: none;"><span class="glyphicon glyphicon-pencil"></span></button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;"><span class="glyphicon glyphicon-trash"></span></button></div>
-        <button type="button" class="tabledit-save-button btn btn-sm btn-success" style="float: none; display: inline-block;">保存</button>
-        <button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">确认</button>
+    " class="">
+    <td><span class="tabledit-span tabledit-identifier">${$('#salary-table>tbody>tr').length+1}
         
-    </div></td></tr>`)
+    </span><input class="tabledit-input tabledit-identifier" type="hidden" name="aid" value="${$('#salary-table>tbody>tr').length+1}
+        
+    "></td>
+    <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">${year}</span><select class="tabledit-input  form-control input-sm" name="year" style="display: inline-block;"></select></td>
+    <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">1月</span><select class="tabledit-input   form-control input-sm" name="month" style="display: inline-block;"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></td>
+    <td class="tabledit-edit-mode"><span class="tabledit-span" style="display: none;">                                                                                                            </span><input class="tabledit-input    form-control input-sm" type="text" name="money" value="" style="display: inline-block;"></td>
+    
+<td style="white-space: nowrap; width: 1%;"><div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
+<div class="btn-group btn-group-sm" style="float: none;"><button type="button" class="tabledit-edit-button btn btn-sm btn-default active" style="float: none;"><span class="glyphicon glyphicon-pencil"></span></button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;"><span class="glyphicon glyphicon-trash"></span></button></div>
+<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="float: none; display: inline-block;">保存</button>
+<button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">确认</button>
+
+</div></td></tr>`);
+    for(let i = year - 10; i <= year; i++)
+    {
+        tr.find('[name="year"]').append(`<option value="${i}">${i}</option>`);
+    }
+    
+    $('#salary-table tbody').append(tr)
+    
     $('#salary-table>tbody').find('[name="year"]>option').map(function(i, v){
         console.log(typeof v.value);
         if(parseInt(v.value) === year)
@@ -64,6 +71,8 @@ function onClickSubmitEmployeeDetail()
         post:0,					//员工职位	值代表Post的索引
         employeeProfile:"",		//员工定档
         contractTime: ['', ''],  //合同时间
+        department: null,        //所属部门
+        projectGroup:  null,        //项目组
     }
     let post_data = $('#detail-form').serializeArray();
     post_data.forEach(function(v, i){
@@ -93,11 +102,16 @@ function onClickSubmitEmployeeDetail()
             case 'entryTime':
                 data.entryTime = v.value;
                 break;
+            case 'department':
+                data.department = v.value;
             case 'workGroup':
                 data.group = parseInt(v.value);
                 break;
-            case 'position':
+            case 'post':
                 data.post = parseInt(v.value);
+                break;
+            case 'projectGroup':
+                data.projectGroup = v.value;
                 break;
             case 'level':
                 data.employeeProfile = parseInt(v.value);
@@ -108,9 +122,8 @@ function onClickSubmitEmployeeDetail()
     })
     $('#salary-table>tbody tr').map(function(i, v){
         data.salary.push({
-            month: parseInt($(v).find('[name="month"]').val()),
-            year: parseInt($(v).find('[name="year"]').val()),
-            money: parseInt($(v).find('[name="money"]').val())
+            money: parseInt($(v).find('[name="money"]').val()),
+            time: parseInt($(v).find('[name="year"]').val())+'-'+parseInt($(v).find('[name="month"]').val())+'-'+'1'
         })
     })
     data.id = $('#userCode').val() === '' ? 0 : parseInt($('#userCode').val());
