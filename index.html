@@ -462,6 +462,28 @@
                                 </a>
                                 
                             </div>
+                            <div class="form-group" type="offJobTime">
+                                <label for="entryTime" class="control-label col-sm-3">离职时间：</label>
+                                <div class="col-sm-3">
+                                    <div class="input-group date" id="plugin9_demo11" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
+                                        <input type="hidden" id="startEntryTime" name="startEntryTime" value="" /><br/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1" style="text-align: center; line-height: 30px;">--</div>
+                                <div class="col-sm-3">
+                                    <div class="input-group date" id="plugin9_demo12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
+                                        <input type="hidden" id="endEntryTime" name="endEntryTime" value="" /><br/>
+                                    </div>
+                                </div>
+                                <a class="close-item" style="">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                                
+                            </div>
                             <div class="form-group" type="bornTime">
                                 <label for="entryTime" class="control-label col-sm-3">出生日期：</label>
                                 <div class="col-sm-3">
@@ -719,6 +741,32 @@
                     </div>
                 </div>
             </div>
+    
+        </div>
+        <div id="dialog-leave-comment" style="position: absolute; top: 0; height: 100%; width: 100%; display: none;background-color: rgba(0, 0, 0, 0.5);z-index: 10;">
+            <div class="modal-dialog" style="width:400px; position: relative; top: 25%; transform: transformY(-25%);">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center" id="myModalLabel">信息备注</h4>
+                    </div>
+                    <div  class="form-group has-feedback" style="margin: 10px;">
+                        <textarea class="form-control" rows="6" id="leave-comment-textarea" style="position: relative;left: 50%;transform: translateX(-50%);" placeholder="离职原因"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <a onclick="onSureLeaveComment()" class="king-btn-demo king-btn king-radius king-info pull-left" title="确认">
+                                确认
+                            </a>
+                            <a class="king-btn-demo king-btn king-radius king-default pull-right"  onclick="onCloseLeaveComment()" title="取消">
+                                取消
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
     </div>
     <!-- content end -->
     
@@ -746,7 +794,9 @@
     <script type="text/javascript">
         var base_data = null;
         var totalEmployCount = 0;
-        var onJobMember = null;
+        var members = null;
+        var search_params = {};
+        var leave_search_params = {};
         const detail_type_def = {
             add: 0,
             update: 1
@@ -850,6 +900,28 @@
                 format:"yyyy-mm-dd",
             });
             $('#plugin9_demo10').datetimepicker({
+                language:  'zh-TW',
+                weekStart: 1,
+                todayBtn:  true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                format:"yyyy-mm-dd",
+            });
+            $('#plugin9_demo11').datetimepicker({
+                language:  'zh-TW',
+                weekStart: 1,
+                todayBtn:  true,
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2,
+                minView: 2,
+                forceParse: false,
+                format:"yyyy-mm-dd",
+            });
+            $('#plugin9_demo12').datetimepicker({
                 language:  'zh-TW',
                 weekStart: 1,
                 todayBtn:  true,
@@ -1176,6 +1248,10 @@
         function saveGlobalSearchParams(data)
         {
             window.search_params = data;
+        }
+        function saveGlobalLeaveSearchParams (data)
+        {
+            window.leave_search_params = data;
         }
     </script>
 

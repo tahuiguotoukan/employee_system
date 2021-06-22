@@ -105,6 +105,17 @@ function onKeywordSwearch(event)
 function onSuperSearch ()
 {
     $('#dialog-search').show();
+    $('#dialog-search').attr('search-type', 'OnJob');
+    $('#dialog-more-condition').hide();
+    $('#dialog-search>.modal-dialog').css({
+        "top": "50%",
+        "transform": "translateY(-50%)"
+    })
+}
+function OnLeaveSuperSearch()
+{
+    $('#dialog-search').show();
+    $('#dialog-search').attr('search-type', 'LeaveJob');
     $('#dialog-more-condition').hide();
     $('#dialog-search>.modal-dialog').css({
         "top": "50%",
@@ -145,15 +156,15 @@ function setDetailType(type)
     console.error('set detail type ' + type);
     detail_type = type;
 }
-function renderPage (page = 1)
+function renderPage (tab, page = 1)
 {
     cur_page = page;
-    $('#tab4_1 .table-total').eq(0).text(totalEmployCount);
-    $('#tab4_1 .cur_page').eq(0).text(cur_page);
+    tab.find('.table-total').eq(0).text(totalEmployCount);
+    tab.find('.cur_page').eq(0).text(cur_page);
     let total_page = Math.floor(totalEmployCount/one_page_count);
     (totalEmployCount%one_page_count > 0 || total_page == 0) && (total_page+=1);
-    $('#tab4_1 .total_page').text(total_page);
-    let page_list = $('#tab4_1 #page-list').eq(0);
+    tab.find('.total_page').text(total_page);
+    let page_list = tab.find('#page-list').eq(0);
     for(let i = page_list.find('li').length - 2; i > 0; i--)
     {
         page_list.find('li')[i] && $(page_list.find('li')[i]).remove(); 
@@ -208,10 +219,13 @@ function onClickPage(evt)
         });
     }
 }
-function renderTable()
+function renderTable(tab)
 {
 
-    let body_tr = $(`<tr style="display: table-row; opacity: 1;">
+    let body_tr;
+    if(tab.attr('id') === 'tab4_1')
+    {
+        body_tr = $(`<tr style="display: table-row; opacity: 1;">
             <td class="tr-id"></td>
             <td class="tr-name"></td>
             <td class="tr-sex"></td>
@@ -231,22 +245,57 @@ function renderTable()
                 <button onClick="onClickLeave(this)" class="king-btn king-danger">离职</button>
             </td>
         </tr>`)
+    }
+    else if(tab.attr('id') === 'tab4_2')
+    {
+        body_tr = $(`<tr style="display: table-row; opacity: 1;">
+            <td class="tr-id"></td>
+            <td class="tr-name"></td>
+            <td class="tr-sex"></td>
+            <td class="tr-workPlace"></td>
+            <td class="tr-department"></td>
+            <td class="tr-post"></td>
+            <td class="tr-workGroup"></td>
+            <td class="tr-projectGroup"></td>
+            <td class="tr-entryTime"></td>
+            <td class="tr-employeeProfile"></td>
+            <td class="tr-salary"></td>
+            <td class="tr-changeSalaryNum"></td>
+            <td class="tr-contractStatus"></td>
+            <td class="tr-offJobTime"></td>
+            <td class="operation">
+                <button onClick="onClickLeaveComment(this)" class="king-btn king-default">信息备注</button>
+                <button onClick="onClickRegain(this)" class="king-btn king-danger">恢复</button>
+            </td>
+        </tr>`)
+    }
+    let th_list = tab.find('thead tr th');
+    body_tr.find('td').map(function(i,v){
+        if(["operation", "tr-id", "tr-name","tr-sex","tr-workPlace","tr-department","tr-post","tr-entryTime"].indexOf($(v).attr('class')) > -1)
+        {
+            $(th_list[i]).show();
+            $(v).show();
+        }
+        else
+        {
+            $(th_list[i]).hide();
+            $(v).hide();
+        }
+    })
     for(let k in window.search_params)
     {
-        switch(k)
-        {
-            default:
-                break;
-        }
+        let td = body_tr.find('.tr-'+k).eq(0);
+        td.show();
+        $(th_list[td.index()]).show();
     }
     
     // <td></td>
-    $('#employee-table-tbody').html('');
+    tab.find('.employee-table-tbody').eq(0).html('');
     let td_count = body_tr.find('td').length;
     if(window.base_data.length === 0){
-        $('#employee-table-tbody').html(`<tr style="display: table-row; opacity: 1;"><td colspan="${td_count}">没有查到相关信息</td></tr>`);
+        tab.find('.employee-table-tbody').eq(0).html(`<tr style="display: table-row; opacity: 1;"><td colspan="${td_count}">没有查到相关信息</td></tr>`);
     }
-    $('#tab4_1 .foot_td_count').eq(0).attr('colspan', td_count);
+    tab.find('.foot_td_count').eq(0).attr('colspan', td_count);
     window.base_data.forEach(function(v, i){
         let clone_tr = body_tr.clone();
         clone_tr.find('.tr-id').eq(0).text(v.id);
@@ -265,8 +314,10 @@ function renderTable()
         clone_tr.find('.tr-changeSalaryNum').eq(0).text(v.changeSalaryNum);
         clone_tr.find('.tr-contractStatus').eq(0).text(localConfig.contractStatus[v.contractStatus]);
         clone_tr.find('.tr-bornTime').eq(0).text(v.bornTime.split('T')[0]);
+        clone_tr.find('.tr-offJobTime').eq(0).text(v.offJobTime.split('T')[0]);
         clone_tr.find('.operation button:eq(0)').attr('datas', v.id);
         clone_tr.find('.operation button:eq(1)').attr('datas', v.id);
+        
         if(v.contractStatus == 0)
         {
             clone_tr.css('color', '#333333');
@@ -277,7 +328,14 @@ function renderTable()
             let end_time = new Date(v.contractTime2);
             let now_time = Date.now();
             let diff = Math.floor((now_time-end_time.getTime())/(1000*60*60*24));
-            clone_tr.find('.tr-contractStatus').eq(0).text(`已过期${diff}天`);
+            if(tab.attr('id') === 'tab4_1')
+            {
+                clone_tr.find('.tr-contractStatus').eq(0).text(`已过期${diff}天`);
+            }
+            else if(tab.attr('id') === 'tab4_2')
+            {
+                clone_tr.find('.tr-contractStatus').eq(0).text(`已过期`);
+            }
         }
         else if(v.contractStatus == 2)
         {
@@ -287,15 +345,23 @@ function renderTable()
         {
             clone_tr.css('color', '#ff5105');
         }
-        $('#employee-table-tbody').append(clone_tr)
+        tab.find('.employee-table-tbody').eq(0).append(clone_tr)
     })
     let comment = '';
-    for(let i in onJobMember)
+    for(let i in members)
     {
-        comment+=`${localConfig.workPlace[i]}${onJobMember[i]}人、`
+        comment+=`${localConfig.workPlace[i]}${members[i]}人、`
     }
     comment = comment.substr(0, comment.length-1);
-    $('#tab4_1 .foot_td_count .comment').eq(0).text(`在职${window.totalEmployCount} (${comment})`);
+    if(tab.attr('id') === 'tab4_1')
+    {
+        tab.find('.foot_td_count .comment').eq(0).text(`在职${window.totalEmployCount} (${comment})`);
+    }
+    else if(tab.attr('id') === 'tab4_2')
+    {
+        tab.find('.foot_td_count .comment').eq(0).text(`离职${window.totalEmployCount} (${comment})`);
+    }
+    
 }
 function OnClickReqOnJobSuperSearch()
 {
@@ -360,7 +426,7 @@ function OnClickReqOnJobSuperSearch()
     console.error('高级查询', data);
     reqOnJobSuperSearch(data,function(){
         $('#dialog-search').hide();
-        renderTable();
+        renderTable($('#tab4_1'));
     });
 }
 function getValueByName(name)
@@ -472,5 +538,48 @@ function OnDetailDepartmentChange()
 }
 function ShowEmployeeTable()
 {
-    $('#tab4')
+    $('#tab4_1').show().siblings().hide();
+    reqOnJoblistInfo(search_params.browseIndex, search_params);
+}
+function ShowLeaveTable()
+{
+    $('#tab4_2').show().siblings().hide();
+    reqLeaveJoblistInfo(leave_search_params.browseIndex, leave_search_params);
+}
+function onClickRegain (self)
+{
+    let id = parseInt($(self).attr('datas'));
+    let is_regain = window.confirm('确定恢复该员工为在职状态么？');
+    is_regain && reqRegain(id);
+}
+function onClickLeaveComment (self)
+{
+    let id = parseInt($(self).attr('datas'));
+    let person_info = {};
+    window.base_data.forEach(function(v, i){
+        if(v.id == id)
+        {
+            person_info = v;
+            console.error('个人数据', person_info);
+            return false;
+        }
+    })
+    if(person_info && person_info.offJobInfoNotes != '')
+    {
+        $('#leave-comment-textarea').val(person_info.offJobInfoNotes);
+    }
+    else
+    {
+        $('#leave-comment-textarea').val('');
+    }
+    $('#dialog-leave-comment').show().attr('userCode', id);
+}
+function onCloseLeaveComment()
+{
+    $('#dialog-leave-comment').hide().attr('userCode', '');
+}
+function onSureLeaveComment()
+{
+    reqUpdateLeaveComment($('#dialog-leave-comment').attr('userCode'), $('#leave-comment-textarea').val());
+    $('#dialog-leave-comment').hide().attr('userCode', '');
 }

@@ -15,18 +15,18 @@ function reqOnJoblistInfo(start, data={})
     }
     data.browseCount = one_page_count;
     saveGlobalSearchParams(data);
-    console.error('查询基础列表数据 start index is ' + start + '; count is ' + one_page_count);
+    console.error('查询基础列表数据 start index is ' + data.browseIndex + '; count is ' + one_page_count);
     $.post(cgi+'browseOnTheJob', data, function(obj, textStatus){
         console.error('data', obj);
         if(obj.ret === 0 && obj.result)
         {
             window.base_data = obj.result.data;
             window.totalEmployCount = obj.result.totalCount;
-            window.onJobMember = obj.result.member;
+            window.members = obj.result.member;
             if(textStatus === 'success')
             {
-                renderPage(Math.floor(start/one_page_count)+1);
-                renderTable();
+                renderPage($('#tab4_1'), Math.floor(data.browseIndex/one_page_count)+1);
+                renderTable($('#tab4_1'));
             }
         
         }
@@ -51,8 +51,8 @@ function reqOnJobPagelistInfo (start, success)
             window.totalEmployCount = obj.result.totalCount;
             if(textStatus === 'success')
             {
-                renderPage(Math.floor(data.browseIndex/one_page_count)+1);
-                renderTable();
+                renderPage($('#tab4_1'), Math.floor(data.browseIndex/one_page_count)+1);
+                renderTable($('#tab4_1'));
                 success && success();
             }
         
@@ -102,7 +102,7 @@ function reqOnJobSuperSearch (data, success)
             console.error('高级查询结果', obj.result);
             window.base_data = obj.result.data;
             window.totalEmployCount = obj.result.totalCount;
-            renderPage();
+            renderPage($('#tab4_1'));
             success && success();
         }
         else
@@ -118,7 +118,7 @@ function reqDeleteEmployee (id, success)
         {
             console.log('删除员工', obj.result);
             window.totalEmployCount-=1;
-            renderPage();
+            renderPage($('#tab4_1'));
             success && success();
         }
         else
@@ -151,12 +151,49 @@ function reqSaveEmployeeInfo(datas)
 }
 function reqUpdateEmployeeInfo(datas)
 {
-    $.post(cgi+'update', [datas], function(obj){
+    $.post(cgi+'update', datas, function(obj){
         console.error('update data', obj);
         if(obj.ret === 0)
         {
             alert('更新成功！');
             initEmployeeForm();
+        }
+        else
+        {
+            alert(obj.result);
+        }
+    })
+}
+function reqLeaveJoblistInfo (start, data={})
+{
+    if(start != null)
+    {
+        data.browseIndex = start;
+    }
+    else if(leave_search_params && leave_search_params.browseIndex != null)
+    {
+        data.browseIndex = leave_search_params.browseIndex;
+    }
+    else
+    {
+        data.browseIndex = 0;
+    }
+    data.browseCount = one_page_count;
+    saveGlobalLeaveSearchParams(data);
+    console.error('查询离职列表数据 start index is ' + data.browseIndex + '; count is ' + one_page_count);
+    $.post(cgi+'browseOffTheJob', data, function(obj, textStatus){
+        console.error('离职data', obj);
+        if(obj.ret === 0 && obj.result)
+        {
+            window.base_data = obj.result.data;
+            window.totalEmployCount = obj.result.totalCount;
+            window.members = obj.result.member;
+            if(textStatus === 'success')
+            {
+                renderPage($('#tab4_2'), Math.floor(data.browseIndex/one_page_count)+1);
+                renderTable($('#tab4_2'));
+            }
+        
         }
         else
         {
@@ -172,13 +209,39 @@ function reqLeave(id, offJobTime, offJobInfoNotes = '')
         offJobInfoNotes: offJobInfoNotes,
         jobStatus: 0
     }
+    updateJobStatusInfo(data, ()=>{
+        reqOnJoblistInfo(search_params.browseIndex, search_params);
+    });
+}
+function reqRegain(id)
+{
+    let data = {
+        id: id,
+        jobStatus: 1
+    }
+    updateJobStatusInfo(data, ()=>{
+        reqLeaveJoblistInfo(search_params.browseIndex, search_params);
+    });
+}
+function reqUpdateLeaveComment (id, offJobInfoNotes)
+{
+    let data = {
+        id: id,
+        offJobInfoNotes: offJobInfoNotes,
+    }
+    updateJobStatusInfo(data, ()=>{
+        reqLeaveJoblistInfo(search_params.browseIndex, search_params);
+    });
+}
+function updateJobStatusInfo(data, callback)
+{
     console.error('离职信息', data);
-    $.post(cgi+'update', [data], function(obj){
-        console.error('leave data', obj);
+    $.post(cgi+'update', data, function(obj){
+        console.error('update leave data', obj);
         if(obj.ret === 0)
         {
             alert('更新成功！');
-            reqOnJoblistInfo(search_params.browseIndex, search_params);
+            callback && callback();
         }
         else
         {

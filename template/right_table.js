@@ -25,6 +25,7 @@ const right_table = $(`
                 <div>
                     <table class="table table-hover mb0">
                         <thead>
+                            <tr>
                                 <th style="min-width:100px">员工工号</th>
                                 <th style="min-width:100px">员工姓名</th>
                                 <th style="min-width:100px">性别</th>
@@ -42,7 +43,7 @@ const right_table = $(`
                                 <th class="operation" style="width:565px">操作</th>
                             </tr>
                         </thead>
-                        <tbody id="employee-table-tbody">
+                        <tbody class="employee-table-tbody">
                         </tbody>
                         <tfoot>
                             <tr>
@@ -73,12 +74,12 @@ const right_table = $(`
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade in active" id="tab4_2">
+        <div class="tab-pane fade in active" id="tab4_2" style="display: none;">
             <div class="panel panel-default table7_demo king-table7-demo3">
                 <div class="panel-body">
                     <div class="king-wrapper clearfix">
                         <a class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a id="leave-super-search" href="javascript:void(0);" class="king-btn king-danger pull-left">
+                            <a id="leave-super-search" onClick="OnLeaveSuperSearch()" href="javascript:void(0);" class="king-btn king-danger pull-left">
                                 高级查询
                             </a>
                     </div>
@@ -86,6 +87,7 @@ const right_table = $(`
                 <div>
                     <table class="table table-hover mb0">
                         <thead>
+                            <tr>
                                 <th style="min-width:100px">员工工号</th>
                                 <th style="min-width:100px">员工姓名</th>
                                 <th style="min-width:100px">性别</th>
@@ -103,7 +105,7 @@ const right_table = $(`
                                 <th class="operation" style="width:565px">操作</th>
                             </tr>
                         </thead>
-                        <tbody id="leave-table-tbody">
+                        <tbody class="employee-table-tbody">
                         </tbody>
                         <tfoot>
                             <tr>
