@@ -14,7 +14,7 @@ function addEmployeeSalary(){
     
 <td style="white-space: nowrap; width: 1%;"><div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
 <div class="btn-group btn-group-sm" style="float: none;"><button type="button" class="tabledit-edit-button btn btn-sm btn-default active" style="float: none;"><span class="glyphicon glyphicon-pencil"></span></button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;"><span class="glyphicon glyphicon-trash"></span></button></div>
-<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="float: none; display: inline-block;">保存</button>
+<button type="button" class="tabledit-save-button btn btn-sm btn-success" style="float: none; display: inline-block;">确认</button>
 <button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">确认</button>
 
 </div></td></tr>`);

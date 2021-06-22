@@ -957,7 +957,7 @@
                     },
                     save: {
                         class: 'btn btn-sm btn-success',
-                        html: '保存'
+                        html: '确认'
                     },
                     confirm: {
                         class: 'btn btn-sm btn-danger',
@@ -1110,16 +1110,16 @@
                 OnClickReqOnJobSuperSearch();
             })
 
-            $('#prev').click(function(evt){
+            $('#tab4_1 .prev').eq(0).click(function(evt){
                 if(this.parentElement.className === "disabled") return;
-                let start_index = $('#cur_page').text()-2;
+                let start_index = $('#tab4_1 .cur_page').eq(0).text()-2;
                 reqOnJobPagelistInfo(start_index, function(){
 
                 });
             })
-            $('#next').click(function(evt){
+            $('#tab4_1 .next').click(function(evt){
                 if(this.parentElement.className === "disabled") return;
-                let start_index = $('#cur_page').text()*1;
+                let start_index = $('#tab4_1 .cur_page').eq(0).text()*1;
                 reqOnJobPagelistInfo(start_index, function(){
 
                 });

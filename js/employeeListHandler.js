@@ -44,10 +44,7 @@ function onClickEdit(self)
     OnDetailDepartmentChange();
     $('#post').val(person_info.post);
     $('#projectGroup').val(person_info.projectGroup[0]);
-    person_info.technologyStack.forEach(function(v, i){
-        $($('#skill input')[parseInt(v)]).attr('checked', 'true');
-        
-    })
+    
     $('#level').val(person_info.employeeProfile);
     setDetailType(detail_type_def.update);
     showEmployeeDetail();
@@ -70,7 +67,7 @@ function onClickEdit(self)
         
     <td style="white-space: nowrap; width: 1%;"><div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
     <div class="btn-group btn-group-sm" style="float: none;"><button type="button" class="tabledit-edit-button btn btn-sm btn-default active" style="float: none;"><span class="glyphicon glyphicon-pencil"></span></button><button type="button" class="tabledit-delete-button btn btn-sm btn-default" style="float: none;"><span class="glyphicon glyphicon-trash"></span></button></div>
-    <button type="button" class="tabledit-save-button btn btn-sm btn-success" style="float: none; display: inline-block;">保存</button>
+    <button type="button" class="tabledit-save-button btn btn-sm btn-success" style="float: none; display: inline-block;">确认</button>
     <button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">确认</button>
 
     </div></td></tr>`)
@@ -139,9 +136,9 @@ function onCloseLeave ()
 }
 function onSureLeave()
 {
+    reqLeave($('#dialog-leave').attr('usercode'), $('#dialog-leave input[name="leaveTime"]').eq(0).val());
     $('#dialog-leave').hide();
     $('#dialog-leave').attr('usercode', '');
-    reqLeave($('#dialog-leave').attr('usercode'), $('#dialog-leave input[name="leaveTime"]').eq(0).val());
 }
 function setDetailType(type)
 {
@@ -151,24 +148,25 @@ function setDetailType(type)
 function renderPage (page = 1)
 {
     cur_page = page;
-    $('#total').text(totalEmployCount);
-    $('#cur_page').text(cur_page);
+    $('#tab4_1 .table-total').eq(0).text(totalEmployCount);
+    $('#tab4_1 .cur_page').eq(0).text(cur_page);
     let total_page = Math.floor(totalEmployCount/one_page_count);
     (totalEmployCount%one_page_count > 0 || total_page == 0) && (total_page+=1);
-    $('#total_page').text(total_page);
-    for(let i = $('#page-list li').length - 2; i > 0; i--)
+    $('#tab4_1 .total_page').text(total_page);
+    let page_list = $('#tab4_1 #page-list').eq(0);
+    for(let i = page_list.find('li').length - 2; i > 0; i--)
     {
-        $('#page-list li')[i] && $($('#page-list li')[i]).remove(); 
+        page_list.find('li')[i] && $(page_list.find('li')[i]).remove(); 
     }
     for(let i = 1; i <= total_page; i++)
     {
         let li = $(`<li><a href="javascript:;" ind="${i-1}">${i}</a></li>`);
         li.click(onClickPage);
-        $($('#page-list li')[$('#page-list li').length-2]).after(li);
+        $(page_list.find('li')[page_list.find('li').length-2]).after(li);
     }
-    $($('#page-list li')[page]).addClass('active').siblings().removeClass('active');
-    let pre = $($('#page-list li')[0]);
-    let next = $($('#page-list li')[$('#page-list li').length-1]);
+    $(page_list.find('li')[page]).addClass('active').siblings().removeClass('active');
+    let pre = $(page_list.find('li')[0]);
+    let next = $(page_list.find('li')[page_list.find('li').length-1]);
     if(total_page === 1)
     {
         pre.addClass('disabled');
@@ -248,7 +246,7 @@ function renderTable()
     if(window.base_data.length === 0){
         $('#employee-table-tbody').html(`<tr style="display: table-row; opacity: 1;"><td colspan="${td_count}">没有查到相关信息</td></tr>`);
     }
-    $('#foot_td_count').attr('colspan', td_count);
+    $('#tab4_1 .foot_td_count').eq(0).attr('colspan', td_count);
     window.base_data.forEach(function(v, i){
         let clone_tr = body_tr.clone();
         clone_tr.find('.tr-id').eq(0).text(v.id);
@@ -297,7 +295,7 @@ function renderTable()
         comment+=`${localConfig.workPlace[i]}${onJobMember[i]}人、`
     }
     comment = comment.substr(0, comment.length-1);
-    $('#foot_td_count .comment').eq(0).text(`在职${window.totalEmployCount} (${comment})`);
+    $('#tab4_1 .foot_td_count .comment').eq(0).text(`在职${window.totalEmployCount} (${comment})`);
 }
 function OnClickReqOnJobSuperSearch()
 {
@@ -471,4 +469,8 @@ function OnDetailDepartmentChange()
                         <option value="17">HR</option>
                     `)
                 }
+}
+function ShowEmployeeTable()
+{
+    $('#tab4')
 }
