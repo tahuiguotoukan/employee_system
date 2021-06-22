@@ -249,3 +249,48 @@ function updateJobStatusInfo(data, callback)
         }
     })
 }
+function reqDescSortInfo(tab, key)  //升序
+{
+    if(tab.attr('id') === 'tab4_1')
+    {
+        search_params.sortName = key;
+        search_params.sortType = -1;
+        reqOnJoblistInfo(0, search_params);
+    }
+    else if(tab.attr('id') === 'tab4_2')
+    {
+        leave_search_params.sortName = key;
+        leave_search_params.sortType = -1;
+        reqLeaveJoblistInfo(0, leave_search_params);
+    }
+}
+function reqAscSortInfo(tab, key) //降序
+{
+    if(tab.attr('id') === 'tab4_1')
+    {
+        search_params.sortName = key;
+        search_params.sortType = 1;
+        reqOnJoblistInfo(0, search_params);
+    }
+    else if(tab.attr('id') === 'tab4_2')
+    {
+        leave_search_params.sortName = key;
+        leave_search_params.sortType = 1;
+        reqLeaveJoblistInfo(0, leave_search_params);
+    }
+}
+function reqNotSortInfo(tab, key)  //去掉排序
+{
+    if(tab.attr('id') === 'tab4_1')
+    {
+        search_params.sortName = '';
+        search_params.sortType = 1;
+        reqOnJoblistInfo(0, search_params);
+    }
+    else if(tab.attr('id') === 'tab4_2')
+    {
+        leave_search_params.sortName = key;
+        leave_search_params.sortType = 1;
+        reqLeaveJoblistInfo(0, leave_search_params);
+    }
+}

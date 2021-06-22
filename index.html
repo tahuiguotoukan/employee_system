@@ -615,56 +615,7 @@
                                     <i class="fa fa-close btn-icon"></i>
                                 </a>
                             </div>
-                            
-                            <!-- <div class="form-group" type="technologyStack">
-                                <label class="control-label">技术栈：</label>
-                                <div class="">
-                                    <div class="checkbox" id="skill">
-                                        <label class="mr8"> 
-                                            <input type="checkbox" name="technologyStack"  value="0">UI
-                                        </label>
-                                        <label class="mr8"> 
-                                            <input type="checkbox" name="technologyStack" value="1">原画
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" name="technologyStack" value="2">3D模型
-                                        </label>
-                                        <label class="mr8"> 
-                                            <input type="checkbox" name="technologyStack" value="3">3D贴图
-                                        </label>
-                                        <label class="mr8"> 
-                                            <input type="checkbox" name="technologyStack" value="4">3D动作
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" name="technologyStack" value="5">3D特效
-                                        </label>
-                                        <label class="mr8"> 
-                                            <input type="checkbox" name="technologyStack" value="6">地编
-                                        </label>
-                                        <label class="mr8"> 
-                                            <input type="checkbox" name="technologyStack" value="7">U3D前端
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" name="technologyStack" value="8">2dx前端
-                                        </label>
-                                        <label class="mr8"> 
-                                            <input type="checkbox" name="technologyStack" value="9">H5前端
-                                        </label>
-                                        <label class="mr8"> 
-                                            <input type="checkbox" name="technologyStack" value="10">C++后端
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" name="technologyStack" value="11">PHP
-                                        </label>
-                                        <label>
-                                            <input type="checkbox" name="technologyStack" value="12">java
-                                        </label>
-                                    </div>
-                                </div>
-                                <a class="close-item" style="">
-                                    <i class="fa fa-close btn-icon"></i>
-                                </a>
-                            </div> -->
+                           
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -695,7 +646,7 @@
 
                     </ul>
                     <button id="add-condition" class="king-btn-demo king-btn king-radius king-success pull-right" title="确定">确定</button>
-                    <a href="javascript:;" id="all-select" class="pull-left" style="color: #5d9bfc;font-size: 12px;line-height: 30px;">
+                    <a href="javascript:;" id="all-select" class="pull-left" style="color: #5d9bfc;font-size: 12px;line-height: 30px; display: none;">
                         全选
                     </a>
                 </div>
@@ -1137,8 +1088,19 @@
                     {
                         _li.find('input').removeProp('checked');
                     }
+                    
                     $('#condition-list').append(_li);
                 })
+                if($('#dialog-search').attr('search-type') === 'onJob')
+                {
+                    $('#condition-list>li').eq($('#dialog-search form>.form-group[type="bornTime"]').eq(0).index()).show();
+                    $('#condition-list>li').eq($('#dialog-search form>.form-group[type="offJobTime"]').eq(0).index()).hide();
+                }
+                else if($('#dialog-search').attr('search-type') === 'leaveJob')
+                {
+                    $('#condition-list>li').eq($('#dialog-search form>.form-group[type="bornTime"]').eq(0).index()).hide();
+                    $('#condition-list>li').eq($('#dialog-search form>.form-group[type="offJobTime"]').eq(0).index()).show();
+                }
                 $('#all-select').attr('all', 0);
             })
             $('#add-condition').click(function(){
@@ -1213,6 +1175,25 @@
                 $('#dialog-search form>.form-group').map(function(i, v){
                     if(i > 0) $(v).css('display', 'none');
                 });
+            })
+            $('.table-sort').click(function(){
+                $(this).siblings().children('.table-sort i').attr('class', '');
+                // 'fa fa-sort-amount-asc','fa fa-sort-amount-desc'
+                if($(this).children('i').attr('class') === 'fa fa-sort-amount-asc')//改升序
+                {
+                    $(this).children('i').attr('class', 'fa fa-sort-amount-desc');
+                    reqDescSortInfo($(this).parents('.tab-pane'), $(this).attr('datas-id'));
+                }
+                else if($(this).children('i').attr('class') === 'fa fa-sort-amount-desc')//去掉排序
+                {
+                    $(this).children('i').attr('class', '');
+                    reqNotSortInfo($(this).parents('.tab-pane'), $(this).attr('datas-id'));
+                }
+                else//改降序
+                {
+                    $(this).children('i').attr('class', 'fa fa-sort-amount-asc');
+                    reqAscSortInfo($(this).parents('.tab-pane'), $(this).attr('datas-id'));
+                }
             })
         });
         

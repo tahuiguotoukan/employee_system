@@ -1,3 +1,5 @@
+const { css } = require("jquery");
+
 //点击编辑回填数据到详情页
 function onClickEdit(self)
 {
@@ -105,22 +107,24 @@ function onKeywordSwearch(event)
 function onSuperSearch ()
 {
     $('#dialog-search').show();
-    $('#dialog-search').attr('search-type', 'OnJob');
+    $('#dialog-search').attr('search-type', 'onJob');
     $('#dialog-more-condition').hide();
     $('#dialog-search>.modal-dialog').css({
         "top": "50%",
         "transform": "translateY(-50%)"
     })
+    $('#dialog-search form>.form-group[type="offJobTime"]').eq(0).hide();
 }
 function OnLeaveSuperSearch()
 {
     $('#dialog-search').show();
-    $('#dialog-search').attr('search-type', 'LeaveJob');
+    $('#dialog-search').attr('search-type', 'leaveJob');
     $('#dialog-more-condition').hide();
     $('#dialog-search>.modal-dialog').css({
         "top": "50%",
         "transform": "translateY(-50%)"
     })
+    $('#dialog-search form>.form-group[type="bornTime"]').eq(0).hide();
 }
 function onClickDelete (self)
 {
@@ -539,11 +543,13 @@ function OnDetailDepartmentChange()
 function ShowEmployeeTable()
 {
     $('#tab4_1').show().siblings().hide();
+    // $(this).css('color', '#44b549').siblings().css('color', '#645F63');
     reqOnJoblistInfo(search_params.browseIndex, search_params);
 }
 function ShowLeaveTable()
 {
     $('#tab4_2').show().siblings().hide();
+    // $(this).css('color', '#44b549').siblings().css('color', '#645F63');
     reqLeaveJoblistInfo(leave_search_params.browseIndex, leave_search_params);
 }
 function onClickRegain (self)

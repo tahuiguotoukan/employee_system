@@ -30,10 +30,18 @@
 }
 .nav-left-active {
     color: #2abe24 !important;
+    font-size: 16px;
 }
 #dialog-more-condition{
     border-radius: 5px;
 }
 .SlectBox {
     border-radius: 4px;
+}
+#employee-list>ul.nav-tabs>li.active>a{
+    color: #44b549;
+}
+.table-sort{
+    cursor:default;
+    user-select:none;
 }
