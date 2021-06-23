@@ -1,4 +1,10 @@
 var cgi = 'http://192.168.1.81:3000/';
+function reqLogin(username, passwork)
+{
+    $.post(cgi+'login', {admin: username, passwork:passwork}, function(obj){
+        console.error('登录结果', obj);
+    })
+}
 function reqOnJoblistInfo(start, data={})
 {
     if(start != null)

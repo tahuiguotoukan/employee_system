@@ -1,5 +1,3 @@
-const { css } = require("jquery");
-
 //点击编辑回填数据到详情页
 function onClickEdit(self)
 {

@@ -62,16 +62,17 @@
     $(function () {
         $('#login-btn').click(function(){
             //需要校验登录信息
-            var spuer_username = 'admin';
-            var super_password = '000000';
-            if($('#username').val() !== spuer_username || $('#password').val() !== super_password)
-            {
-                alert('用户名或密码不正确！');
-            }
-            else
-            {
-                $(window).attr('location',"./index.html");
-            }
+            // var spuer_username = 'admin';
+            // var super_password = '000000';
+            // if($('#username').val() !== spuer_username || $('#password').val() !== super_password)
+            // {
+            //     alert('用户名或密码不正确！');
+            // }
+            // else
+            // {
+            //     $(window).attr('location',"./index.html");
+            // }
+            reqLogin($('#username').val(), $('#password').val());
         })
     });
 </script>
