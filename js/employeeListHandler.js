@@ -312,7 +312,7 @@ function renderTable(tab)
         
         clone_tr.find('.tr-entryTime').eq(0).text(v.entryTime.split('T')[0]);
         clone_tr.find('.tr-employeeProfile').eq(0).text(localConfig.employeeProfile[v.employeeProfile]);
-        clone_tr.find('.tr-salary').eq(0).text(v.salary[v.salary.length-1].money);
+        clone_tr.find('.tr-salary').eq(0).text(v.salary&&v.salary.length>0 ? v.salary[v.salary.length-1].money : '暂无');
         clone_tr.find('.tr-changeSalaryNum').eq(0).text(v.changeSalaryNum);
         clone_tr.find('.tr-contractStatus').eq(0).text(localConfig.contractStatus[v.contractStatus]);
         clone_tr.find('.tr-bornTime').eq(0).text(v.bornTime.split('T')[0]);

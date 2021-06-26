@@ -29,10 +29,10 @@
 </head>
 
 <body>
-    
+    <!-- header nav start -->
     <nav style="position: fixed;z-index: 10000;width: 100%;">
         <div class="king-header2 navbar king-horizontal-primary" id="nav9_demo1">
-            <div class="container">
+            <div class="container" style="width: 100%;">
                 <div class="navbar-header">
                     <button class="pull-right visible-xs navbar-toggle collapsed navbar-toggle-sm"
                     type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -67,11 +67,11 @@
             </div>
         </div>
     </nav>
-    
-    
-    <!-- header nav start -->
-    
     <!-- header nav end -->
+    
+    
+    
+    
     <!-- content start -->
     
     <div id="container" style="height: 100%;z-index: 0;">
@@ -332,13 +332,10 @@
                             <div class="form-group" type="sex">
                                 <label class="control-label col-sm-3">性别：</label>
                                 <div class="col-sm-7">
-                                    <div class="radio">
-                                        <label class="mr10"> 
-                                            <input type="radio" name="sex" id="sex1" value="0" checked>男
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="sex" id="sex2" value="1">女
-                                        </label>
+                                    <div class="input-group date" id="plugin9_demo12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
+                                        <input type="hidden" id="startEntryTime" name="startEntryTime" value="" /><br/>
                                     </div>
                                 </div>
                                 <a class="close-item">
@@ -755,7 +752,7 @@
         //初始化详细面板类型
         var detail_type = detail_type_def.add;
         var cur_page = 1;
-        var one_page_count = 10;
+        var one_page_count = 12;
         $(function () {
             $('#container').append(left_nav);
             $('#right').append(right_table);
@@ -933,6 +930,12 @@
                 okCancelInMulti: true,
                 selectAll: true,
                 placeholder: '选择项目组',
+                selectAlltext: '全选'
+            });
+            $('#sumoselect_demo12 select').SumoSelect({
+                okCancelInMulti: true,
+                selectAll: true,
+                placeholder: '选择性别',
                 selectAlltext: '全选'
             });
             $('#employee-detail [name="department"]').change(function(){
@@ -1208,12 +1211,20 @@
 
         
 
-        var showEmployeeList = function ()
+        var showEmployeeList = function (isSort=false, key='')
         {
             $('#right').children().map((i, v) => {
                 $(v).attr('id') === 'employee-list' ? $(v).show() : $(v).hide();
             })
-            reqOnJoblistInfo(0);
+            if(isSort)
+            {
+                reqDescSortInfo($('#tab4_1'), 'id');
+            }
+            else
+            {
+                reqOnJoblistInfo(0);
+            }
+            
         }
 
         var showEmployeeDetail = function ()

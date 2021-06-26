@@ -61,12 +61,16 @@ function onClickSubmitEmployeeDetail()
         bornTime: '',           //出生年月日
         entryTime:0,			//员工入职年月日
         salary:[], 	//员工薪资信息
-        group:0, 				//员工所属组别
+        workGroup:0, 				//员工所属组别
         post:0,					//员工职位	值代表Post的索引
         employeeProfile:"",		//员工定档
-        contractTime: ['', ''],  //合同时间
+        contractTime: '',  //合同时间
+        contractTime2: '',          //合同结束时间
         department: null,        //所属部门
         projectGroup:  null,        //项目组
+        detailedAddress: '',    //详细地址
+        workPlace: 0,       //工作城市
+        jobStatus: 1,          //在职状态 1:在职， 0:离职
     }
     let post_data = $('#detail-form').serializeArray();
     post_data.forEach(function(v, i){
