@@ -102,6 +102,7 @@ function onClickSubmitEmployeeDetail()
                 break;
             case 'department':
                 data.department = v.value;
+                break;
             case 'workGroup':
                 data.workGroup = parseInt(v.value);
                 break;

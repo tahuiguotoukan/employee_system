@@ -11,46 +11,46 @@ function onClickEdit(self)
             return false;
         }
     })
-    $('#userName').val(person_info.name);
-    $('#userCode').val(person_info.id);
+    $('#employee-detail #userName').val(person_info.name);
+    $('#employee-detail #userCode').val(person_info.id);
     if(person_info.sex == 0)
     {
-        $('#sex1').prop('checked', 'true');
-        $('#sex2').removeProp('checked');
+        $('#employee-detail #sex1').prop('checked', 'true');
+        $('#employee-detail #sex2').removeProp('checked');
     }
     else
     {
-        $('#sex2').prop('checked', 'true');
-        $('#sex1').removeProp('checked');
+        $('#employee-detail #sex2').prop('checked', 'true');
+        $('#employee-detail #sex1').removeProp('checked');
     }
-    $('#address-1').val(person_info.department);
+    $('#employee-detail #address-1').val(person_info.department);
     OnDetailAddress1Change();
     if(person_info.detailedAddress.indexOf('区') > -1){
-        $('#address-2').val(person_info.detailedAddress.substr(0, person_info.detailedAddress.indexOf('区')+1));
-        $('#address-detail').val(person_info.detailedAddress.substr(person_info.detailedAddress.indexOf('区')+1));
+        $('#employee-detail #address-2').val(person_info.detailedAddress.substr(0, person_info.detailedAddress.indexOf('区')+1));
+        $('#employee-detail #address-detail').val(person_info.detailedAddress.substr(person_info.detailedAddress.indexOf('区')+1));
     }
     else
     {
-        $('#address-detail').val(person_info.detailedAddress);
+        $('#employee-detail #address-detail').val(person_info.detailedAddress);
     }
     let bornTime = person_info.bornTime.split('T')[0];
-    $('#bornTime').val(bornTime).siblings('input').val(bornTime);
+    $('#employee-detail #bornTime').val(bornTime).siblings('input').val(bornTime);
     let joinTime = person_info.entryTime.split('T')[0];
-    $('#entryTime').val(joinTime).siblings('input').val(joinTime);
-    $('#startContractTime').val(person_info.contractTime.split('T')[0]).siblings('input').val(person_info.contractTime.split('T')[0]);
-    $('#endContractTime').val(person_info.contractTime2.split('T')[0]).siblings('input').val(person_info.contractTime2.split('T')[0]);
-    $('#group').val(person_info.workGroup[0]);
-    $('#department').val(person_info.department);
+    $('#employee-detail #entryTime').val(joinTime).siblings('input').val(joinTime);
+    $('#employee-detail #startContractTime').val(person_info.contractTime.split('T')[0]).siblings('input').val(person_info.contractTime.split('T')[0]);
+    $('#employee-detail #endContractTime').val(person_info.contractTime2.split('T')[0]).siblings('input').val(person_info.contractTime2.split('T')[0]);
+    $('#employee-detail #workGroup').val(person_info.workGroup[0]);
+    $('#employee-detail #department').val(person_info.department);
     OnDetailDepartmentChange();
-    $('#post').val(person_info.post);
-    $('#projectGroup').val(person_info.projectGroup[0]);
+    $('#employee-detail #post').val(person_info.post);
+    $('#employee-detail #projectGroup').val(person_info.projectGroup[0]);
     
-    $('#level').val(person_info.employeeProfile);
+    $('#employee-detail #level').val(person_info.employeeProfile);
     setDetailType(detail_type_def.update);
     showEmployeeDetail();
     let year = (new Date()).getFullYear();
     
-    person_info.salary.forEach(function(v){
+    person_info.salary && person_info.salary.length > 0 && person_info.salary.forEach(function(v){
         let change_year = (new Date(v.time)).getFullYear();
         let change_month = (new Date(v.time)).getMonth()+1;
         let tr = $(`<tr id="
@@ -90,7 +90,7 @@ function onClickEdit(self)
         tr.find('[name="year"]').val(change_year);
         tr.find('[name="money"]').val(v.money);
         
-        $('#salary-table tbody').append(tr);
+        $('#employee-detail #salary-table tbody').append(tr);
     })
     
 }
@@ -243,8 +243,8 @@ function renderTable(tab)
             <td class="tr-contractStatus"></td>
             <td class="tr-bornTime"></td>
             <td class="operation">
-                <button onClick="onClickEdit(this)" class="king-btn king-default">编辑</button>
-                <button onClick="onClickLeave(this)" class="king-btn king-danger">离职</button>
+                <button onClick="onClickEdit(this)" class="king-btn king-radius king-success">编辑</button>
+                <button onClick="onClickLeave(this)" class="king-btn king-default">离职</button>
             </td>
         </tr>`)
     }

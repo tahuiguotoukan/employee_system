@@ -193,9 +193,9 @@
                                     
                                 </div>
                                 <div class="form-group">
-                                    <label for="group" class="col-sm-3 control-label">所属组别：</label>
+                                    <label for="workGroup" class="col-sm-3 control-label">所属组别：</label>
                                     <div class="col-sm-7">
-                                        <select name="group" id="group" class="form-control">
+                                        <select name="workGroup" id="workGroup" class="form-control">
                                             <option value="0">研发1组</option>
                                             <option value="1">研发2组</option>
                                             <option value="2">研发3组</option>
@@ -313,7 +313,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
             
-                        <h4 class="modal-title text-center" id="myModalLabel">高级查询</h4>
+                        <h4 class="modal-title text-center" id="myModalLabel">搜索显示</h4>
                         <a class="" id="close-super-search"  style="width: 20px;height: 20px; position: absolute; top: 16px; right: 10px; text-align: center;">
                             <i class="fa fa-close btn-icon"></i>
                         </a>
@@ -619,7 +619,7 @@
                     <div class="modal-footer">
                         <div class="form-group">
                             <a id="req-super-search" class="king-btn-demo king-btn king-radius king-info pull-left" title="过滤">
-                                <i class="fa fa-search btn-icon"></i>过滤
+                                <i class="fa fa-search btn-icon"></i>进行搜索
                             </a>
                             <span class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             <a id="reset-condition" class="king-btn-demo king-btn king-radius king-default pull-left" title="过滤">
@@ -736,7 +736,7 @@
     <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/datetimepicker/js/locales/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
     <script src="./metisMenu-2.6.0/metisMenu-master/dist/metisMenu.js"></script>
     <script src="./tabledit/jquerytabledit.js"></script>
-    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/jquery.sumoselect-2.0.0/jquery.sumoselect.min.js"></script>
+    <script src="./sumoselect-2.0.0/sumoselect.min.js"></script>
     <script src="./js/requestManager.js"></script>
     <script src="./js/employeeDetailHandler.js"></script>
     <script src="./js/employeeListHandler.js"></script>
@@ -1177,27 +1177,28 @@
                 $('#sumoselect_demo10 select')[0].sumo.unSelectAll();
                 $('#sumoselect_demo11 select')[0].sumo.unSelectAll();
                 $('#sumoselect_demo12 select')[0].sumo.unSelectAll();
-                $('#dialog-search form>.form-group').map(function(i, v){
-                    if(i > 0) $(v).css('display', 'none');
-                });
+                // $('#dialog-search form>.form-group').map(function(i, v){
+                //     if(i > 0) $(v).css('display', 'none');
+                // });
+                alert('已重置');
             })
             $('.table-sort').click(function(){
-                $(this).siblings().children('.table-sort i').attr('class', '');
-                // 'fa fa-sort-amount-asc','fa fa-sort-amount-desc'
-                if($(this).children('i').attr('class') === 'fa fa-sort-amount-asc')//改升序
+                $(this).siblings().children('.table-sort i').attr('class', 'fa fa-sort');
+                // 'fa fa-sort-asc','fa fa-sort-desc'
+                if($(this).children('i').attr('class') === 'fa fa-sort-asc')//改升序
                 {
-                    $(this).children('i').attr('class', 'fa fa-sort-amount-desc');
-                    reqDescSortInfo($(this).parents('.tab-pane'), $(this).attr('datas-id'));
+                    $(this).children('i').attr('class', 'fa fa-sort-desc');
+                    reqAscSortInfo($(this).parents('.tab-pane'), $(this).attr('datas-id'));
                 }
-                else if($(this).children('i').attr('class') === 'fa fa-sort-amount-desc')//去掉排序
+                else if($(this).children('i').attr('class') === 'fa fa-sort-desc')//去掉排序
                 {
-                    $(this).children('i').attr('class', '');
+                    $(this).children('i').attr('class', 'fa fa-sort');
                     reqNotSortInfo($(this).parents('.tab-pane'), $(this).attr('datas-id'));
                 }
                 else//改降序
                 {
-                    $(this).children('i').attr('class', 'fa fa-sort-amount-asc');
-                    reqAscSortInfo($(this).parents('.tab-pane'), $(this).attr('datas-id'));
+                    $(this).children('i').attr('class', 'fa fa-sort-asc');
+                    reqDescSortInfo($(this).parents('.tab-pane'), $(this).attr('datas-id'));
                 }
             })
         });
@@ -1220,7 +1221,7 @@
             })
             if(isSort)
             {
-                reqDescSortInfo($('#tab4_1'), 'id');
+                reqDescSortInfo($('#tab4_1'), key);
             }
             else
             {

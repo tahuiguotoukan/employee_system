@@ -148,7 +148,7 @@ function reqSaveEmployeeInfo(datas)
         {
             alert('保存成功！');
             initEmployeeForm();
-            showEmployeeList(true, 'id');
+            showEmployeeList(true, 'updateTime');
             
         }
         else
@@ -165,7 +165,7 @@ function reqUpdateEmployeeInfo(datas)
         {
             alert('更新成功！');
             initEmployeeForm();
-            showEmployeeList(true, 'id');
+            showEmployeeList(true, 'updateTime');
         }
         else
         {

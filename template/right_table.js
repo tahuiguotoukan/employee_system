@@ -14,11 +14,11 @@ const right_table = $(`
                 <div class="panel-body">
                     <div class="king-wrapper clearfix">
                         <a class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                        <a id="add-employee" href="javascript:void(0);" class="king-btn king-btn-new pull-right">
-                                新增员工
+                        <a id="add-employee" href="javascript:void(0);" class="king-btn king-radius king-warning pull-right">
+                            <i class="fa fa-plus" aria-hidden="true"></i> 新增员工
                             </a>
-                            <a id="super-search" href="javascript:void(0);" class="king-btn king-danger pull-left">
-                                高级查询
+                            <a id="super-search" href="javascript:void(0);" class="king-btn king-radius king-primary pull-left">
+                                搜索显示
                             </a>
                     </div>
                 </div>
@@ -26,7 +26,7 @@ const right_table = $(`
                     <table class="table table-hover mb0">
                         <thead>
                             <tr>
-                                <th class="table-sort" datas-id="id" style="min-width:100px">员工工号<i class="" aria-hidden="true"></i></th>
+                                <th class="table-sort" datas-id="id" style="min-width:100px">员工工号<i class="fa fa-sort" aria-hidden="true"></i></th>
                                 <th style="min-width:100px">员工姓名</th>
                                 <th style="min-width:100px">性别</th>
                                 <th style="min-width:100px">上班地点</th>
@@ -34,12 +34,12 @@ const right_table = $(`
                                 <th style="min-width:100px">职位</th>
                                 <th style="min-width:100px">所属组别</th>
                                 <th style="min-width:100px">所属项目组</th>
-                                <th class="table-sort" datas-id="entryTime" style="min-width:100px">入职时间<i class="" aria-hidden="true"></i></th>
+                                <th class="table-sort" datas-id="entryTime" style="min-width:100px">入职时间<i class="fa fa-sort" aria-hidden="true"></i></th>
                                 <th style="min-width:100px">定档</th>
-                                <th class="table-sort" datas-id="salary" style="min-width:100px">当前薪资<i class="" aria-hidden="true"></i></th>
-                                <th class="table-sort" datas-id="changeSalaryNum" style="min-width:100px">调薪次数<i class="" aria-hidden="true"></i></th>
+                                <th class="table-sort" datas-id="salary" style="min-width:100px">当前薪资<i class="fa fa-sort" aria-hidden="true"></i></th>
+                                <th class="table-sort" datas-id="changeSalaryNum" style="min-width:100px">调薪次数<i class="fa fa-sort" aria-hidden="true"></i></th>
                                 <th style="min-width:100px">签约状态</th>
-                                <th class="table-sort" datas-id="bornTime" style="min-width:100px">出生日期<i class="" aria-hidden="true"></i></th>
+                                <th class="table-sort" datas-id="bornTime" style="min-width:100px">出生日期<i class="fa fa-sort" aria-hidden="true"></i></th>
                                 <th class="operation" style="width:565px">操作</th>
                             </tr>
                         </thead>
@@ -79,8 +79,8 @@ const right_table = $(`
                 <div class="panel-body">
                     <div class="king-wrapper clearfix">
                         <a class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a id="leave-super-search" onClick="OnLeaveSuperSearch()" href="javascript:void(0);" class="king-btn king-danger pull-left">
-                                高级查询
+                            <a id="leave-super-search" onClick="OnLeaveSuperSearch()" href="javascript:void(0);" class="king-btn king-radius king-primary pull-left">
+                                搜索显示
                             </a>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ const right_table = $(`
                     <table class="table table-hover mb0">
                         <thead>
                             <tr>
-                                <th class="table-sort" datas-id="id" style="min-width:100px">员工工号<i class="" aria-hidden="true"></i></th>
+                                <th class="table-sort" datas-id="id" style="min-width:100px">员工工号<i class="fa fa-sort" aria-hidden="true"></i></th>
                                 <th style="min-width:100px">员工姓名</th>
                                 <th style="min-width:100px">性别</th>
                                 <th style="min-width:100px">上班地点</th>
@@ -96,12 +96,12 @@ const right_table = $(`
                                 <th style="min-width:100px">职位</th>
                                 <th style="min-width:100px">所属组别</th>
                                 <th style="min-width:100px">所属项目组</th>
-                                <th class="table-sort" datas-id="entryTime" style="min-width:100px">入职时间<i class="" aria-hidden="true"></i></th>
+                                <th class="table-sort" datas-id="entryTime" style="min-width:100px">入职时间<i class="fa fa-sort" aria-hidden="true"></i></th>
                                 <th style="min-width:100px">定档</th>
-                                <th class="table-sort" datas-id="salary" style="min-width:100px">当前薪资<i class="" aria-hidden="true"></i></th>
-                                <th class="table-sort" datas-id="changeSalaryNum" style="min-width:100px">调薪次数<i class="" aria-hidden="true"></i></th>
+                                <th class="table-sort" datas-id="salary" style="min-width:100px">当前薪资<i class="fa fa-sort" aria-hidden="true"></i></th>
+                                <th class="table-sort" datas-id="changeSalaryNum" style="min-width:100px">调薪次数<i class="fa fa-sort" aria-hidden="true"></i></th>
                                 <th style="min-width:100px">签约状态</th>
-                                <th class="table-sort" datas-id="offJobTime" style="min-width:100px">离职时间<i class="" aria-hidden="true"></i></th>
+                                <th class="table-sort" datas-id="offJobTime" style="min-width:100px">离职时间<i class="fa fa-sort" aria-hidden="true"></i></th>
                                 <th class="operation" style="width:565px">操作</th>
                             </tr>
                         </thead>
