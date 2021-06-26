@@ -332,13 +332,11 @@
                             <div class="form-group" type="sex">
                                 <label class="control-label col-sm-3">性别：</label>
                                 <div class="col-sm-7">
-                                    <div class="radio">
-                                        <label class="mr10"> 
-                                            <input type="radio" name="sex" id="sex1" value="0" checked>男
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="sex" id="sex2" value="1">女
-                                        </label>
+                                    <div class="sumoselect_demo" id="sumoselect_demo12">
+                                        <select multiple="multiple" class="selectall" name="sex">
+                                            <option value="0">男</option>
+                                            <option value="1">女</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <a class="close-item">
@@ -479,7 +477,7 @@
                                         <input type="hidden" id="endEntryTime" name="endEntryTime" value="" /><br/>
                                     </div>
                                 </div>
-                                <a class="close-item" style="">
+                                <a class="close-item">
                                     <i class="fa fa-close btn-icon"></i>
                                 </a>
                                 
@@ -1178,6 +1176,7 @@
                 $('#sumoselect_demo9 select')[0].sumo.unSelectAll();
                 $('#sumoselect_demo10 select')[0].sumo.unSelectAll();
                 $('#sumoselect_demo11 select')[0].sumo.unSelectAll();
+                $('#sumoselect_demo12 select')[0].sumo.unSelectAll();
                 $('#dialog-search form>.form-group').map(function(i, v){
                     if(i > 0) $(v).css('display', 'none');
                 });
