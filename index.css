@@ -45,6 +45,6 @@
     cursor:default;
     user-select:none;
 }
-table thead tr{
+#employee-list table thead tr{
     background-color: #eee;
 }

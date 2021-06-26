@@ -140,7 +140,9 @@ function onClickLeave (self)
 {
     let id = parseInt($(self).attr('datas'));
     $('#dialog-leave').show();
+    $('#dialog-leave form')[0].reset();
     $('#dialog-leave').attr('usercode', id);
+
 }
 function onCloseLeave ()
 {
