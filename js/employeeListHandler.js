@@ -226,9 +226,10 @@ function onClickPage(evt)
 function renderTable(tab)
 {
 
-    let body_tr;
+    let body_tr,_search_params;
     if(tab.attr('id') === 'tab4_1')
     {
+        _search_params = search_params;
         body_tr = $(`<tr style="display: table-row; opacity: 1;">
             <td class="tr-id"></td>
             <td class="tr-name"></td>
@@ -252,6 +253,7 @@ function renderTable(tab)
     }
     else if(tab.attr('id') === 'tab4_2')
     {
+        _search_params = leave_search_params;
         body_tr = $(`<tr style="display: table-row; opacity: 1;">
             <td class="tr-id"></td>
             <td class="tr-name"></td>
@@ -286,7 +288,7 @@ function renderTable(tab)
             $(v).hide();
         }
     })
-    for(let k in window.search_params)
+    for(let k in _search_params)
     {
         let td = body_tr.find('.tr-'+k).eq(0);
         td.show();
