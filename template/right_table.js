@@ -17,7 +17,7 @@ const right_table = $(`
                         <a id="add-employee" href="javascript:void(0);" class="king-btn king-radius king-warning pull-right">
                             <i class="fa fa-plus" aria-hidden="true"></i> 新增员工
                             </a>
-                            <a id="super-search" href="javascript:void(0);" class="king-btn king-radius king-primary pull-left">
+                            <a onClick="onSuperSearch()" href="javascript:void(0);" class="king-btn king-radius king-primary pull-left">
                                 搜索显示
                             </a>
                     </div>

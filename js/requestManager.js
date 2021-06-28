@@ -108,7 +108,28 @@ function reqOnJobSuperSearch (data, success)
             console.error('高级查询结果', obj.result);
             window.base_data = obj.result.data;
             window.totalEmployCount = obj.result.totalCount;
+            window.members = obj.result.member;
             renderPage($('#tab4_1'));
+            success && success();
+        }
+        else
+        {
+            alert(obj.result);
+        }
+    })
+}
+function reqLeaveSuperSearch (data, success)
+{
+    data.browseCount = one_page_count;
+    saveGlobalLeaveSearchParams(data);
+    $.post(cgi+'browseOffTheJob', data, function(obj){
+        if(obj.ret === 0)
+        {
+            console.error('高级查询结果', obj.result);
+            window.base_data = obj.result.data;
+            window.totalEmployCount = obj.result.totalCount;
+            window.members = obj.result.member;
+            renderPage($('#tab4_2'));
             success && success();
         }
         else

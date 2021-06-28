@@ -369,7 +369,7 @@ function renderTable(tab)
     }
     
 }
-function OnClickReqOnJobSuperSearch()
+function OnClickReqSuperSearch()
 {
     var data = {
         'browseIndex': 0,
@@ -430,10 +430,22 @@ function OnClickReqOnJobSuperSearch()
         }
     })
     console.error('高级查询', data);
-    reqOnJobSuperSearch(data,function(){
-        $('#dialog-search').hide();
-        renderTable($('#tab4_1'));
-    });
+    let search_type = $('#dialog-search').attr('search-type');
+    if(search_type === 'leaveJob')
+    {
+        reqLeaveSuperSearch(data,function(){
+            $('#dialog-search').hide();
+            renderTable($('#tab4_2'));
+        });
+    }
+    else if(search_type === 'onJob')
+    {
+        reqOnJobSuperSearch(data,function(){
+            $('#dialog-search').hide();
+            renderTable($('#tab4_1'));
+        });
+    }
+    
 }
 function getValueByName(name)
 {
