@@ -176,7 +176,14 @@ function renderPage (tab, page = 1)
     for(let i = 1; i <= total_page; i++)
     {
         let li = $(`<li><a href="javascript:;" ind="${i-1}">${i}</a></li>`);
-        li.click(onClickPage);
+        if(tab.attr('id') === 'tab4_1')
+        {
+            li.click(onClickOnJobPage);
+        }
+        else
+        {
+            li.click(onClickLeavePage);
+        }
         $(page_list.find('li')[page_list.find('li').length-2]).after(li);
     }
     $(page_list.find('li')[page]).addClass('active').siblings().removeClass('active');
@@ -206,7 +213,7 @@ function renderPage (tab, page = 1)
         }
     }
 }
-function onClickPage(evt)
+function onClickOnJobPage(evt)
 {
     let node = null;
     evt && evt.target && (node = evt.target);
@@ -218,7 +225,27 @@ function onClickPage(evt)
     else
     {
         let start_index = $(node).attr('ind');
+        
         reqOnJobPagelistInfo(start_index, function(){
+
+        });
+        
+    }
+}
+function onClickLeavePage(evt)
+{
+    let node = null;
+    evt && evt.target && (node = evt.target);
+    if(!node || node.parentElement.className.search('active') >= 0)
+    {
+        console.error('无效点击');
+        return;
+    }
+    else
+    {
+        let start_index = $(node).attr('ind');
+        
+        reqLeavePagelistInfo(start_index, function(){
 
         });
     }

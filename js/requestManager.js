@@ -69,6 +69,33 @@ function reqOnJobPagelistInfo (start, success)
         }
     })
 }
+function reqLeavePagelistInfo (start, success)
+{
+    data = window.leave_search_params;
+    data.browseIndex = start*one_page_count;
+    console.error('请求分页参数', data)
+    console.error('开始位置'+start+' 第' + Math.floor(start/one_page_count)+1 + '页');
+    saveGlobalLeaveSearchParams(data);
+    $.post(cgi+'browseOffTheJob', data, function(obj, textStatus){
+        console.error('分页数据回包', obj);
+        if(obj.ret === 0 && obj.result)
+        {
+            window.base_data = obj.result.data;
+            window.totalEmployCount = obj.result.totalCount;
+            if(textStatus === 'success')
+            {
+                renderPage($('#tab4_2'), Math.floor(data.browseIndex/one_page_count)+1);
+                renderTable($('#tab4_2'));
+                success && success();
+            }
+        
+        }
+        else
+        {
+            alert(obj.result);
+        }
+    })
+}
 function reqKeyWordSearch(keyword)
 {
     console.log(keyword);

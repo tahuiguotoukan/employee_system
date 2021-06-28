@@ -1156,10 +1156,24 @@
 
                 });
             })
-            $('#tab4_1 .next').click(function(evt){
+            $('#tab4_1 .next').eq(0).click(function(evt){
                 if(this.parentElement.className === "disabled") return;
                 let start_index = $('#tab4_1 .cur_page').eq(0).text()*1;
                 reqOnJobPagelistInfo(start_index, function(){
+
+                });
+            })
+            $('#tab4_2 .prev').eq(0).click(function(evt){
+                if(this.parentElement.className === "disabled") return;
+                let start_index = $('#tab4_2 .cur_page').eq(0).text()-2;
+                reqLeavePagelistInfo(start_index, function(){
+
+                });
+            })
+            $('#tab4_2 .next').eq(0).click(function(evt){
+                if(this.parentElement.className === "disabled") return;
+                let start_index = $('#tab4_2 .cur_page').eq(0).text()*1;
+                reqLeavePagelistInfo(start_index, function(){
 
                 });
             })
