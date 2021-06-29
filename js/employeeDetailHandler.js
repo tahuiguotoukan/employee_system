@@ -115,6 +115,12 @@ function onClickSubmitEmployeeDetail()
             case 'level':
                 data.employeeProfile = parseInt(v.value);
                 break;
+            case 'phoneNumber':
+                data.phoneNumber = parseInt(v.value);
+                break;
+            case 'education':
+                data.education = parseInt(v.value);
+                break;
             default:
                 break;
         }

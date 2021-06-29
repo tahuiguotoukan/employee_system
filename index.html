@@ -105,7 +105,6 @@
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control" name="userCode" id="userCode" placeholder="系统自动生成，不可编辑" disabled value="">
                                     </div>
-                                    <span class="text-danger mt5 fl">*</span>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3">性别：</label>
@@ -118,6 +117,25 @@
                                                 <input type="radio" name="sex" id="sex2" value="1">女
                                             </label>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">手机号：</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="填写11位手机号">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">最高学历：</label>
+                                    <div class="col-sm-7">
+                                        <select name="education" id="education" class="form-control">
+                                            <option value="0">中专</option>
+                                            <option value="1">高中</option>
+                                            <option value="2">大专</option>
+                                            <option value="3">本科</option>
+                                            <option value="4">硕士</option>
+                                            <option value="5">博士</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -329,6 +347,15 @@
                                     <i class="fa fa-close btn-icon"></i>
                                 </a>
                             </div>
+                            <div class="form-group" type="phoneNumber">
+                                <label class="col-sm-3 control-label">手机号：</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="11位手机号">
+                                </div>
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
                             <div class="form-group" type="sex">
                                 <label class="control-label col-sm-3">性别：</label>
                                 <div class="col-sm-7">
@@ -352,6 +379,25 @@
                                             <option value="1">已过期</option>
                                             <option value="2">要续约</option>
                                             <option value="3">未签约</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <a class="close-item">
+                                    <i class="fa fa-close btn-icon"></i>
+                                </a>
+                            </div>
+                            <div class="form-group" type="education">
+                                <label class="control-label col-sm-3">学历：</label>
+                                <div class="col-sm-9">
+                                    <div class="sumoselect_demo" id="sumoselect_demo13">
+                                        <select multiple="multiple" class="selectall" name="education">
+                                            <option value="0">中专</option>
+                                            <option value="1">高中</option>
+                                            <option value="2">大专</option>
+                                            <option value="3">本科</option>
+                                            <option value="4">硕士</option>
+                                            <option value="5">博士</option>
                                         </select>
                                     </div>
                                 </div>
@@ -461,12 +507,12 @@
                                 
                             </div>
                             <div class="form-group" type="offJobTime">
-                                <label for="entryTime" class="control-label col-sm-3">离职时间：</label>
+                                <label class="control-label col-sm-3">离职时间：</label>
                                 <div class="col-sm-3">
                                     <div class="input-group date" id="plugin9_demo11" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
-                                        <input type="hidden" id="startEntryTime" name="startEntryTime" value="" /><br/>
+                                        <input type="hidden" id="startoffJobTime" name="startoffJobTime" value="" /><br/>
                                     </div>
                                 </div>
                                 <div class="col-sm-1" style="text-align: center; line-height: 30px;">--</div>
@@ -474,7 +520,7 @@
                                     <div class="input-group date" id="plugin9_demo12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                         <input class="form-control" size="16" type="text" value="" style="border-radius: 0 4px 4px 0;">            
-                                        <input type="hidden" id="endEntryTime" name="endEntryTime" value="" /><br/>
+                                        <input type="hidden" id="endoffJobTime" name="endoffJobTime" value="" /><br/>
                                     </div>
                                 </div>
                                 <a class="close-item">
@@ -483,7 +529,7 @@
                                 
                             </div>
                             <div class="form-group" type="bornTime">
-                                <label for="entryTime" class="control-label col-sm-3">出生日期：</label>
+                                <label class="control-label col-sm-3">出生日期：</label>
                                 <div class="col-sm-3">
                                     <div class="input-group date" id="plugin9_demo6" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -939,6 +985,12 @@
                 placeholder: '选择性别',
                 selectAlltext: '全选'
             });
+            $('#sumoselect_demo13 select').SumoSelect({
+                okCancelInMulti: true,
+                selectAll: true,
+                placeholder: '选择学历',
+                selectAlltext: '全选'
+            });
             $('#employee-detail [name="department"]').change(function(){
                 OnDetailDepartmentChange();
             })
@@ -1192,6 +1244,7 @@
                 $('#sumoselect_demo10 select')[0].sumo.unSelectAll();
                 $('#sumoselect_demo11 select')[0].sumo.unSelectAll();
                 $('#sumoselect_demo12 select')[0].sumo.unSelectAll();
+                $('#sumoselect_demo13 select')[0].sumo.unSelectAll();
                 // $('#dialog-search form>.form-group').map(function(i, v){
                 //     if(i > 0) $(v).css('display', 'none');
                 // });

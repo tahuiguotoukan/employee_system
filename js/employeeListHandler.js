@@ -23,6 +23,8 @@ function onClickEdit(self)
         $('#employee-detail #sex2').prop('checked', 'true');
         $('#employee-detail #sex1').removeProp('checked');
     }
+    $('#employee-detail #phoneNumber').val(person_info.phoneNumber);
+    $('#employee-detail #education').val(person_info.education);
     $('#employee-detail #address-1').val(person_info.department);
     OnDetailAddress1Change();
     if(person_info.detailedAddress.indexOf('区') > -1){
@@ -261,6 +263,8 @@ function renderTable(tab)
             <td class="tr-id"></td>
             <td class="tr-name"></td>
             <td class="tr-sex"></td>
+            <td class="tr-phoneNumber"></td>
+            <td class="tr-education"></td>
             <td class="tr-workPlace"></td>
             <td class="tr-department"></td>
             <td class="tr-post"></td>
@@ -285,6 +289,8 @@ function renderTable(tab)
             <td class="tr-id"></td>
             <td class="tr-name"></td>
             <td class="tr-sex"></td>
+            <td class="tr-phoneNumber"></td>
+            <td class="tr-education"></td>
             <td class="tr-workPlace"></td>
             <td class="tr-department"></td>
             <td class="tr-post"></td>
@@ -334,6 +340,8 @@ function renderTable(tab)
         clone_tr.find('.tr-id').eq(0).text(v.id);
         clone_tr.find('.tr-name').eq(0).text(v.name);
         clone_tr.find('.tr-sex').eq(0).text(v.sex == 1 ? '女' : '男');
+        clone_tr.find('.tr-phoneNumber').eq(0).text(v.phoneNumber);
+        clone_tr.find('.tr-education').eq(0).text(localConfig.education[v.education]);
         clone_tr.find('.tr-workPlace').eq(0).text(localConfig.workPlace[v.workPlace]);
         clone_tr.find('.tr-workGroup').eq(0).text(localConfig.workGroup[v.workGroup]);
         clone_tr.find('.tr-department').eq(0).text(localConfig.department[v.department]);
@@ -419,7 +427,10 @@ function OnClickReqSuperSearch()
                     data.entryTime = [$(v).find('#startEntryTime').val(), $(v).find('#endEntryTime').val()];
                     break;
                 case 'bornTime':
-                    data.entryTime = [$(v).find('#startBornTime').val(), $(v).find('#endBornTime').val()];
+                    data.bornTime = [$(v).find('#startBornTime').val(), $(v).find('#endBornTime').val()];
+                    break;
+                case 'offJobTime':
+                    data.offJobTime = [$(v).find('#startoffJobTime').val(), $(v).find('#endoffJobTime').val()];
                     break;
                 case 'projectGroup':
                     data.projectGroup = getValueByName('projectGroup');
@@ -450,6 +461,12 @@ function OnClickReqSuperSearch()
                     break;
                 case 'workGroup':
                     data.workGroup = getValueByName('workGroup');
+                    break;
+                case 'phoneNumber':
+                    data.phoneNumber = $(v).find('#phoneNumber').val();
+                    break;
+                case 'education':
+                    data.education = getValueByName('education');
                     break;
                 default:
                     break;

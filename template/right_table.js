@@ -29,6 +29,8 @@ const right_table = $(`
                                 <th class="table-sort" datas-id="id" style="min-width:100px">员工工号<i class="fa fa-sort" aria-hidden="true"></i></th>
                                 <th style="min-width:100px">员工姓名</th>
                                 <th style="min-width:100px">性别</th>
+                                <th style="min-width:100px">手机号</th>
+                                <th style="min-width:100px">学历</th>
                                 <th style="min-width:100px">上班地点</th>
                                 <th style="min-width:100px">所属部门</th>
                                 <th style="min-width:100px">职位</th>
@@ -91,6 +93,8 @@ const right_table = $(`
                                 <th class="table-sort" datas-id="id" style="min-width:100px">员工工号<i class="fa fa-sort" aria-hidden="true"></i></th>
                                 <th style="min-width:100px">员工姓名</th>
                                 <th style="min-width:100px">性别</th>
+                                <th style="min-width:100px">手机号</th>
+                                <th style="min-width:100px">学历</th>
                                 <th style="min-width:100px">上班地点</th>
                                 <th style="min-width:100px">所属部门</th>
                                 <th style="min-width:100px">职位</th>
