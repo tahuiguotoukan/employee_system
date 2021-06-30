@@ -277,7 +277,7 @@ function reqRegain(id)
         jobStatus: 1
     }
     updateJobStatusInfo(data, ()=>{
-        reqLeaveJoblistInfo(search_params.browseIndex, search_params);
+        reqLeaveJoblistInfo(leave_search_params.browseIndex, leave_search_params);
     });
 }
 function reqUpdateLeaveComment (id, offJobInfoNotes)
