@@ -1105,7 +1105,10 @@
 
             $('#submit-employee-detail').click(onClickSubmitEmployeeDetail);
             $('#cancel-employee-detail').click(() => {
-                showEmployeeList();
+                //只是展示表格，不做数据刷新处理
+                $('#right').children().map((i, v) => {
+                    $(v).attr('id') === 'employee-list' ? $(v).show() : $(v).hide();
+                })
                 initEmployeeForm();
             })
             $('#keyword-search').bind('keyup', onKeywordSwearch);
