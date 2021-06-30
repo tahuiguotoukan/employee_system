@@ -22,7 +22,7 @@ const right_table = $(`
                             </a>
                     </div>
                 </div>
-                <div>
+                <div class="table-box">
                     <table class="table table-hover mb0">
                         <thead>
                             <tr>
@@ -86,7 +86,7 @@ const right_table = $(`
                             </a>
                     </div>
                 </div>
-                <div>
+                <div class="table-box">
                     <table class="table table-hover mb0">
                         <thead>
                             <tr>

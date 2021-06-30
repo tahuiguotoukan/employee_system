@@ -1272,6 +1272,11 @@
                     reqDescSortInfo($(this).parents('.tab-pane'), $(this).attr('datas-id'));
                 }
             })
+            $('.table-sort').hover(function (){
+                $(this).css('background-color', '#ddd');
+            }, function (){
+                $(this).css('background-color', '#eee');
+            })
         });
         
         var initEmployeeForm = function(){
