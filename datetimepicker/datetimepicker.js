@@ -192,7 +192,7 @@
 				that.hide();
 			}
 		});
-        $('#dialog-search') && $('#dialog-search').on('mousedown', function(e){
+        $('#container') && $('#container').on('mousedown', function(e){
             if ($(e.target).closest('.datetimepicker').length === 0) {
 				that.hide();
 			}
