@@ -1,3 +1,14 @@
+body{
+    overflow: hidden;
+}
+#right
+{
+    overflow: auto;
+    height: 98%;
+}
+.table-box{
+    overflow: auto;
+}
 #dialog-search {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 10;
