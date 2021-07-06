@@ -11,16 +11,10 @@ const left_nav = $(`<div id="left" style="position: fixed; height: 100%;">
                         
                     </li>
                     <li>
-                        <a class="has-arrow" href="javascript:;">
+                        <a href="javascript:;">
                             <span class="sidebar-nav-item-icon fa fa-rss fa-lg"></span>
-                            <span class="sidebar-nav-item">列表2</span>
+                            <span class="sidebar-nav-item">招聘管理</span>
                         </a>
-                        <ul aria-expanded="false" class="collapse">
-                            <li><a href="javascript:;">项目2-1</a></li>
-                            <li><a href="javascript:;">项目2-2</a></li>
-                            <li><a href="javascript:;">项目2-3</a></li>
-                            <li><a href="javascript:;">项目2-4</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:;">

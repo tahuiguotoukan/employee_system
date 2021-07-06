@@ -14,8 +14,18 @@ function reqLogin(username, passwork)
             if(ret === 0)
             {
                 info = obj.result;
-                $.cookie('user-info', info, {expires: 7, path: '/'});
-                $(window).attr('location',"./index.html");
+                $.cookie('user-info', JSON.stringify(info), {expires: 7, path: '/'});
+                let history = $.cookie('history');
+                $.cookie('history', '', {path:'/', expires: new Date('1997/01/01')});
+                if(history != null)
+                {
+                    $(window).attr('location',history);
+                }
+                else
+                {
+                    $(window).attr('location',"./index.html");
+                }
+                
                 
             }
             else
@@ -41,24 +51,33 @@ function reqOnJoblistInfo(start, data={})
     }
     data.browseCount = one_page_count;
     saveGlobalSearchParams(data);
+    data.token = getLoginToken();
     console.error('查询基础列表数据 start index is ' + data.browseIndex + '; count is ' + one_page_count);
-    $.post(cgi+'browseOnTheJob', data, function(obj, textStatus){
-        console.error('data', obj);
-        if(obj.ret === 0 && obj.result)
-        {
-            window.base_data = obj.result.data;
-            window.totalEmployCount = obj.result.totalCount;
-            window.members = obj.result.member;
-            if(textStatus === 'success')
+    $.ajax({
+        type: 'POST',
+        url: cgi+'browseOnTheJob',
+        data:data,
+        // xhrFields: {
+        //     withCredentials: true //允许跨域带Cookie
+        // },
+        success: function(obj){
+            console.error('data', obj);
+            if(obj.ret === 0 && obj.result)
             {
+                window.base_data = obj.result.data;
+                window.totalEmployCount = obj.result.totalCount;
+                window.members = obj.result.member;
                 renderPage($('#tab4_1'), Math.floor(data.browseIndex/one_page_count)+1);
                 renderTable($('#tab4_1'));
             }
-        
-        }
-        else
-        {
-            alert(obj.result);
+            else if(obj.ret === -1)
+            {
+                guideToLoginPanel();
+            }
+            else
+            {
+                alert(obj.result);
+            }
         }
     })
 }
@@ -69,6 +88,7 @@ function reqOnJobPagelistInfo (start, success)
     console.error('请求分页参数', data)
     console.error('开始位置'+start+' 第' + Math.floor(start/one_page_count)+1 + '页');
     saveGlobalSearchParams(data);
+    data.token = getLoginToken();
     $.post(cgi+'browseOnTheJob', data, function(obj, textStatus){
         console.error('分页数据回包', obj);
         if(obj.ret === 0 && obj.result)
@@ -82,6 +102,10 @@ function reqOnJobPagelistInfo (start, success)
                 success && success();
             }
         
+        }
+        else if(obj.ret === -1)
+        {
+            guideToLoginPanel();
         }
         else
         {
@@ -96,6 +120,7 @@ function reqLeavePagelistInfo (start, success)
     console.error('请求分页参数', data)
     console.error('开始位置'+start+' 第' + Math.floor(start/one_page_count)+1 + '页');
     saveGlobalLeaveSearchParams(data);
+    data.token = getLoginToken();
     $.post(cgi+'browseOffTheJob', data, function(obj, textStatus){
         console.error('分页数据回包', obj);
         if(obj.ret === 0 && obj.result)
@@ -109,6 +134,10 @@ function reqLeavePagelistInfo (start, success)
                 success && success();
             }
         
+        }
+        else if(obj.ret === -1)
+        {
+            guideToLoginPanel();
         }
         else
         {
@@ -133,6 +162,10 @@ function reqLocalCfg (callback)
                 RenderLocalConfig();
                 callback && callback();
             }
+            else if(obj.ret === -1)
+            {
+                guideToLoginPanel();
+            }
             else
             {
                 alert(obj.result);
@@ -149,6 +182,7 @@ function reqOnJobSuperSearch (data, success)
 {
     data.browseCount = one_page_count;
     saveGlobalSearchParams(data);
+    data.token = getLoginToken();
     $.post(cgi+'browseOnTheJob', data, function(obj){
         if(obj.ret === 0)
         {
@@ -158,6 +192,10 @@ function reqOnJobSuperSearch (data, success)
             window.members = obj.result.member;
             renderPage($('#tab4_1'));
             success && success();
+        }
+        else if(obj.ret === -1)
+        {
+            guideToLoginPanel();
         }
         else
         {
@@ -169,6 +207,7 @@ function reqLeaveSuperSearch (data, success)
 {
     data.browseCount = one_page_count;
     saveGlobalLeaveSearchParams(data);
+    data.token = getLoginToken();
     $.post(cgi+'browseOffTheJob', data, function(obj){
         if(obj.ret === 0)
         {
@@ -179,6 +218,10 @@ function reqLeaveSuperSearch (data, success)
             renderPage($('#tab4_2'));
             success && success();
         }
+        else if(obj.ret === -1)
+        {
+            guideToLoginPanel();
+        }
         else
         {
             alert(obj.result);
@@ -187,13 +230,17 @@ function reqLeaveSuperSearch (data, success)
 }
 function reqDeleteEmployee (id, success)
 {
-    $.post(cgi+'delete', {id: id}, function(obj){
+    $.post(cgi+'delete', {id: id, token: getLoginToken()}, function(obj){
         if(obj.ret === 0)
         {
             console.log('删除员工', obj.result);
             window.totalEmployCount-=1;
             renderPage($('#tab4_1'));
             success && success();
+        }
+        else if(obj.ret === -1)
+        {
+            guideToLoginPanel();
         }
         else
         {
@@ -210,7 +257,8 @@ function reqSaveEmployeeInfo(datas)
     {
         d[i] = datas;
     }
-    $.post(cgi+'add', d, function(obj){
+    
+    $.post(cgi+'add', {data: d, token: getLoginToken}, function(obj){
         console.error('save data', obj);
         if(obj.ret === 0)
         {
@@ -219,21 +267,30 @@ function reqSaveEmployeeInfo(datas)
             showEmployeeList(true, 'updateTime');
             
         }
+        else if(obj.ret === -1)
+        {
+            guideToLoginPanel();
+        }
         else
         {
             alert(obj.result);
         }
     })
 }
-function reqUpdateEmployeeInfo(datas)
+function reqUpdateEmployeeInfo(data)
 {
-    $.post(cgi+'update', datas, function(obj){
+    data.token = getLoginToken();
+    $.post(cgi+'update', data, function(obj){
         console.error('update data', obj);
         if(obj.ret === 0)
         {
             alert('更新成功！');
             initEmployeeForm();
             showEmployeeList(true, 'updateTime');
+        }
+        else if(obj.ret === -1)
+        {
+            guideToLoginPanel();
         }
         else
         {
@@ -257,6 +314,7 @@ function reqLeaveJoblistInfo (start, data={})
     }
     data.browseCount = one_page_count;
     saveGlobalLeaveSearchParams(data);
+    data.token = getLoginToken();
     console.error('查询离职列表数据 start index is ' + data.browseIndex + '; count is ' + one_page_count);
     $.post(cgi+'browseOffTheJob', data, function(obj, textStatus){
         console.error('离职data', obj);
@@ -271,6 +329,10 @@ function reqLeaveJoblistInfo (start, data={})
                 renderTable($('#tab4_2'));
             }
         
+        }
+        else if(obj.ret === -1)
+        {
+            guideToLoginPanel();
         }
         else
         {
@@ -313,12 +375,17 @@ function reqUpdateLeaveComment (id, offJobInfoNotes)
 function updateJobStatusInfo(data, callback)
 {
     console.error('离职信息', data);
+    data.token = getLoginToken();
     $.post(cgi+'update', data, function(obj){
         console.error('update leave data', obj);
         if(obj.ret === 0)
         {
             alert('更新成功！');
             callback && callback();
+        }
+        else if(obj.ret === -1)
+        {
+            guideToLoginPanel();
         }
         else
         {
@@ -370,4 +437,27 @@ function reqNotSortInfo(tab, key)  //去掉排序
         leave_search_params.sortType = 1;
         reqLeaveJoblistInfo(0, leave_search_params);
     }
+}
+function getLoginToken()
+{
+    let info = $.cookie('user-info');
+    try{
+        info = JSON.parse(info);
+        return info.session;
+    }
+    catch{
+        return null;
+    }
+    
+}
+function getRequestParams(param){
+    var reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+function guideToLoginPanel()
+{
+    alert('状态已过期，请重新登录');
+    $.cookie('history', window.location.href, {path: '/'});
+    $(window).attr('location',"./login.html");
 }
