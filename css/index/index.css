@@ -1,11 +1,4 @@
-body{
-    overflow: hidden;
-}
-#right
-{
-    overflow: auto;
-    height: 98%;
-}
+
 .table-box{
     overflow: auto;
 }
@@ -39,10 +32,7 @@ body{
 {
     text-align: center;
 }
-.nav-left-active {
-    color: #2abe24 !important;
-    font-size: 16px;
-}
+
 #dialog-more-condition{
     border-radius: 5px;
 }

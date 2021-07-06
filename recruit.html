@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <!-- 若您需要使用Kendo UI Professional，请联系版权人获得合法的授权或许可。 -->
+    <link href="./bk/bk.css" rel="stylesheet">
+    <!-- Bootstrap css -->
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- kendo ui css -->
+    <link href="./kendoui-2015.2.624/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="./kendoui-2015.2.624/styles/kendo.default.min.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="./fontawesome/css/font-awesome.css" rel="stylesheet">
+    
+    <link href="./metisMenu-2.6.0/metisMenu-master/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/components/vertical_nav11/css/index.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/jquery.sumoselect-2.0.0/sumoselect.css" rel="stylesheet">
+    
+    
+    
+    <!-- 数据埋点统计 -->
+    <!-- <script src="http://magicbox.bk.tencent.com/static_api/analysis.js"></script> -->
+    <link rel="stylesheet" href="./css/common/common.css">
+    <script src="./jquery-1.10.2/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    
+</head>
+
+<body>
+    <!-- header nav start -->
+    <nav style="position: fixed;z-index: 10000;width: 100%;">
+        <div class="king-header2 navbar king-horizontal-primary" id="nav9_demo1">
+            <div class="container" style="width: 100%;">
+                <div class="navbar-header">
+                    <button class="pull-right visible-xs navbar-toggle collapsed navbar-toggle-sm"
+                    type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <i class="fa fa-fw fa-ellipsis-v">
+                        </i>
+                    </button>
+                    <a class="navbar-brand" href="javascript:;" title="管理系统">
+                        <img src="./images/logo.png" alt="" class="logo" style="margin-top:-10px;height: 40px;">
+                    </a>
+                    <span class="navbar-brand">管理系统</span>
+                </div>
+                <div class="navbar-collapse collapse">
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span id="user-name">
+                                    
+                                </span>
+                                <span class="avatar">
+                                    <img src="./images/avatar.jpg" />
+                                </span>
+                            </a>
+                        </li>
+                        <li id="logout">
+                            <a href="javascript:void(0)">
+                                退出
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- header nav end -->
+    
+    
+    
+    
+    <!-- content start -->
+    
+    <div id="container" style="height: 100%;z-index: 0;">
+        <div id="left" style="position: fixed; height: 100%;">
+            <div class="metismenu" id="vertical_nav11" style="width:250px;">
+                <aside class="sidebar" style="width:250px;">
+                        <nav class="sidebar-nav" style="margin-top: 50px;">
+                            <ul class="metismenu" id="menu">
+                                <li class="active">
+                                    <a class="" href="./index.html">
+                                        <span class="sidebar-nav-item-icon fa fa-user fa-lg"></span>
+                                        <span class="sidebar-nav-item">员工管理</span>
+                                    </a>
+                                    
+                                </li>
+                                <li>
+                                    <a class="nav-left-active" href="javascript:;">
+                                        <span class="sidebar-nav-item-icon fa fa-rss fa-lg"></span>
+                                        <span class="sidebar-nav-item">招聘管理</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="has-arrow" href="javascript:;">
+                                        <span class="sidebar-nav-item-icon fa fa-rss fa-lg"></span>
+                                        <span class="sidebar-nav-item">列表2</span>
+                                    </a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="javascript:;">项目2-1</a></li>
+                                        <li><a href="javascript:;">项目2-2</a></li>
+                                        <li><a href="javascript:;">项目2-3</a></li>
+                                        <li><a href="javascript:;">项目2-4</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                </aside>
+            </div>
+        </div>
+        <div id="right" style="position: absolute; top: 50px;right: 0; padding: 20px;">
+            
+        </div>
+    </div>
+    <!-- content end -->
+    
+    
+    
+    
+    <!--JS-->
+    <script src="./js/localConfig.js"></script>
+    <script src="./jquery-1.10.2/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <!-- 包括所有kendoui的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="./kendoui-2015.2.624/js/kendo.all.min.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/bk/js/bk.js"></script>
+    <script src="./datetimepicker/datetimepicker.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/datetimepicker/js/locales/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
+    <script src="./metisMenu-2.6.0/metisMenu-master/dist/metisMenu.js"></script>
+    <script src="./tabledit/jquerytabledit.js"></script>
+    <script src="./sumoselect-2.0.0/sumoselect.min.js"></script>
+</body>
+    <script>
+        $(function(){
+            $('#logout').click(function(){
+                $.cookie('user-info', '', {expires: new Date('1997/01/01'), path: '/'});
+                $(window).attr('location',"./login.html");
+            })
+            $('#menu').metisMenu(); 
+            $('#menu li a').click(function (){
+                $(window).attr('location',$(this).attr('href'));
+            })
+            let info = $.cookie('user-info');
+            try{
+                info = JSON.parse(info);
+                $('#user-name').text(info.user);
+            }
+            catch(err){
+                console.error('pase user info error',err);
+            }
+            
+        })
+    </script>
+    
+</html>
