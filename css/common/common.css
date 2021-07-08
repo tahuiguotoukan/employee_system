@@ -21,3 +21,14 @@ body{
 {
     text-align: center;
 }
+#right .nav-tabs>li>a{
+    border-bottom: none;
+    border-top: none;
+}
+#right .tab-box .tab-pane>div.panel
+{
+    border-top: none;
+}
+#left{
+    z-index: 1;
+}

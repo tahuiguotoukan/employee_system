@@ -13,7 +13,7 @@ const right_table = $(`
             <div class="panel panel-default table7_demo king-table7-demo3">
                 <div class="panel-body">
                     <div class="king-wrapper clearfix">
-                        <a class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        
                         <a id="add-employee" href="javascript:void(0);" class="king-btn king-radius king-warning pull-right">
                             <i class="fa fa-plus" aria-hidden="true"></i> 新增员工
                             </a>
@@ -80,7 +80,7 @@ const right_table = $(`
             <div class="panel panel-default table7_demo king-table7-demo3">
                 <div class="panel-body">
                     <div class="king-wrapper clearfix">
-                        <a class="pull-left">&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        
                             <a id="leave-super-search" onClick="OnLeaveSuperSearch()" href="javascript:void(0);" class="king-btn king-radius king-primary pull-left">
                                 搜索显示
                             </a>
