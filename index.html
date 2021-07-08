@@ -93,7 +93,7 @@
                                 </li>
                                 <li>
                                     <a href="./recruit.html">
-                                        <span class="sidebar-nav-item-icon fa fa-rss fa-lg"></span>
+                                        <span class="sidebar-nav-item-icon fa fa-users fa-lg"></span>
                                         <span class="sidebar-nav-item">招聘管理</span>
                                     </a>
                                 </li>
@@ -115,9 +115,6 @@
             </div>
         </div>
         <div id="right" style="position: absolute; top: 50px;right: 0; padding: 20px;">
-            
-            
-            
             <div id="employee-detail" class="row" style="width: 100%;margin: auto;display: none;">
                 <div class="col-sm-12">
                     <div class="king-block king-block-bordered">
@@ -807,7 +804,7 @@
     
     
     <!--JS-->
-    <script src="./js/index.js"></script>
+    
     <script src="./js/localConfig.js"></script>
     <script src="./jquery-1.10.2/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
@@ -823,30 +820,16 @@
     <script src="./metisMenu-2.6.0/metisMenu-master/dist/metisMenu.js"></script>
     <script src="./tabledit/jquerytabledit.js"></script>
     <script src="./sumoselect-2.0.0/sumoselect.min.js"></script>
-    <script src="./js/requestManager.js"></script>
-    <script src="./js/employeeDetailHandler.js"></script>
-    <script src="./js/employeeListHandler.js"></script>
+    <!-- 网上都是组建 -->
+
+    <!-- 自己写的脚本 start -->
+    <script src="./js/common.js"></script>
+    <script src="./js/index/index.js"></script>
+    <script src="./js/index/requestManager.js"></script>
+    <script src="./js/index/employeeDetailHandler.js"></script>
+    <script src="./js/index/employeeListHandler.js"></script>
+    <!-- 自己写的脚本 end -->
+    
 </body>
-    <script>
-        $(function(){
-            $('#logout').click(function(){
-                $.cookie('user-info', '', {expires: new Date('1997/01/01'), path: '/'});
-                $(window).attr('location',"./login.html");
-            })
-            $('#menu').metisMenu(); 
-            $('#menu li a').click(function (){
-                $(window).attr('location',$(this).attr('href'));
-            })
-            let info = $.cookie('user-info');
-            try{
-                info = JSON.parse(info);
-                $('#user-name').text(info.user);
-            }
-            catch(err){
-                console.error('pase user info error',err);
-            }
-            
-        })
-    </script>
     
 </html>

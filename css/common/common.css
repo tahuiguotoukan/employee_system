@@ -10,3 +10,14 @@ body{
     overflow: auto;
     height: 98%;
 }
+.table-box{
+    overflow: auto;
+}
+.tab-content table thead tr
+{
+    background-color: #eee;
+}
+.tab-content table th, .tab-content table td
+{
+    text-align: center;
+}

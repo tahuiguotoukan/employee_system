@@ -268,7 +268,7 @@ var base_data = null;
                 showEmployeeList();
             });
             
-            $('#right').css({"width": ($('#container').width()-250)+'px'}); 
+            
             //default show panel end
             
 

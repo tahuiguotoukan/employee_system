@@ -1,7 +1,5 @@
 
-.table-box{
-    overflow: auto;
-}
+
 #dialog-search {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 10;
@@ -27,10 +25,6 @@
     right: 6px;
     color: #cccccc;
     display: none;
-}
-#employee-list table th, #employee-list table td
-{
-    text-align: center;
 }
 
 #dialog-more-condition{
