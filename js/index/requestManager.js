@@ -1,4 +1,3 @@
-var cgi = 'http://192.168.1.81:3000/';
 function reqLogin(username, passwork)
 {
     $.ajax({
@@ -438,26 +437,9 @@ function reqNotSortInfo(tab, key)  //去掉排序
         reqLeaveJoblistInfo(0, leave_search_params);
     }
 }
-function getLoginToken()
-{
-    let info = $.cookie('user-info');
-    try{
-        info = JSON.parse(info);
-        return info.session;
-    }
-    catch{
-        return null;
-    }
-    
-}
+
 function getRequestParams(param){
     var reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)", "i");
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]); return null;
-}
-function guideToLoginPanel()
-{
-    alert('状态已过期，请重新登录');
-    $.cookie('history', window.location.href, {path: '/'});
-    $(window).attr('location',"./login.html");
 }

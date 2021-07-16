@@ -10,7 +10,7 @@ var base_data = null;
         //初始化详细面板类型
         var detail_type = detail_type_def.add;
         var cur_page = 1;
-        var one_page_count = 12;
+        
         $(function () {
             
             $('#right').append(right_table);
