@@ -108,6 +108,7 @@ function onSuperSearch ()
 {
     $('#dialog-search').show();
     $('#dialog-search').attr('search-type', 'onJob');
+    showParamsByHistroy('onJob');
     $('#dialog-more-condition').hide();
     $('#dialog-search>.modal-dialog').css({
         "top": "50%",
@@ -119,12 +120,38 @@ function OnLeaveSuperSearch()
 {
     $('#dialog-search').show();
     $('#dialog-search').attr('search-type', 'leaveJob');
+    showParamsByHistroy('leaveJob');
     $('#dialog-more-condition').hide();
     $('#dialog-search>.modal-dialog').css({
         "top": "50%",
         "transform": "translateY(-50%)"
     })
     $('#dialog-search form>.form-group[type="bornTime"]').eq(0).hide();
+}
+function showParamsByHistroy(type)
+{
+    let active_item = null;
+    if(type === 'leaveJob')
+    {
+        active_item = leave_search_params;
+    }
+    else if(type === 'onJob')
+    { 
+        active_item = search_params;
+    }
+    $('#dialog-search form>.form-group').map((i, v) => {
+        $(v).hide();
+    });
+    $('#dialog-search form>.form-group[type="name"]').eq(0).show();
+    for(let k in active_item)
+    {
+        let item = $('#dialog-search form>.form-group[type="'+k+'"]').eq(0);
+        if(item.length > 0) 
+        {
+            item.show();
+        }
+    }
+    
 }
 function onClickDelete (self)
 {
