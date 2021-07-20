@@ -68,6 +68,15 @@ const right_table = $(`
                                                 </a>
                                             </li>
                                         </ul>
+                                        <p class="pull-left mt10 ml15">
+                                            
+                                            <select class="page-num">
+                                                <option value="12">12</option>
+                                                <option value="24">24</option>
+                                                <option value="48">48</option>
+                                            </select>
+                                            /页
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
@@ -132,6 +141,14 @@ const right_table = $(`
                                                 </a>
                                             </li>
                                         </ul>
+                                        <p class="pull-left mt10 ml15">
+                                            <select class="page-num">
+                                                <option value="12">12</option>
+                                                <option value="24">24</option>
+                                                <option value="48">48</option>
+                                            </select>
+                                            /页
+                                        </p>
                                     </div>
                                 </td>
                             </tr>

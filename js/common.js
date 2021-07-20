@@ -1,5 +1,11 @@
-var cgi = 'http://192.168.1.81:3000/';
-var one_page_count = 12;
+var cgi = 'http://192.168.1.138:3000/';
+var one_page_count = $.cookie('one_page_count')*1;
+if(!one_page_count || isNaN(one_page_count))
+{
+    one_page_count = 12;
+    $.cookie('one_page_count', one_page_count, {expires: new Date('2200-01-02'), path: '/'});
+}
+
 function commonRequest ({
     type = 'GET', url, data, success, fail
 })
@@ -77,7 +83,7 @@ $(function(){
         $.cookie('user-info', '', {expires: new Date('1997/01/01'), path: '/'});
         $(window).attr('location',"./login.html");
     })
-    $('#menu').metisMenu(); 
+    $('#menu').length > 0 && $('#menu').metisMenu(); 
     $('#menu li a').click(function (){
         $(window).attr('location',$(this).attr('href'));
     })

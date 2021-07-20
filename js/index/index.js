@@ -461,6 +461,25 @@ var base_data = null;
             }, function (){
                 $(this).css('background-color', '#eee');
             })
+            $('.page-num').map((i,v) => {
+                $(v).val($.cookie('one_page_count')); 
+             });
+            $('.page-num').change(function(){
+                let id = $(this).parents('.tab-pane').eq(0).attr('id');
+                one_page_count = $(this).val();
+                $.cookie('one_page_count', one_page_count);
+                $('.page-num').map((i,v) => {
+                    $(v).val($.cookie('one_page_count')); 
+                });
+                if(id == 'tab4_1')
+                {
+                    reqOnJoblistInfo();
+                }
+                else if(id == 'tab4_2')
+                {
+                    reqLeaveJoblistInfo();
+                }
+            })
         });
         
         var initEmployeeForm = function(){
