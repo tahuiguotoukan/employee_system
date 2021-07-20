@@ -300,6 +300,8 @@ function renderTable(tab)
             <td class="tr-employeeProfile"></td>
             <td class="tr-salary"></td>
             <td class="tr-changeSalaryNum"></td>
+            <td class="tr-contractStatus"></td>
+            <td class="tr-offJobTime"></td>
             <td class="operation">
                 <button onClick="onClickLeaveComment(this)" class="king-btn king-default">信息备注</button>
                 <button onClick="onClickRegain(this)" class="king-btn king-danger">恢复</button>
