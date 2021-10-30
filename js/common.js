@@ -1,4 +1,4 @@
-var cgi = 'http://192.168.1.138:3000/';
+var cgi = 'http://119.45.16.105:3000/';
 var one_page_count = $.cookie('one_page_count')*1;
 if(!one_page_count || isNaN(one_page_count))
 {
