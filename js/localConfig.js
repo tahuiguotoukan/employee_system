@@ -8,6 +8,30 @@ const localConfig = {
     contractStatus: ['已签约', '已过期', '要续约', '未签约'],
     education: ['中专', '高中', '大专','本科', '硕士', '博士']
 }
+const super_show = [
+    {
+        file: 'login.html',
+        tab: -1
+    },
+    {
+        file: 'index.html',
+        tab: 0
+    },
+    {
+        file: 'manager.html',
+        tab: 1
+    }
+]
+const normal_show = [
+    {
+        file: 'login.html',
+        tab: -1
+    },
+    {
+        file: 'index.html',
+        tab: 0
+    },
+]
 	
 	
 	

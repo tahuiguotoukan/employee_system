@@ -1,5 +1,7 @@
-var cgi = 'http://119.45.16.105:3000/';
+// var cgi = 'http://119.45.16.105:3000/';  //正式服
+var cgi = 'http://192.168.1.23:3000/';  // 测试服
 var one_page_count = $.cookie('one_page_count')*1;
+
 if(!one_page_count || isNaN(one_page_count))
 {
     one_page_count = 12;
@@ -77,8 +79,76 @@ Date.prototype.Format = function(fmt)
   fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
   return fmt;   
 }
+function ShowTabByManagerLevel ()
+{
+    let user_info = $.cookie('user-info');
+    try{
+        user_info = JSON.parse(user_info);
+        console.error(user_info);
+        if(user_info.auth*1 === 0)
+        {
+            _ShowTabByManagerLevel(super_show);
+        }
+        else
+        {
+            _ShowTabByManagerLevel(normal_show);
+        }
+        
+    }
+    catch
+    {
+        _ShowTabByManagerLevel(normal_show);
+    }
+}
+function _ShowTabByManagerLevel (list)
+{
+    let tab_list = getTabList(list);
+    let tab_nodes = $('ul#menu>li');
+    for(let i = 0; i < tab_nodes.length; i++)
+    {
+        let item = tab_nodes.eq(i);
+        if(tab_list.indexOf(i) > -1)
+        {
+            item.show();
+        }
+        else
+        {
+            item.hide();
+        }
+    }
+    let file_list = getFileList(list);
+    let address = document.URL;
+    let boo = false;
+    for(let i = 0; i < file_list.length; i++)
+    {
+        if(address.indexOf(file_list[i]) > -1)
+        {
+            boo = true;
+            break;
+        }
+    }
+    //用户权限不能展示当前页面
+    !boo && $(window).attr('location',"./index.html");
+}
+function getTabList (data)
+{
+    let tab_list = [];
+    data.forEach(function(v) {
+        tab_list.push(v.tab);
+    })
+    return tab_list;
+}
+function getFileList(data)
+{
+    let file_list = [];
+    data.forEach(function(v) {
+        file_list.push(v.file);
+    })
+    return file_list;
+}
 $(function(){
     $('#right').css({"width": ($('#container').width()-250)+'px'}); 
+    ShowTabByManagerLevel(); //校验权限
     $('#logout').click(function(){
         $.cookie('user-info', '', {expires: new Date('1997/01/01'), path: '/'});
         $(window).attr('location',"./login.html");
