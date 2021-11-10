@@ -25,7 +25,7 @@ function onClickEdit(self)
     }
     $('#employee-detail #phoneNumber').val(person_info.phoneNumber);
     $('#employee-detail #education').val(person_info.education);
-    $('#employee-detail #address-1').val(person_info.department);
+    $('#employee-detail #address-1').val(person_info.workPlace);
     OnDetailAddress1Change();
     if(person_info.detailedAddress.indexOf('区') > -1){
         $('#employee-detail #address-2').val(person_info.detailedAddress.substr(0, person_info.detailedAddress.indexOf('区')+1));
