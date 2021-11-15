@@ -146,6 +146,25 @@ function getFileList(data)
     })
     return file_list;
 }
+function GetPositionNameByVal (pos)
+{
+    let department_cfg = localConfig.department;
+    for(let i = 0; i < department_cfg.length; i++)
+    {
+        let item = department_cfg[i];
+        
+        let pos_cfg = item.position;
+        for(let j = 0; j < pos_cfg.length; j++)
+        {
+            let item2 = pos_cfg[j];
+            if(item2.val == pos)
+            {
+                return item.name;
+            }
+        }
+    }
+    return 'undefined'; 
+}
 $(function(){
     $('#right').css({"width": ($('#container').width()-250)+'px'}); 
     ShowTabByManagerLevel(); //校验权限

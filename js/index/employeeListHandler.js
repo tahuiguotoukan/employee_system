@@ -373,7 +373,7 @@ function renderTable(tab)
         clone_tr.find('.tr-workGroup').eq(0).text(localConfig.workGroup[v.workGroup]);
         clone_tr.find('.tr-department').eq(0).text(localConfig.department[v.department]);
         clone_tr.find('.tr-projectGroup').eq(0).text(localConfig.projectGroup[v.projectGroup]);
-        clone_tr.find('.tr-post').eq(0).text(localConfig.post[v.post[0]]);
+        clone_tr.find('.tr-post').eq(0).text(GetPositionNameByVal(v.post[0]));
         
         
         clone_tr.find('.tr-entryTime').eq(0).text(v.entryTime.split('T')[0]);
@@ -581,49 +581,17 @@ function OnDetailAddress1Change()
 }
 function OnDetailDepartmentChange()
 {
+    let department_cfg = localConfig.department;
     let v = $('#employee-detail [name="department"]').val();
-                let content = $('#employee-detail #post');
-                content.html('');
+    let content = $('#employee-detail #post');
+    content.html('');
+    if(!department_cfg[v]) return;
+    let _pos_cfg = department_cfg[v].position;
+    
+    _pos_cfg.forEach((v, i) => {
+        content.append(`<option value="${v.val}">${v.name}</option>`);
+    })
                 
-                if(v == 0)
-                {
-                    content.html(`
-                        <option value="0">uinty</option>
-                        <option value="1">cocos2dx</option>
-                        <option value="2">cocos小游戏</option>
-                        <option value="3">web前端</option>
-                        <option value="4">go后端</option>
-                        <option value="5">C++服务器</option>
-                    `)
-                }
-                else if(v == 1)
-                {
-                    content.html(`
-                        <option value="6">游戏UI</option>
-                        <option value="7">特效</option>
-                        <option value="8">动作</option>
-                        <option value="9">3D角色</option>
-                        <option value="10">3D场景</option>
-                        <option value="11">角色原画</option>
-                        <option value="12">场景原画</option>
-                    `)
-                    
-                }
-                else if(v == 2)
-                {
-                    content.html(`
-                        <option value="13">策划</option>
-                        <option value="14">运营</option>
-                    `)
-                }
-                else if(v == 3)
-                {
-                    content.html(`
-                        <option value="15">人事</option>
-                        <option value="16">前台</option>
-                        <option value="17">HR</option>
-                    `)
-                }
 }
 function ShowEmployeeTable()
 {

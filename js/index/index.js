@@ -10,9 +10,20 @@ var base_data = null;
         //初始化详细面板类型
         var detail_type = detail_type_def.add;
         var cur_page = 1;
+function InitDocument()
+{
+    //所属组别
+    $('#detail-form select#workGroup').html('<option value="-1" hidden></option>');
+    $('#dialog-search select#workGroup').html('');
+    let work_group_cfg = localConfig.workGroup;
+    work_group_cfg.forEach((v,i) => {
+        $('#detail-form #workGroup').append(`<option value="${i}">${v}</option>`)
+        $('#dialog-search #workGroup').append(`<option value="${i}">${v}</option>`)
+    })
+}
         
         $(function () {
-            
+            InitDocument();
             $('#right').append(right_table);
             
             $('#plugin9_demo2').datetimepicker({
@@ -264,9 +275,7 @@ var base_data = null;
             })
 
             //default show panel start
-            reqLocalCfg(function(){
-                showEmployeeList();
-            });
+            showEmployeeList();
             
             
             //default show panel end
@@ -511,12 +520,9 @@ var base_data = null;
 
         var showEmployeeDetail = function ()
         {
-            // reqLocalCfg(function() {
-                $('#right').children().map((i, v) => {
-                    $(v).attr('id') === 'employee-detail' ? $(v).show() : $(v).hide();
-                })
-            // })
-            
+            $('#right').children().map((i, v) => {
+                $(v).attr('id') === 'employee-detail' ? $(v).show() : $(v).hide();
+            })
         }
         
         function saveGlobalSearchParams(data)

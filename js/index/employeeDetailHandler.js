@@ -150,39 +150,19 @@ function OnSumoselectDemo8Change ()
     {
         $('#sumoselect_demo9 select')[0].sumo.remove(i);
     }
+    let department_cfg = localConfig.department;
     let _value = sumoselect_demo8_select.val(); 
-    if(_value == null || sumoselect_demo8_select.parents('.form-group').css('display') === 'none') _value = [0,1,2,3];;
-    
+    //可以多选
+    if(_value == null || sumoselect_demo8_select.parents('.form-group').css('display') === 'none'){
+        _value = [];
+        department_cfg.forEach((v, i) => {
+            _value.push(v.val);
+        })
+    };
     _value.forEach(function(v, i){
-        if(v == 0)
-        {
-            $('#sumoselect_demo9 select')[0].sumo.add('0','uinty');
-            $('#sumoselect_demo9 select')[0].sumo.add('1','cocos2dx');
-            $('#sumoselect_demo9 select')[0].sumo.add('2','cocos小游戏');
-            $('#sumoselect_demo9 select')[0].sumo.add('3','web前端');
-            $('#sumoselect_demo9 select')[0].sumo.add('4','go后端');
-            $('#sumoselect_demo9 select')[0].sumo.add('5','C++服务器');
-        }
-        else if(v == 1)
-        {
-            $('#sumoselect_demo9 select')[0].sumo.add('6','游戏UI');
-            $('#sumoselect_demo9 select')[0].sumo.add('7','特效');
-            $('#sumoselect_demo9 select')[0].sumo.add('8','动作');
-            $('#sumoselect_demo9 select')[0].sumo.add('9','3D角色');
-            $('#sumoselect_demo9 select')[0].sumo.add('10','3D场景');
-            $('#sumoselect_demo9 select')[0].sumo.add('11','角色原画');
-            $('#sumoselect_demo9 select')[0].sumo.add('12','场景原画');
-        }
-        else if(v == 2)
-        {
-            $('#sumoselect_demo9 select')[0].sumo.add('13','策划');
-            $('#sumoselect_demo9 select')[0].sumo.add('14','运营');
-        }
-        else if(v == 3)
-        {
-            $('#sumoselect_demo9 select')[0].sumo.add('15','人事');
-            $('#sumoselect_demo9 select')[0].sumo.add('16','前台');
-            $('#sumoselect_demo9 select')[0].sumo.add('17','HR');
-        }
+        let _pos_cfg = department_cfg[v].position;
+        _pos_cfg.forEach((v, i) => {
+            $('#sumoselect_demo9 select')[0].sumo.add(v.val,v.name);
+        })
     })
 }
