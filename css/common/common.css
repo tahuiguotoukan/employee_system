@@ -1,6 +1,39 @@
 body{
     overflow: hidden;
 }
+footer{
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    bottom: 0;
+}
+footer>div{
+    width: 100%; 
+    text-align: center;
+    line-height: 40px;
+    background-color: #5c90d2;
+}
+footer>div>a{
+    color: #000;
+    text-decoration: none;
+}
+
+footer>div>a:visited{
+    color: #000;
+    text-decoration: none;
+}
+footer>div>a:link{
+    color: #000;
+    text-decoration: none;
+}
+footer>div>a:hover{
+    color: #fff;
+    text-decoration: none;
+}
+footer>div>a:active{
+    color: #fff;
+    text-decoration: none;
+}
 .nav-left-active {
     color: #2abe24 !important;
     font-size: 16px;
