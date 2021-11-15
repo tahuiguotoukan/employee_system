@@ -371,7 +371,7 @@ function renderTable(tab)
         clone_tr.find('.tr-education').eq(0).text(localConfig.education[v.education]);
         clone_tr.find('.tr-workPlace').eq(0).text(localConfig.workPlace[v.workPlace]);
         clone_tr.find('.tr-workGroup').eq(0).text(localConfig.workGroup[v.workGroup]);
-        clone_tr.find('.tr-department').eq(0).text(localConfig.department[v.department]);
+        clone_tr.find('.tr-department').eq(0).text(GetDepartmentNameByVal(v.department));
         clone_tr.find('.tr-projectGroup').eq(0).text(localConfig.projectGroup[v.projectGroup]);
         clone_tr.find('.tr-post').eq(0).text(GetPositionNameByVal(v.post[0]));
         
