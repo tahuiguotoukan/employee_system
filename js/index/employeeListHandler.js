@@ -581,14 +581,14 @@ function OnDetailAddress1Change()
 }
 function OnDetailDepartmentChange()
 {
-    let department_cfg = localConfig.department;
     let v = $('#employee-detail [name="department"]').val();
     let content = $('#employee-detail #post');
     content.html('');
-    if(!department_cfg[v]) return;
-    let _pos_cfg = department_cfg[v].position;
+    let _pos_cfg = GetDepartmentInfoByVal(v);
+    if(!_pos_cfg) return;
     
-    _pos_cfg.forEach((v, i) => {
+    
+    _pos_cfg.position.forEach((v, i) => {
         content.append(`<option value="${v.val}">${v.name}</option>`);
     })
                 

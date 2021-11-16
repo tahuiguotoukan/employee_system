@@ -17,8 +17,17 @@ function InitDocument()
     $('#dialog-search select#workGroup').html('');
     let work_group_cfg = localConfig.workGroup;
     work_group_cfg.forEach((v,i) => {
-        $('#detail-form #workGroup').append(`<option value="${i}">${v}</option>`)
-        $('#dialog-search #workGroup').append(`<option value="${i}">${v}</option>`)
+        $('#detail-form select#workGroup').append(`<option value="${i}">${v}</option>`)
+        $('#dialog-search select#workGroup').append(`<option value="${i}">${v}</option>`)
+    })
+    //职位与不能有联动，不单独在这里初始化
+    //部门
+    $('#detail-form select#department').html('<option value="-1" hidden></option>');
+    $('#dialog-search select#department').html('');
+    let department_cfg = localConfig.department;
+    department_cfg.forEach((v,i) => {
+        $('#detail-form select#department').append(`<option value="${v.val}">${v.name}</option>`)
+        $('#dialog-search select#department').append(`<option value="${v.val}">${v.name}</option>`)
     })
 }
         

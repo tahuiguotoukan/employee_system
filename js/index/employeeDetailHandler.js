@@ -160,8 +160,9 @@ function OnSumoselectDemo8Change ()
         })
     };
     _value.forEach(function(v, i){
-        let _pos_cfg = department_cfg[v].position;
-        _pos_cfg.forEach((v, i) => {
+        let _pos_cfg = GetDepartmentInfoByVal(v);
+        if(!_pos_cfg) return;
+        _pos_cfg.position.forEach((v, i) => {
             $('#sumoselect_demo9 select')[0].sumo.add(v.val,v.name);
         })
     })

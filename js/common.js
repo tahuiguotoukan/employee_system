@@ -179,6 +179,20 @@ function GetDepartmentNameByVal (val)
     }
     return ''; 
 }
+function GetDepartmentInfoByVal (val)
+{
+    let department_cfg = localConfig.department;
+    for(let i = 0; i < department_cfg.length; i++)
+    {
+        let item = department_cfg[i];
+        
+        if(item.val == val)
+        {
+            return item;
+        }
+    }
+    return null; 
+}
 $(function(){
     $('#right').css({"width": ($('#container').width()-250)+'px'}); 
     ShowTabByManagerLevel(); //校验权限
