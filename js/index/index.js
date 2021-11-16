@@ -10,6 +10,7 @@ var base_data = null;
         //初始化详细面板类型
         var detail_type = detail_type_def.add;
         var cur_page = 1;
+//配置驱动选项        
 function InitDocument()
 {
     //所属组别
@@ -28,6 +29,14 @@ function InitDocument()
     department_cfg.forEach((v,i) => {
         $('#detail-form select#department').append(`<option value="${v.val}">${v.name}</option>`)
         $('#dialog-search select#department').append(`<option value="${v.val}">${v.name}</option>`)
+    })
+    //项目组
+    $('#detail-form select#projectGroup').html('<option value="-1" hidden></option>');
+    $('#dialog-search select#projectGroup').html('');
+    let projectGroup_cfg = localConfig.projectGroup;
+    projectGroup_cfg.forEach((v,i) => {
+        $('#detail-form select#projectGroup').append(`<option value="${i}">${v}</option>`)
+        $('#dialog-search select#projectGroup').append(`<option value="${i}">${v}</option>`)
     })
 }
         

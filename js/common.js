@@ -159,7 +159,7 @@ function GetPositionNameByVal (pos)
             let item2 = pos_cfg[j];
             if(item2.val == pos)
             {
-                return item.name;
+                return item2.name;
             }
         }
     }

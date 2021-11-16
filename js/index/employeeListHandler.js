@@ -41,11 +41,11 @@ function onClickEdit(self)
     $('#employee-detail #entryTime').val(joinTime).siblings('input').val(joinTime);
     $('#employee-detail #startContractTime').val(person_info.contractTime.split('T')[0]).siblings('input').val(person_info.contractTime.split('T')[0]);
     $('#employee-detail #endContractTime').val(person_info.contractTime2.split('T')[0]).siblings('input').val(person_info.contractTime2.split('T')[0]);
-    $('#employee-detail #workGroup').val(person_info.workGroup[0]);
+    $('#employee-detail #workGroup').val(person_info.workGroup);
     $('#employee-detail #department').val(person_info.department);
     OnDetailDepartmentChange();
     $('#employee-detail #post').val(person_info.post);
-    $('#employee-detail #projectGroup').val(person_info.projectGroup[0]);
+    $('#employee-detail #projectGroup').val(person_info.projectGroup);
     
     $('#employee-detail #level').val(person_info.employeeProfile);
     setDetailType(detail_type_def.update);
@@ -418,7 +418,15 @@ function renderTable(tab)
     let comment = '';
     for(let i in members)
     {
-        comment+=`${localConfig.workPlace[i]}${members[i]}人、`
+        if(localConfig.workPlace[i])
+        {
+            comment+=`${localConfig.workPlace[i]}${members[i]}人、`;
+        }
+        else
+        {
+            comment+=`未知${members[i]}人、`;
+        }
+        
     }
     comment = comment.substr(0, comment.length-1);
     if(tab.attr('id') === 'tab4_1')

@@ -116,7 +116,7 @@ function onClickSubmitEmployeeDetail()
                 data.employeeProfile = parseInt(v.value);
                 break;
             case 'phoneNumber':
-                data.phoneNumber = parseInt(v.value);
+                data.phoneNumber = v.value;
                 break;
             case 'education':
                 data.education = parseInt(v.value);
