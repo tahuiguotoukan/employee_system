@@ -1,6 +1,6 @@
 function reqLogin(username, passwork)
 {
-    $.ajax({
+    commonRequest({
         type: 'POST',
         url: cgi+'login',
         data:{
@@ -8,11 +8,7 @@ function reqLogin(username, passwork)
             passwork:passwork
         },
         success: function(obj){
-            console.error('登录结果', obj);
-            let ret = obj.ret;
-            if(ret === 0)
-            {
-                info = obj.result;
+                info = obj;
                 $.cookie('user-info', JSON.stringify(info), {expires: 7, path: '/'});
                 let history = $.cookie('history');
                 $.cookie('history', '', {path:'/', expires: new Date('1997/01/01')});
@@ -24,13 +20,6 @@ function reqLogin(username, passwork)
                 {
                     $(window).attr('location',"./index.html");
                 }
-                
-                
-            }
-            else
-            {
-                alert(obj.result);
-            }
         }
     })
 }
@@ -50,9 +39,8 @@ function reqOnJoblistInfo(start, data={})
     }
     data.browseCount = one_page_count;
     saveGlobalSearchParams(data);
-    data.token = getLoginToken();
     console.error('查询基础列表数据 start index is ' + data.browseIndex + '; count is ' + one_page_count);
-    $.ajax({
+    commonRequest({
         type: 'POST',
         url: cgi+'browseOnTheJob',
         data:data,
@@ -60,23 +48,11 @@ function reqOnJoblistInfo(start, data={})
         //     withCredentials: true //允许跨域带Cookie
         // },
         success: function(obj){
-            console.error('data', obj);
-            if(obj.ret === 0 && obj.result)
-            {
-                window.base_data = obj.result.data;
-                window.totalEmployCount = obj.result.totalCount;
-                window.members = obj.result.member;
+                window.base_data = obj.data;
+                window.totalEmployCount = obj.totalCount;
+                window.members = obj.member;
                 renderPage($('#tab4_1'), Math.floor(data.browseIndex/one_page_count)+1);
                 renderTable($('#tab4_1'));
-            }
-            else if(obj.ret === -1)
-            {
-                guideToLoginPanel();
-            }
-            else
-            {
-                alert(obj.result);
-            }
         }
     })
 }
@@ -85,30 +61,18 @@ function reqOnJobPagelistInfo (start, success)
     data = window.search_params;
     data.browseIndex = start*one_page_count;
     console.error('请求分页参数', data)
-    console.error('开始位置'+start+' 第' + Math.floor(start/one_page_count)+1 + '页');
+    console.error('开始位置'+data.browseIndex+' 第' + (Math.floor(data.browseIndex/one_page_count)+1) + '页');
     saveGlobalSearchParams(data);
-    data.token = getLoginToken();
-    $.post(cgi+'browseOnTheJob', data, function(obj, textStatus){
-        console.error('分页数据回包', obj);
-        if(obj.ret === 0 && obj.result)
-        {
-            window.base_data = obj.result.data;
-            window.totalEmployCount = obj.result.totalCount;
-            if(textStatus === 'success')
-            {
+    commonRequest({
+        type: "POST",
+        url: cgi+'browseOnTheJob',
+        data: data,
+        success: (obj) => {
+                window.base_data = obj.data;
+                window.totalEmployCount = obj.totalCount;
                 renderPage($('#tab4_1'), Math.floor(data.browseIndex/one_page_count)+1);
                 renderTable($('#tab4_1'));
                 success && success();
-            }
-        
-        }
-        else if(obj.ret === -1)
-        {
-            guideToLoginPanel();
-        }
-        else
-        {
-            alert(obj.result);
         }
     })
 }
@@ -117,13 +81,13 @@ function reqLeavePagelistInfo (start, success)
     data = window.leave_search_params;
     data.browseIndex = start*one_page_count;
     console.error('请求分页参数', data)
-    console.error('开始位置'+start+' 第' + Math.floor(start/one_page_count)+1 + '页');
+    console.error('开始位置'+data.browseIndex+' 第' + (Math.floor(data.browseIndex/one_page_count)+1) + '页');
     saveGlobalLeaveSearchParams(data);
-    data.token = getLoginToken();
-    $.post(cgi+'browseOffTheJob', data, function(obj, textStatus){
-        console.error('分页数据回包', obj);
-        if(obj.ret === 0 && obj.result)
-        {
+    commonRequest({
+        type: "POST",
+        url: cgi+'browseOffTheJob',
+        data: data,
+        success: (obj) => {
             window.base_data = obj.result.data;
             window.totalEmployCount = obj.result.totalCount;
             if(textStatus === 'success')
@@ -132,15 +96,6 @@ function reqLeavePagelistInfo (start, success)
                 renderTable($('#tab4_2'));
                 success && success();
             }
-        
-        }
-        else if(obj.ret === -1)
-        {
-            guideToLoginPanel();
-        }
-        else
-        {
-            alert(obj.result);
         }
     })
 }
@@ -181,24 +136,17 @@ function reqOnJobSuperSearch (data, success)
 {
     data.browseCount = one_page_count;
     saveGlobalSearchParams(data);
-    data.token = getLoginToken();
-    $.post(cgi+'browseOnTheJob', data, function(obj){
-        if(obj.ret === 0)
-        {
-            console.error('高级查询结果', obj.result);
-            window.base_data = obj.result.data;
-            window.totalEmployCount = obj.result.totalCount;
-            window.members = obj.result.member;
+    commonRequest({
+        type: "POST",
+        url: cgi+'browseOnTheJob',
+        data: data,
+        success: (obj) => {
+            console.error('高级查询结果', obj);
+            window.base_data = obj.data;
+            window.totalEmployCount = obj.totalCount;
+            window.members = obj.member;
             renderPage($('#tab4_1'));
             success && success();
-        }
-        else if(obj.ret === -1)
-        {
-            guideToLoginPanel();
-        }
-        else
-        {
-            alert(obj.result);
         }
     })
 }
@@ -206,44 +154,31 @@ function reqLeaveSuperSearch (data, success)
 {
     data.browseCount = one_page_count;
     saveGlobalLeaveSearchParams(data);
-    data.token = getLoginToken();
-    $.post(cgi+'browseOffTheJob', data, function(obj){
-        if(obj.ret === 0)
-        {
-            console.error('高级查询结果', obj.result);
-            window.base_data = obj.result.data;
-            window.totalEmployCount = obj.result.totalCount;
-            window.members = obj.result.member;
+    commonRequest({
+        type: "POST",
+        url: cgi+'browseOffTheJob',
+        data: data,
+        success: (obj) => {
+            console.error('高级查询结果', obj);
+            window.base_data = obj.data;
+            window.totalEmployCount = obj.totalCount;
+            window.members = obj.member;
             renderPage($('#tab4_2'));
             success && success();
-        }
-        else if(obj.ret === -1)
-        {
-            guideToLoginPanel();
-        }
-        else
-        {
-            alert(obj.result);
         }
     })
 }
 function reqDeleteEmployee (id, success)
 {
-    $.post(cgi+'delete', {id: id, token: getLoginToken()}, function(obj){
-        if(obj.ret === 0)
-        {
+    commonRequest({
+        type: "POST",
+        url: cgi+'delete',
+        data: {id: id, token: getLoginToken()},
+        success: (obj) => {
             console.log('删除员工', obj.result);
             window.totalEmployCount-=1;
             renderPage($('#tab4_1'));
             success && success();
-        }
-        else if(obj.ret === -1)
-        {
-            guideToLoginPanel();
-        }
-        else
-        {
-            alert(obj.result);
         }
     })
 }
@@ -256,44 +191,27 @@ function reqSaveEmployeeInfo(datas)
     {
         d[i] = datas;
     }
-    
-    $.post(cgi+'add', {data: d, token: getLoginToken}, function(obj){
-        console.error('save data', obj);
-        if(obj.ret === 0)
-        {
+    commonRequest({
+        type: "POST",
+        url: cgi+'add',
+        data: {data: d, token: getLoginToken},
+        success: (obj) => {
             alert('保存成功！');
             initEmployeeForm();
             showEmployeeList(true, 'updateTime');
-            
-        }
-        else if(obj.ret === -1)
-        {
-            guideToLoginPanel();
-        }
-        else
-        {
-            alert(obj.result);
         }
     })
 }
 function reqUpdateEmployeeInfo(data)
 {
-    data.token = getLoginToken();
-    $.post(cgi+'update', data, function(obj){
-        console.error('update data', obj);
-        if(obj.ret === 0)
-        {
+    commonRequest({
+        type: "POST",
+        url: cgi+'update',
+        data: data,
+        success: (obj) => {
             alert('更新成功！');
             initEmployeeForm();
             showEmployeeList(true, 'updateTime');
-        }
-        else if(obj.ret === -1)
-        {
-            guideToLoginPanel();
-        }
-        else
-        {
-            alert(obj.result);
         }
     })
 }
@@ -320,31 +238,20 @@ function reqLeaveJoblistInfo (start, data={})
     }
     data.browseCount = one_page_count;
     saveGlobalLeaveSearchParams(data);
-    data.token = getLoginToken();
     console.error('查询离职列表数据 start index is ' + data.browseIndex + '; count is ' + one_page_count);
-    $.post(cgi+'browseOffTheJob', data, function(obj, textStatus){
-        console.error('离职data', obj);
-        if(obj.ret === 0 && obj.result)
-        {
-            window.base_data = obj.result.data;
-            window.totalEmployCount = obj.result.totalCount;
-            window.members = obj.result.member;
-            if(textStatus === 'success')
-            {
-                renderPage($('#tab4_2'), Math.floor(data.browseIndex/one_page_count)+1);
-                renderTable($('#tab4_2'));
-            }
-        
-        }
-        else if(obj.ret === -1)
-        {
-            guideToLoginPanel();
-        }
-        else
-        {
-            alert(obj.result);
+    commonRequest({
+        type: "POST",
+        url: cgi+'browseOffTheJob',
+        data: data,
+        success: (obj) => {
+            window.base_data = obj.data;
+            window.totalEmployCount = obj.totalCount;
+            window.members = obj.member;
+            renderPage($('#tab4_2'), Math.floor(data.browseIndex/one_page_count)+1);
+            renderTable($('#tab4_2'));
         }
     })
+    
 }
 function reqLeave(id, offJobTime, offJobInfoNotes = '')
 {
@@ -381,21 +288,13 @@ function reqUpdateLeaveComment (id, offJobInfoNotes)
 function updateJobStatusInfo(data, callback)
 {
     console.error('离职信息', data);
-    data.token = getLoginToken();
-    $.post(cgi+'update', data, function(obj){
-        console.error('update leave data', obj);
-        if(obj.ret === 0)
-        {
+    commonRequest({
+        type: "POST",
+        url: cgi+'update',
+        data: data,
+        success: (obj) => {
             alert('更新成功！');
             callback && callback();
-        }
-        else if(obj.ret === -1)
-        {
-            guideToLoginPanel();
-        }
-        else
-        {
-            alert(obj.result);
         }
     })
 }
