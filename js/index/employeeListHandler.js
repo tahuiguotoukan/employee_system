@@ -373,7 +373,7 @@ function renderTable(tab)
         clone_tr.find('.tr-workGroup').eq(0).text(localConfig.workGroup[v.workGroup]);
         clone_tr.find('.tr-department').eq(0).text(GetDepartmentNameByVal(v.department));
         clone_tr.find('.tr-projectGroup').eq(0).text(localConfig.projectGroup[v.projectGroup]);
-        clone_tr.find('.tr-post').eq(0).text(GetPositionNameByVal(v.post[0]));
+        clone_tr.find('.tr-post').eq(0).text(GetPositionNameByVal(v.post));
         
         
         clone_tr.find('.tr-entryTime').eq(0).text(v.entryTime.split('T')[0]);
