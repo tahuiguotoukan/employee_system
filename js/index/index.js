@@ -13,15 +13,9 @@ var base_data = null;
 //配置驱动选项        
 function InitDocument()
 {
-    //所属组别
-    $('#detail-form select#workGroup').html('<option value="-1" hidden></option>');
-    $('#dialog-search select#workGroup').html('');
-    let work_group_cfg = localConfig.workGroup;
-    work_group_cfg.forEach((v,i) => {
-        $('#detail-form select#workGroup').append(`<option value="${i}">${v}</option>`)
-        $('#dialog-search select#workGroup').append(`<option value="${i}">${v}</option>`)
-    })
-    //职位与不能有联动，不单独在这里初始化
+    //所属组别与部门有联动，不单独在这里写
+    
+    //职位与部门有联动，不单独在这里初始化
     //部门
     $('#detail-form select#department').html('<option value="-1" hidden></option>');
     $('#dialog-search select#department').html('');
@@ -208,7 +202,7 @@ function InitDocument()
             $('#sumoselect_demo10 select').SumoSelect({
                 okCancelInMulti: true,
                 selectAll: true,
-                placeholder: '选择研发组',
+                placeholder: '选择组别',
                 selectAlltext: '全选'
             });
             $('#sumoselect_demo11 select').SumoSelect({

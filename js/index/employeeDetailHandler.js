@@ -150,6 +150,11 @@ function OnSumoselectDemo8Change ()
     {
         $('#sumoselect_demo9 select')[0].sumo.remove(i);
     }
+    let len10 = $('#sumoselect_demo10 select').children('option').length;
+    for(let i = len10 - 1; i >= 0; i--)
+    {
+        $('#sumoselect_demo10 select')[0].sumo.remove(i);
+    }
     let department_cfg = localConfig.department;
     let _value = sumoselect_demo8_select.val(); 
     //可以多选
@@ -164,6 +169,9 @@ function OnSumoselectDemo8Change ()
         if(!_pos_cfg) return;
         _pos_cfg.position.forEach((v, i) => {
             $('#sumoselect_demo9 select')[0].sumo.add(v.val,v.name);
+        })
+        _pos_cfg.workGroup.forEach((v, i) => {
+            $('#sumoselect_demo10 select')[0].sumo.add(v.val,v.name);
         })
     })
 }

@@ -1,5 +1,5 @@
-// var cgi = 'http://119.45.16.105:3000/';  //正式服
-var cgi = 'http://192.168.1.23:3000/';  // 测试服
+var cgi = 'http://119.45.16.105:3000/';  //正式服
+// var cgi = 'http://192.168.1.23:3000/';  // 测试服
 var one_page_count = $.cookie('one_page_count')*1;
 
 if(!one_page_count || isNaN(one_page_count))
@@ -176,7 +176,7 @@ function GetWorkGroupNameByVal (group)
         for(let j = 0; j < pos_cfg.length; j++)
         {
             let item2 = pos_cfg[j];
-            if(item2.val == pos)
+            if(item2.val == group)
             {
                 return item2.name;
             }

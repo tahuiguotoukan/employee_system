@@ -15,6 +15,14 @@ const localConfig = {
                 {val: '3', name: 'web前端'},
                 {val: '4', name: 'go后端'},
                 {val: '5', name: 'C++服务器'}
+            ],
+            workGroup: [
+                {val: '0', name: '研发一组'},
+                {val: '1', name: '研发二组'},
+                {val: '2', name: '研发三组'},
+                {val: '3', name: '研发四组'},
+                {val: '4', name: '研发五组'},
+                {val: '5', name: '研发六组'},
             ]
         }, 
         {
@@ -28,6 +36,10 @@ const localConfig = {
                 {val: '10', name: '3D场景'},
                 {val: '11', name: '角色原画'},
                 {val: '12', name: '场景原画'},
+            ],
+            workGroup: [
+                {val: '6', name: '美术一组'},
+                {val: '7', name: '美术二组'},
             ]
         },
         {
@@ -36,6 +48,9 @@ const localConfig = {
             position: [
                 {val: '13' , name: '策划'},
                 {val: '14' , name: '运营'},
+            ],
+            workGroup: [
+                {val: '8', name: '运营策划组'},
             ]
         },
         {
@@ -45,6 +60,9 @@ const localConfig = {
                 {val: '15', name: '人事'},
                 {val: '16', name: '前台'},
                 {val: '17', name: 'HR'}
+            ],
+            workGroup: [
+                {val: '9', name: '职能组'},
             ]
         },
         {
@@ -56,6 +74,11 @@ const localConfig = {
                 {val: '20', name: '产品策划'},
                 {val: '21', name: '项目经理'},
                 {val: '22', name: '测试'}
+            ],
+            workGroup: [
+                {val: '10', name: '运营开发组'},
+                {val: '11', name: '项目管理组'},
+                {val: '12', name: '测试组'},
             ]
         }
     ],
