@@ -165,6 +165,25 @@ function GetPositionNameByVal (pos)
     }
     return ''; 
 }
+function GetWorkGroupNameByVal (group)
+{
+    let department_cfg = localConfig.department;
+    for(let i = 0; i < department_cfg.length; i++)
+    {
+        let item = department_cfg[i];
+        
+        let pos_cfg = item.workGroup;
+        for(let j = 0; j < pos_cfg.length; j++)
+        {
+            let item2 = pos_cfg[j];
+            if(item2.val == pos)
+            {
+                return item2.name;
+            }
+        }
+    }
+    return ''; 
+}
 function GetDepartmentNameByVal (val)
 {
     let department_cfg = localConfig.department;

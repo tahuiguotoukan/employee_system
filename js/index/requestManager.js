@@ -311,6 +311,13 @@ function reqLeaveJoblistInfo (start, data={})
     {
         data.browseIndex = 0;
     }
+    //默认按离职时间排序
+    if(leave_search_params && leave_search_params.sortName == null)
+    {
+        console.log('按离职时间排序');
+        leave_search_params.sortName = 'offJobTime';
+        leave_search_params.sortType = -1;
+    }
     data.browseCount = one_page_count;
     saveGlobalLeaveSearchParams(data);
     data.token = getLoginToken();

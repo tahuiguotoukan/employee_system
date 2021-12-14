@@ -337,7 +337,7 @@ function renderTable(tab)
     }
     let th_list = tab.find('thead tr th');
     body_tr.find('td').map(function(i,v){
-        if(["operation", "tr-id", "tr-name","tr-sex","tr-workPlace","tr-department","tr-post","tr-entryTime"].indexOf($(v).attr('class')) > -1)
+        if(["operation", "tr-id", "tr-name","tr-sex","tr-workPlace","tr-department","tr-post","tr-entryTime", "tr-offJobTime"].indexOf($(v).attr('class')) > -1)
         {
             $(th_list[i]).show();
             $(v).show();
@@ -370,7 +370,7 @@ function renderTable(tab)
         clone_tr.find('.tr-phoneNumber').eq(0).text(v.phoneNumber);
         clone_tr.find('.tr-education').eq(0).text(localConfig.education[v.education]);
         clone_tr.find('.tr-workPlace').eq(0).text(localConfig.workPlace[v.workPlace]);
-        clone_tr.find('.tr-workGroup').eq(0).text(localConfig.workGroup[v.workGroup]);
+        clone_tr.find('.tr-workGroup').eq(0).text(GetWorkGroupNameByVal(v.workGroup));
         clone_tr.find('.tr-department').eq(0).text(GetDepartmentNameByVal(v.department));
         clone_tr.find('.tr-projectGroup').eq(0).text(localConfig.projectGroup[v.projectGroup]);
         clone_tr.find('.tr-post').eq(0).text(GetPositionNameByVal(v.post));
@@ -589,17 +589,30 @@ function OnDetailAddress1Change()
 }
 function OnDetailDepartmentChange()
 {
+    
     let v = $('#employee-detail [name="department"]').val();
+    
     let content = $('#employee-detail #post');
     content.html('');
-    let _pos_cfg = GetDepartmentInfoByVal(v);
-    if(!_pos_cfg) return;
     
+    let _department_cfg = GetDepartmentInfoByVal(v);
+    //职位联动
+    if(_department_cfg && _department_cfg.position){
+        _department_cfg.position.forEach((v, i) => {
+            content.append(`<option value="${v.val}">${v.name}</option>`);
+        })
+    };
+
+    //组别联动
+    let group = $('#employee-detail #workGroup');
+    group.html('');
     
-    _pos_cfg.position.forEach((v, i) => {
-        content.append(`<option value="${v.val}">${v.name}</option>`);
-    })
-                
+    if(_department_cfg && _department_cfg.workGroup) {
+        _department_cfg.workGroup.forEach((v, i) => {
+            group.append(`<option value="${v.val}">${v.name}</option>`);
+        })
+    };
+               
 }
 function ShowEmployeeTable()
 {
