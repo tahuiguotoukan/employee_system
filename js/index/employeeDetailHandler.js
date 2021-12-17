@@ -126,9 +126,22 @@ function onClickSubmitEmployeeDetail()
         }
     })
     $('#salary-table>tbody tr').map(function(i, v){
+        let y = $(v).find('[name="year"]').val();
+        
+        if(!y){
+            // alert('请输入薪资年份');
+            return;
+        }
+        let m = $(v).find('[name="month"]').val();
+        if(!m){
+            // alert('请输入薪资月份');
+            return;
+        }
+        let money = $(v).find('[name="money"]').val();
+        money ? parseInt(money) : 0;
         data.salary.push({
-            money: parseInt($(v).find('[name="money"]').val()),
-            time: parseInt($(v).find('[name="year"]').val())+'-'+parseInt($(v).find('[name="month"]').val())+'-'+'1'
+            money: money,
+            time: parseInt(y)+'-'+parseInt(m)+'-'+'1'
         })
     })
     data.id = $('#userCode').val() === '' ? 0 : parseInt($('#userCode').val());

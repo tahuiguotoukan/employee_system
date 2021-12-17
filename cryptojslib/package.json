@@ -1,0 +1,50 @@
+{
+  "_from": "cryptojslib",
+  "_id": "cryptojslib@3.1.2",
+  "_inBundle": false,
+  "_integrity": "sha1-aEbccl6lCKhqwMnEQc0uyUTe82Y=",
+  "_location": "/cryptojslib",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cryptojslib",
+    "name": "cryptojslib",
+    "escapedName": "cryptojslib",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cryptojslib/-/cryptojslib-3.1.2.tgz",
+  "_shasum": "6846dc725ea508a86ac0c9c441cd2ec944def366",
+  "_spec": "cryptojslib",
+  "_where": "E:\\HLMJ_js_game\\dist",
+  "author": {
+    "name": "Antonio Spinelli"
+  },
+  "bugs": {
+    "url": "https://github.com/antonio-spinelli/CryptoJS/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Unmodified copy of Google Code hosted CryptoJS project.",
+  "homepage": "https://github.com/antonio-spinelli/CryptoJS#readme",
+  "keywords": [
+    "cryptojs"
+  ],
+  "license": "MIT",
+  "main": "components/core.js",
+  "name": "cryptojslib",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonio-spinelli/CryptoJS.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "3.1.2"
+}

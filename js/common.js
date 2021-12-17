@@ -2,6 +2,18 @@
 var cgi = 'http://192.168.1.23:3000/';  // 测试服
 var one_page_count = $.cookie('one_page_count')*1;
 
+const CGI_NAME_LIST = {
+    LOGIN: 'login',  //登陆,
+    QUERY_ON_JOB_LIST: 'browseOnTheJob',  //查询在职列表
+    QUERY_OFF_JOB_LIST: 'browseOffTheJob',  //查询离职列表
+    DELETE: 'delete',  //删除员工信息,弃用
+    ADD: 'add',  //添加员工信息
+    UPDATE: 'update',  //更新员工信息
+    QUERY_ADMIN_LIST: 'browseAllAdmin',  //查询管理员列表,
+    ADD_ADMIN: 'addAdmin',  //添加管理员
+    UPDATE_ADMIN: 'updateAdmin',  //更新管理员
+}
+
 if(!one_page_count || isNaN(one_page_count))
 {
     one_page_count = 12;
@@ -13,15 +25,17 @@ function commonRequest ({
 })
 {
     data && (data.token = getLoginToken());
+    
     $.ajax({
         type: type,
-        url: url,
-        data:data,
+        url: cgi+url,
+        data:_encrypt(data, url),
         success: function(obj){
             let ret = obj.ret;
+            console.error('请求回包'+ url, obj);
             if(ret === 0)
             {
-                success && success(obj.result);
+                success && success(_decrypt(obj.result, url));
             }
             else if(obj.ret === -1)
             {

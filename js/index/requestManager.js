@@ -2,7 +2,7 @@ function reqLogin(username, passwork)
 {
     commonRequest({
         type: 'POST',
-        url: cgi+'login',
+        url: CGI_NAME_LIST.LOGIN,
         data:{
             admin: username,
             passwork:passwork
@@ -42,7 +42,7 @@ function reqOnJoblistInfo(start, data={})
     console.error('查询基础列表数据 start index is ' + data.browseIndex + '; count is ' + one_page_count);
     commonRequest({
         type: 'POST',
-        url: cgi+'browseOnTheJob',
+        url: CGI_NAME_LIST.QUERY_ON_JOB_LIST,
         data:data,
         // xhrFields: {
         //     withCredentials: true //允许跨域带Cookie
@@ -65,7 +65,7 @@ function reqOnJobPagelistInfo (start, success)
     saveGlobalSearchParams(data);
     commonRequest({
         type: "POST",
-        url: cgi+'browseOnTheJob',
+        url: CGI_NAME_LIST.QUERY_ON_JOB_LIST,
         data: data,
         success: (obj) => {
                 window.base_data = obj.data;
@@ -85,7 +85,7 @@ function reqLeavePagelistInfo (start, success)
     saveGlobalLeaveSearchParams(data);
     commonRequest({
         type: "POST",
-        url: cgi+'browseOffTheJob',
+        url: CGI_NAME_LIST.QUERY_OFF_JOB_LIST,
         data: data,
         success: (obj) => {
             window.base_data = obj.result.data;
@@ -138,7 +138,7 @@ function reqOnJobSuperSearch (data, success)
     saveGlobalSearchParams(data);
     commonRequest({
         type: "POST",
-        url: cgi+'browseOnTheJob',
+        url: CGI_NAME_LIST.QUERY_ON_JOB_LIST,
         data: data,
         success: (obj) => {
             console.error('高级查询结果', obj);
@@ -156,7 +156,7 @@ function reqLeaveSuperSearch (data, success)
     saveGlobalLeaveSearchParams(data);
     commonRequest({
         type: "POST",
-        url: cgi+'browseOffTheJob',
+        url: CGI_NAME_LIST.QUERY_OFF_JOB_LIST,
         data: data,
         success: (obj) => {
             console.error('高级查询结果', obj);
@@ -172,7 +172,7 @@ function reqDeleteEmployee (id, success)
 {
     commonRequest({
         type: "POST",
-        url: cgi+'delete',
+        url: CGI_NAME_LIST.DELETE,
         data: {id: id, token: getLoginToken()},
         success: (obj) => {
             console.log('删除员工', obj.result);
@@ -184,7 +184,7 @@ function reqDeleteEmployee (id, success)
 }
 function reqSaveEmployeeInfo(datas)
 {
-    let d = {};
+    let d = [];
     //测试代码
     let l = 1;
     for(let i = 0; i < l; i++)
@@ -193,7 +193,7 @@ function reqSaveEmployeeInfo(datas)
     }
     commonRequest({
         type: "POST",
-        url: cgi+'add',
+        url: CGI_NAME_LIST.ADD,
         data: {data: d, token: getLoginToken},
         success: (obj) => {
             alert('保存成功！');
@@ -206,7 +206,7 @@ function reqUpdateEmployeeInfo(data)
 {
     commonRequest({
         type: "POST",
-        url: cgi+'update',
+        url: CGI_NAME_LIST.UPDATE,
         data: data,
         success: (obj) => {
             alert('更新成功！');
@@ -241,7 +241,7 @@ function reqLeaveJoblistInfo (start, data={})
     console.error('查询离职列表数据 start index is ' + data.browseIndex + '; count is ' + one_page_count);
     commonRequest({
         type: "POST",
-        url: cgi+'browseOffTheJob',
+        url: CGI_NAME_LIST.QUERY_OFF_JOB_LIST,
         data: data,
         success: (obj) => {
             window.base_data = obj.data;
@@ -290,7 +290,7 @@ function updateJobStatusInfo(data, callback)
     console.error('离职信息', data);
     commonRequest({
         type: "POST",
-        url: cgi+'update',
+        url: CGI_NAME_LIST.UPDATE,
         data: data,
         success: (obj) => {
             alert('更新成功！');

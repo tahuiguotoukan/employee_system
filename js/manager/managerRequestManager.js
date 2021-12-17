@@ -24,7 +24,7 @@ function reqBaseInfo(data, success)
     
     commonRequest({
         type: 'POST',
-        url: cgi+'browseAllAdmin',
+        url: CGI_NAME_LIST.QUERY_ADMIN_LIST,
         data:data,
         success: function(info)
         {
@@ -39,7 +39,7 @@ function reqAddManager (data, success)
 {
     commonRequest({
         type: 'POST',
-        url: cgi+'addAdmin',
+        url: CGI_NAME_LIST.ADD_ADMIN,
         data:data,
         success: function(info)
         {
@@ -52,7 +52,7 @@ function reqEditManager (data, success)
 {
     commonRequest({
         type: 'POST',
-        url: cgi+'updateAdmin',
+        url: CGI_NAME_LIST.UPDATE_ADMIN,
         data:data,
         success: function(info)
         {
