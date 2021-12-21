@@ -60,10 +60,10 @@ function _encrypt (data, url)
             });
         case CGI_NAME_LIST.ADD_ADMIN:
         case CGI_NAME_LIST.UPDATE_ADMIN:
+        case CGI_NAME_LIST.LOGIN:
             data.admin != null && (data.admin = encrypt(data.admin));
             data.passwork != null && (data.passwork = encrypt(data.passwork));
             break;
-
         default:
             break;
     }

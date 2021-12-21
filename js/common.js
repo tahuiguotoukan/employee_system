@@ -226,6 +226,7 @@ function GetDepartmentInfoByVal (val)
     }
     return null; 
 }
+
 $(function(){
     $('#right').css({"width": ($('#container').width()-250)+'px'}); 
     ShowTabByManagerLevel(); //校验权限

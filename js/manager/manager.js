@@ -52,14 +52,14 @@ function OnclickConfirm ()
 {
     let user_name = $('#dialog-add-manager #userName').val();
     let password = $('#dialog-add-manager #password').val();
-    if(user_name === '')
+    if(!isRegisterUserName(user_name))
     {
-        alert('用户名不能为空哦！');
+        alert('账号只能输入5到16位（字母，数字，下划线，减号）');
         return;
     }
-    if(password.length < 6)
+    if(!isPasswd(password))
     {
-        alert('密码最少6位数哦！');
+        alert('密码只能输入6-20个字母、数字、下划线');
         return;
     }
     if($('#dialog-add-manager').attr('data-type') === 'edit')
@@ -102,6 +102,20 @@ function _reqBaseInfo ()
     }, function (){
         renderTable();
     });
+}
+//校验登录名：5到16位（字母，数字，下划线，减号）
+function isRegisterUserName(s)  
+{  
+        var patrn=/^[a-zA-Z0-9_-]{5,16}$/;  
+        if (!patrn.exec(s)) return false
+        return true
+}
+//校验密码：只能输入6-20个字母、数字、下划线
+function isPasswd(s)  
+{  
+        var patrn=/^(\w){6,20}$/;  
+        if (!patrn.exec(s)) return false
+        return true
 }
 $(function(){
     _reqBaseInfo();
