@@ -39,6 +39,10 @@ function _encrypt (data, url)
     {
         case CGI_NAME_LIST.QUERY_ON_JOB_LIST:
         case CGI_NAME_LIST.QUERY_OFF_JOB_LIST:
+            data.phoneNumber != null && (data.phoneNumber = encrypt(data.phoneNumber));
+            data.employeeProfile != null && Object.prototype.toString.call(data.employeeProfile) === '[object Array]' && (data.employeeProfile = data.employeeProfile.map(v => encrypt(v)));
+            data.salary != null && Object.prototype.toString.call(data.salary) === '[object Array]' && (data.salary = data.salary.map(v => encrypt(v)));
+            break;
         case CGI_NAME_LIST.UPDATE:
             data.phoneNumber != null && (data.phoneNumber = encrypt(data.phoneNumber));
             data.employeeProfile != null && (data.employeeProfile = encrypt(data.employeeProfile));
