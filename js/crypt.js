@@ -112,7 +112,8 @@ function _decrypt (data, url)
                 
             });
             break;
-        
+        case CGI_NAME_LIST.LOGIN:
+            data.user != null && (data.user = decrypt(data.user));
         default:
             break;
     }
